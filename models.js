@@ -8,8 +8,9 @@ const restaurantSchema = mongoose.Schema({
 
 const commentSchema = mongoose.Schema({
 	author: {type: String},
-	content: {type: String},
-	created: {type: Date, default: Date.now}
+	text: {type: String},
+	created: {type: Date, default: Date.now},
+	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'}
 }); //reviewSchema
 
 restaurantSchema.methods.apiRepr = function() {
@@ -25,8 +26,9 @@ commentSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
 		author: this.author,
-		content: this.content,
-		created: this.created
+		text: this.text,
+		created: this.created,
+		restaurant: this.restaurant
 	}; //return
 }; //whineSchema
 
