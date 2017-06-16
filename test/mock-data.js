@@ -43,3 +43,5 @@ const mockData = {
 	] //restaurants
 
 }; //const mockData
+
+module.exports = mockData;
