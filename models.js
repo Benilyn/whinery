@@ -3,11 +3,14 @@ const mongoose	= require('mongoose');
 const restaurantSchema = mongoose.Schema({
 	name: {type: String, required: true},
 	cuisine: {type: String, required: true},
-	address: {type: String, required: true}
+	address: {type: String, required: true},
+	city: {type: String, required: true},
+	state: {type: String, required: true},
+	zip: {type: String}
 }); //restaurantSchema	
 
 const commentSchema = mongoose.Schema({
-	author: {type: String},
+	author: {type: String, required: true},
 	text: {type: String},
 	created: {type: Date, default: Date.now},
 	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'}
