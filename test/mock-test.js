@@ -4,7 +4,7 @@ const should	=	chai.should();
 
 const app		= require('../server.js');
 const {Restaurant} = require('../models.js');
-const {mockData} = require('./mock-data.js');
+const {mockData} = require('../mock-data.js');
 
 const {PORT}	= require('../config.js');
 
