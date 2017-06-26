@@ -7,7 +7,7 @@ const mockData = {
 			address: "123 ABC St.",
 			city: "Los Angeles",
 			state: "CA",
-			zip: "12345"
+			zipcode: "12345"
 		},
 		{
 			name: "restaurant2",
@@ -15,7 +15,7 @@ const mockData = {
 			address: "456 ABC St.",
 			city: "Los Angeles",
 			state: "CA",
-			zip: "67890"
+			zipcode: "67890"
 		},
 		{
 			name: "restaurant3",
@@ -23,7 +23,7 @@ const mockData = {
 			address: "987 XYZ St.",
 			city: "Anaheim",
 			state: "CA",
-			zip: "99999"
+			zipcode: "99999"
 		},
 		{
 			name: "restaurant4",
@@ -31,14 +31,14 @@ const mockData = {
 			address: "246 ASD St.",
 			city: "Yorba Linda",
 			state: "CA",
-			zip: "35791"
+			zipcode: "35791"
 		},{
 			name: "restaurant5",
 			cuisine: "Japanese",
 			address: "876 JKL St.",
 			city: "Los Angeles",
 			state: "CA",
-			zip: "12345"
+			zipcode: "12345"
 		}
 	] //restaurants
 
