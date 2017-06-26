@@ -21,7 +21,10 @@ restaurantSchema.methods.apiRepr = function() {
 		id: this._id,
 		name: this.name,
 		cuisine: this.cuisine,
-		address: this.address
+		address: this.address,
+		city: this.city,
+		state: this.state,
+		zipcode: this.zipcode
 	}; //return
 }; //restaurantSchema.methods.apiRepr
 
