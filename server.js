@@ -1,11 +1,15 @@
 const express	=	require('express');
 const app		=	express();
 const bodyParser =	require('body-parser');
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+
 
 const restaurantsRouter = require('./restaurantsRouter');
 
 const {Restaurant, Comment} = require('./models');
-const {PORT} = require('./config');
+const {PORT, DATABASE_URL} = require('./config');
 const mockData = require('./mock-data');
 
 app.set('view engine', 'ejs');
@@ -13,7 +17,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 
-app.listen(process.env.PORT||8080);
+
 
 app.get('/data', (req, res) => {
 	res.json(mockData.restaurants);
@@ -28,5 +32,7 @@ app.get('/data/:id', (req, res) => {
 }); //app.get(data:id)
 
 app.use('/restaurants', restaurantsRouter);
+app.listen(PORT);
+mongoose.connect(DATABASE_URL);
 
 module.exports	=	app;
