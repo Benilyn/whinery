@@ -1,5 +1,6 @@
 const express	=	require('express');
 const app		=	express();
+const bodyParser =	require('body-parser');
 
 const restaurantsRouter = require('./restaurantsRouter');
 
@@ -9,6 +10,8 @@ const mockData = require('./mock-data');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(bodyParser.json());
+
 
 app.listen(process.env.PORT||8080);
 
