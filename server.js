@@ -15,7 +15,7 @@ const mockData = require('./mock-data');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.json());
-
+app.use('/restaurants', restaurantsRouter);
 
 
 
@@ -31,8 +31,15 @@ app.get('/data/:id', (req, res) => {
 	
 }); //app.get(data:id)
 
-app.use('/restaurants', restaurantsRouter);
-app.listen(PORT);
-mongoose.connect(DATABASE_URL);
+
+
+if (require.main === module) {
+	mongoose.connect(DATABASE_URL);
+	app.listen(PORT);
+};
+
+
+
+
 
 module.exports	=	app;
