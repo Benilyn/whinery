@@ -81,5 +81,36 @@ router.delete('/:id', (req, res) => {
 		});
 }); //router.delete
 
+router.put ('/:id', (req, res) => {
+	if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+		res.status(400).json({
+			err: "Request path id and request body id values must match"
+		}); //res.status
+	}
+
+	const updated = {};
+	const updateableFields = ['name', 'cuisine', 'address', 'city', 'state', 'zipcode'];
+	updateableFields.forEach(field => {
+		if (field in req.body) {
+			updated[field] = req.body[field];
+		} //if (field in req.body)
+	}); //updateableFields.forEach
+
+	Restaurant
+		.findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+		.exec()
+		.then(updatedRestaurant => res.status(201).json(updatedRestaurant.apiRepr()))
+		.catch(err => res.status(500).json({message: "Something went wrong"}));
+}); //router.put(/:id)
+
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
