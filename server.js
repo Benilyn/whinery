@@ -9,7 +9,7 @@ mongoose.Promise = global.Promise;
 const restaurantsRouter = require('./restaurantsRouter');
 
 const {Restaurant, Comment} = require('./models');
-const {PORT, DATABASE_URL} = require('./config');
+const {PORT, DATABASE_URL, TEST_DATABASE_URL} = require('./config');
 const mockData = require('./mock-data');
 
 app.set('view engine', 'ejs');
