@@ -26,6 +26,17 @@ router.get('/', (req, res) => {
 		});
 }); //router.get
 
+router.get('/:id', (req, res) => {
+	Restaurant
+		.findById(req.params.id)
+		.exec()
+		.then(restaurant => res.json(restaurant.apiRepr()))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: "Something went wrong"});
+		}); //.catch(err)
+}); //router.get(/:id)
+
 
 router.post('/', (req, res) => {
 	const requiredFields = [
