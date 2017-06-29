@@ -19,7 +19,7 @@ describe('GET endpoint', function() {
 			.then(function(_res) {
 				res = _res;
 				res.should.have.status(200);
-				res.body.restaurants.should.have.length.of.at.least(1);
+				res.body.should.have.length.of.at.least(1);
 			}); //.then function
 	}); //it(should return all existing restaurants)
 
