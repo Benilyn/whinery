@@ -60,5 +60,15 @@ router.post('/', (req, res) => {
 		});
 }); //router.post
 
+router.delete('/:id', (req, res) => {
+	Restaurant
+		.findByIdAndRemove(req.params.id)
+		.exec()
+		.then(() => {
+			console.log(`Deleted restaurant \`${req.params.id}\``);
+			res.status(204).end();
+		});
+}); //router.delete
+
 
 module.exports = router;
