@@ -45,5 +45,16 @@ router.get('/', (req, res) => {
 		});
 }); //router.get
 
+router.get('/:id', (req, res) => {
+	Comment
+		.findById(req.params.id)
+		.exec()
+		.then(comment => res.json(comment.apiRepr()))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: "Something went wrong"});
+		}); //.catch(err)
+}); //router.get(/:id)
+
 
 module.exports = router;
