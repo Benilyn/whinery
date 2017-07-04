@@ -28,4 +28,22 @@ router.post('/', (req, res) => {
 		});
 }); //router.post
 
+router.get('/', (req, res) => {
+	Comment
+		.find()
+		.limit(10)
+		.exec()
+		.then(comment => {
+			res.json(
+				comment.map(
+					(comment) => comment.apiRepr())
+			);
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({message: "Internal server error"});
+		});
+}); //router.get
+
+
 module.exports = router;
