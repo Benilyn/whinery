@@ -33,7 +33,7 @@ function generateRestaurantData() {
  	return {
 	    name: faker.company.companyName(),
 	    cuisine: generateCuisineType(),
-	    address: faker.address.street_address(), 
+	    address: faker.address.streetAddress(), 
 	    city: faker.address.city(), 
 	    state: faker.address.state(),
 	    zipcode: faker.address.zipCode()
