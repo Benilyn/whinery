@@ -56,5 +56,15 @@ router.get('/:id', (req, res) => {
 		}); //.catch(err)
 }); //router.get(/:id)
 
+router.delete('/:id', (req, res) => {
+	Comment
+		.findByIdAndRemove(req.params.id)
+		.exec()
+		.then(() => {
+			console.log(`Deleted comment \`${req.params.id}\``);
+			res.status(204).end();
+		});
+}); //router.delete
+
 
 module.exports = router;
