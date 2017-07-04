@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise;
 
 
 const restaurantsRouter = require('./restaurantsRouter');
+const commentsRouter = require('./commentsRouter');
 
 const {Restaurant, Comment} = require('./models');
 const {PORT, DATABASE_URL, TEST_DATABASE_URL} = require('./config');
@@ -16,6 +17,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use('/restaurants', restaurantsRouter);
+app.use('/comments', commentsRouter);
 
 
 
@@ -34,9 +36,10 @@ app.get('/data/:id', (req, res) => {
 
 
 if (require.main === module) {
+	console.log('testing');
 	mongoose.connect(DATABASE_URL);
 	app.listen(PORT);
-};
+}
 
 
 
