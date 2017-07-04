@@ -11,7 +11,7 @@ const restaurantSchema = mongoose.Schema({
 
 const commentSchema = mongoose.Schema({
 	author: {type: String, required: true},
-	text: {type: String},
+	review: {type: String, required: true},
 	created: {type: Date, default: Date.now},
 	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'}
 }); //reviewSchema
@@ -32,7 +32,7 @@ commentSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
 		author: this.author,
-		text: this.text,
+		review: this.review,
 		created: this.created,
 		restaurant: this.restaurant
 	}; //return
