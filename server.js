@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 
-const restaurantsRouter = require('./restaurantsRouter');
-const commentsRouter = require('./commentsRouter');
+const restaurantsRouter = require('./router/restaurantsRouter');
+const commentsRouter = require('./router/commentsRouter');
 
 const {Restaurant, Comment} = require('./models');
 const {PORT, DATABASE_URL, TEST_DATABASE_URL} = require('./config');
