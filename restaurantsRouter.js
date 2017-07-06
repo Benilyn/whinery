@@ -14,12 +14,16 @@ router.get('/', (req, res) => {
 		.find()
 		.limit(10)
 		.exec()
-		.then(restaurants => {
+	/*	.then(restaurants => {
 			res.json(
 				restaurants.map(
 					(restaurant) => restaurant.apiRepr())
 			);
+
 		})
+	*/
+		
+		.then(restaurants => res.render('restaurants.ejs', {restaurants}))
 		.catch(err => {
 			console.error(err);
 			res.status(500).json({message: "Internal server error"});
@@ -30,7 +34,7 @@ router.get('/:id', (req, res) => {
 	Restaurant
 		.findById(req.params.id)
 		.exec()
-		.then(restaurant => res.json(restaurant.apiRepr()))
+		.then(restaurant => res.render('restaurant.ejs', {restaurant}))
 		.catch(err => {
 			console.error(err);
 			res.status(500).json({error: "Something went wrong"});
