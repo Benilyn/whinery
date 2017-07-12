@@ -10,22 +10,22 @@
 	<h1>Whinery</h1>
 
 	<div>
-		<form  class="login-page" action="#" method="post">
+		<form id="login-page" class="login-page" action="#" method="post">
 			<fieldset name="login-info">
 				<legend>Log In</legend>
 				<input type="email" name="email-address" placeholder="email@address.com"><br>
 				<input type="" name="password" placeholder="1234passw0rd"><br>
-				<button type="submit">Log In</button><br>					
+				<button id="login" type="submit">Log In</button><br>					
 				<a href="">Forgot password?</a>
 			</fieldset>
 		</form>
 
-		<button class="sign-up">Sign Up</button>
+		<button id='sign-up' class="sign-up">Sign Up</button>
 	</div>	
 
 	
 	<div>
-		<form  class="signup-page" action="#" method="post">
+		<form  id="signup-page" class="signup-page hide" action="#" method="post">
 			<fieldset name="signup-info">
 				<legend>Sign Up</legend>
 				<input type="" name="username" placeholder="username"><br>
@@ -37,10 +37,18 @@
 			</fieldset>
 		</form>
 	</div>
-	
+
+	<div id='search-result' class='hide'>
+		<p>display map</p>
+		<div id='map'></div>
+		<div id='restaurant'></div>
+	</div>
 	
 	
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script type="text/javascript", src="apps.js"></script>
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4Lq366S1SDP6j4iMrFUnbgwnsC4e6gU4&callback=displayMap">
+    </script>
 </body>
 </html>
