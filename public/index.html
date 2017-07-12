@@ -3,13 +3,42 @@
 <head>
 	<title>Whinery</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="form.css">
 </head>
 
 <body>
-	<p>Hello World</p>
-	
-	<div class='restaurants'></div>
+	<h1>Whinery</h1>
 
+	<div>
+		<form  class="login-page" action="#" method="post">
+			<fieldset name="login-info">
+				<legend>Log In</legend>
+				<input type="email" name="email-address" placeholder="email@address.com"><br>
+				<input type="" name="password" placeholder="1234passw0rd"><br>
+				<button type="submit">Log In</button><br>					
+				<a href="">Forgot password?</a>
+			</fieldset>
+		</form>
+
+		<button class="sign-up">Sign Up</button>
+	</div>	
+
+	
+	<div>
+		<form  class="signup-page" action="#" method="post">
+			<fieldset name="signup-info">
+				<legend>Sign Up</legend>
+				<input type="" name="username" placeholder="username"><br>
+				<input type="" name="first-name" placeholder="First name"><br>
+				<input type="" name="last-name" placeholder="Last name"><br>
+				<input type="email" name="email-address" placeholder="email@address.com"><br>
+				<input type="" name="password" placeholder="1234passw0rd"><br>
+				<button type="submit">Sign up</button><br>					
+			</fieldset>
+		</form>
+	</div>
+	
+	
 	
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script type="text/javascript", src="apps.js"></script>
