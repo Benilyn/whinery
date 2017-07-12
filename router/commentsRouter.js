@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const {Comment} = require('./models');
-const {PORT, DATABASE_URL} = require('./config');
+const {Comment} = require('../models');
+const {PORT, DATABASE_URL} = require('../config');
 
 router.post('/', (req, res) => {
 	const requiredFields = ['author', 'review'];
@@ -19,6 +19,7 @@ router.post('/', (req, res) => {
 		.create({
 			author: req.body.author,
 			review: req.body.review,
+			restaurant: req.body.restaurant
 			})
 		.then(
 			comment => res.status(201).json(comment.apiRepr()))
