@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 
-const {Restaurant} = require('./models');
-const {PORT, DATABASE_URL} = require('./config');
+const {Restaurant} = require('../models');
+const {PORT, DATABASE_URL} = require('../config');
 /*
 router.get('/', (req, res) => {
 	res.json(Restaurant.get());
@@ -14,15 +14,6 @@ router.get('/', (req, res) => {
 		.find()
 		.limit(10)
 		.exec()
-	/*	.then(restaurants => {
-			res.json(
-				restaurants.map(
-					(restaurant) => restaurant.apiRepr())
-			);
-
-		})
-	*/
-		
 		.then(restaurants => res.render('restaurants.ejs', {restaurants}))
 		.catch(err => {
 			console.error(err);
