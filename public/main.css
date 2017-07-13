@@ -2,3 +2,8 @@
 	width: 400px;
 	height: 400px;
 }
+
+#restaurants li:hover {
+	color: blue;
+	cursor: pointer;
+}
