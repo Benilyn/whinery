@@ -1,25 +1,35 @@
-/*
-function showUI() {
-	$('#login-page').removeClass('hide');
-	$('#signup-page').removeClass('hide');
-	$('#sign-up').removeClass('hide');
-}
-*/
 
 $(document).ready(function() {
 	$('.sign-up').click(function() {
+		$('.section').addClass('hide');
 		$('#signup-page').removeClass('hide');
-		$('#login-page').addClass('hide');
-		$('#sign-up').addClass('hide');
 	});
 
-	$('#login-page').submit(function(event) {
+	$('#login-page form').submit(function(event) {
 		event.preventDefault();
-		$('#login-page').addClass('hide');
-		$('#sign-up').addClass('hide');
+		$('.section').addClass('hide');
 		$('#search-result').removeClass('hide');
 		displayMap();
 	});
+
+	$('#restaurants li').click(function() {
+		$('.section').addClass('hide');
+		$('#restaurant-info').removeClass('hide');
+		$('#restaurant-info form').addClass('hide');
+	});
+
+	$('#write-whine').click(function() {
+		$('#whine-reviews').addClass('hide');
+		$('#write-whine').addClass('hide');
+		$('#whine-form').removeClass('hide');
+		console.log('testing');
+	});
+
+	$('#restaurant-info form').submit(function(event) {
+		event.preventDefault();
+		$('.section').addClass('hide');
+		$('#recent-feeds').removeClass('hide');
+	});	
 });
 
 
