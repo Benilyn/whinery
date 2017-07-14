@@ -34,7 +34,7 @@ $(document).ready(function() {
 	$('#restaurant-info form').submit(function(event) {
 		event.preventDefault();
 		$('.section').addClass('hide');
-		$('#recent-feeds').removeClass('hide');
+		$('#latest-feeds').removeClass('hide');
 	});	
 });
 
