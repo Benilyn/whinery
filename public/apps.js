@@ -1,8 +1,14 @@
 
 $(document).ready(function() {
-	$('.sign-up').click(function() {
+	$('#sign-up').click(function() {
 		$('.section').addClass('hide');
 		$('#signup-page').removeClass('hide');
+	});
+
+	$('#signup-page form').submit(function(event) {
+		event.preventDefault();
+		$('.section').addClass('hide');
+		$('#login-page').removeClass('hide');
 	});
 
 	$('#login-page form').submit(function(event) {
