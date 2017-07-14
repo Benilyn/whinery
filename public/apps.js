@@ -28,7 +28,7 @@ $(document).ready(function() {
 		$('#whine-reviews').addClass('hide');
 		$('#write-whine').addClass('hide');
 		$('#whine-form').removeClass('hide');
-		console.log('testing');
+		$('#back-button').removeClass('hide');
 	});
 
 	$('#restaurant-info form').submit(function(event) {
@@ -50,3 +50,4 @@ function displayMap() {
 	    }); //map
 	});
 }
+
