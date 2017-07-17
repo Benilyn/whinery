@@ -71,3 +71,8 @@ button {
 .hide {
 	display: none;
 }
+
+option {
+	font-size: inherit;
+	color: blue;
+}
