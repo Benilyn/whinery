@@ -27,9 +27,9 @@
 		<form   class="signup-page" action="#" method="post">
 			<fieldset name="signup-info">
 				<legend>Sign Up</legend>
-				<input type="" name="username" placeholder="username"><br>
 				<input type="" name="first-name" placeholder="First name"><br>
 				<input type="" name="last-name" placeholder="Last name"><br>
+				<input type="" name="phone-number" placeholder="(123) 456-7890"><br>
 				<input type="email" name="email-address" placeholder="email@address.com"><br>
 				<input type="" name="password" placeholder="1234passw0rd"><br>
 				<button type="submit">Sign up</button><br>					
@@ -73,11 +73,40 @@
 			<p>review 1</p>
 			<p>review 2</p>
 		</div> <!-- #whine-reviews -->
-		<form id='whine-form'>
-				<p>Food</p>
-				<p>Service</p>
-				<p>Cleanliness</p>
-				<p>Price</p>
+		<form id='whine-form' action='#' method="post">
+				<span>Food: </span>
+					<select name='food-rating'>
+						<option value=' '> </option>
+						<option value='bad'>Bad</option>
+						<option value='so-so'>So-So</option>
+						<option value='good'>Good</option>
+					</select>
+					<br>
+				<span>Service: </span>
+					<select name='service-rating'>
+						<option value=' '> </option>
+						<option value='bad'>Bad</option>
+						<option value='so-so'>So-So</option>
+						<option value='good'>Good</option>
+					</select>
+					<br>
+				<span>Cleanliness: </span>
+					<select name='Cleanliness-rating'>
+						<option value=' '> </option>
+						<option value='bad'>Bad</option>
+						<option value='so-so'>So-So</option>
+						<option value='good'>Good</option>
+					</select>
+					<br>
+				<span>Price: </span>
+					<select name='Price-rating'>
+						<option value=' '> </option>
+						<option value='bad'>Bad</option>
+						<option value='so-so'>So-So</option>
+						<option value='good'>Good</option>
+					</select>
+					<br>
+			<input type="submit" id="submit-whine" value="Add Whine">
 				<button type='submit' id='add-whine'>Add Whine</button>
 		</form> <!-- #whine-form -->
 		<a href="javascript: history.go(-1)" id='back-button' class='hide'>Go Back</a>
