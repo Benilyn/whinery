@@ -16,6 +16,15 @@ const commentSchema = mongoose.Schema({
 	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'}
 }); //reviewSchema
 
+
+const userSchema = mongoose.Schema({
+	firsName:{type: String, required: true},
+	lastName: {type: String, required: true},
+	phone: {type: String},
+	email: {type: String, required: true},
+	password: {type: String, required: true},
+});
+
 restaurantSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
@@ -40,5 +49,6 @@ commentSchema.methods.apiRepr = function() {
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 const Comment = mongoose.model('Comment', commentSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = {Restaurant, Comment};
+module.exports = {Restaurant, Comment, User};
