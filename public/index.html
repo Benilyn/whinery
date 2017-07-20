@@ -10,7 +10,7 @@
 	<h1>Whinery</h1>
 
 	<div id="login-page" class='section'>
-		<form class="login-page" action="#" method="post">
+		<form class="login-page">
 			<fieldset name="login-info">
 				<legend>Log In</legend>
 				<input type="email" name="email-address" placeholder="email@address.com"><br>
@@ -24,7 +24,7 @@
 
 	
 	<div id="signup-page" class='section hide'>
-		<form   class="signup-page" action="#" method="post">
+		<form   class="signup-page">
 			<fieldset name="signup-info">
 				<legend>Sign Up</legend>
 				<input type="text" name="first-name" placeholder="First name"><br>
@@ -62,19 +62,33 @@
 	</div> <!-- #search-result -->
 
 	<div id='restaurant-info' class='hide section'>
-		<div id='restaurant-details'>
-			<p>Restaurant 1</p>
-			<p>Address</p>
-			<p>Phone</p>
-			<p>Cuisine</p>
-			<p>$$</p>
-		</div> <!-- #restaurant-details -->
-		<button type='submit' id='write-whine'>Write Review</button>
-		<div id='whine-reviews'>
-			<p>review 1</p>
-			<p>review 2</p>
-		</div> <!-- #whine-reviews -->
-		<form id='whine-form' action='#' method="post">
+		<div id='restaurant-reviews'>
+			<div id='restaurant-details'>
+				<p>Restaurant 1</p>
+				<p>Address</p>
+				<p>Phone</p>
+				<p>Cuisine</p>
+				<p>$$</p>
+			</div> <!-- #restaurant-details -->
+			<button type='submit' id='write-whine'>Write Review</button>
+			<div id='whine-reviews'>
+				<p>review 1</p>
+				<p>review 2</p>
+			</div> <!-- #whine-reviews -->
+		</div>
+
+		
+	</div> <!-- #restaurant-info -->
+
+	<div id='restaurant-whine' class='section hide'>
+			<div id='restaurant-details'>
+				<p>Restaurant 1</p>
+				<p>Address</p>
+				<p>Phone</p>
+				<p>Cuisine</p>
+				<p>$$</p>
+			</div> <!-- #restaurant-details -->
+			<form id='whine-form' action='#' method="post">
 				<span>Food: </span>
 					<select name='food-rating'>
 						<option value=' '> </option>
@@ -107,11 +121,11 @@
 						<option value='good'>Good</option>
 					</select>
 					<br>
-			<input type="submit" id="submit-whine" value="Add Whine">
+			
 				<button type='submit' id='add-whine'>Add Whine</button>
 		</form> <!-- #whine-form -->
-		<a href="javascript: history.go(-1)" id='back-button' class='hide'>Go Back</a>
-	</div> <!-- #restaurant-info -->
+		<a href="#" id='back-button'>Go Back</a>
+		</div>
 
 	<div id='latest-feeds' class='hide section'>
 		<div>Review 1</div>
