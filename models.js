@@ -18,7 +18,7 @@ const commentSchema = mongoose.Schema({
 
 
 const userSchema = mongoose.Schema({
-	firsName:{type: String, required: true},
+	firstName:{type: String, required: true},
 	lastName: {type: String, required: true},
 	phone: {type: String},
 	email: {type: String, required: true},
@@ -46,6 +46,17 @@ commentSchema.methods.apiRepr = function() {
 		restaurant: this.restaurant
 	}; //return
 }; //whineSchema
+
+userSchema.methods.apiRepr = function() {
+	return {
+		id: this._id,
+		firstName: this.firstName,
+		lastName: this.lastName,
+		phone: this.phone,
+		email: this.email,
+		password: this.password
+	}; //return
+}; //userSchema
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 const Comment = mongoose.model('Comment', commentSchema);
