@@ -4,13 +4,13 @@ $(document).ready(function() {
 		$('.section').addClass('hide');
 		$('#signup-page').removeClass('hide');
 	});
-
+/*
 	$('#signup-page form').submit(function(event) {
 		event.preventDefault();
 		$('.section').addClass('hide');
 		$('#login-page').removeClass('hide');
 	});
-
+*/
 	$('#login-page form').submit(function(event) {
 		event.preventDefault();
 		$('.section').addClass('hide');
@@ -38,8 +38,27 @@ $(document).ready(function() {
 		event.preventDefault();
 		$('.section').addClass('hide');
 		$('#restaurant-info').removeClass('hide');
-	});	
+	});
+
+	$('#signup-page form').submit(function(event) {
+		event.preventDefault();
+		const userData = {
+			firstName: $('[name="first-name"]').val(),
+			lastName: $('[name="last-name"]').val(),
+			phone: $('[name="phone-number"]').val(),
+			email: $('[name="email-address"]').val(),
+			password: $('[name="password"]').val()
+		};
+		$.ajax('/users', {
+			contentType: 'application/json charset=utf-8',
+			data: JSON.stringify(userData),
+			method: 'POST'}) 
+		.then(function(res) {
+			console.log(res);
+		});
+	});
 });
+
 
 
 
