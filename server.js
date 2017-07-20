@@ -9,7 +9,7 @@ mongoose.Promise = global.Promise;
 const restaurantsRouter = require('./router/restaurantsRouter');
 const commentsRouter = require('./router/commentsRouter');
 
-const {Restaurant, Comment} = require('./models');
+const {Restaurant, Comment, User} = require('./models');
 const {PORT, DATABASE_URL, TEST_DATABASE_URL} = require('./config');
 const mockData = require('./mock-data');
 
@@ -40,6 +40,9 @@ if (require.main === module) {
 	mongoose.connect(DATABASE_URL);
 	app.listen(PORT);
 }
+
+
+
 
 
 
