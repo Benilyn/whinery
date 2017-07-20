@@ -21,20 +21,23 @@ $(document).ready(function() {
 	$('#restaurants li').click(function() {
 		$('.section').addClass('hide');
 		$('#restaurant-info').removeClass('hide');
-		$('#restaurant-info form').addClass('hide');
 	});
 
 	$('#write-whine').click(function() {
-		$('#whine-reviews').addClass('hide');
-		$('#write-whine').addClass('hide');
-		$('#whine-form').removeClass('hide');
-		$('#back-button').removeClass('hide');
+		$('.section').addClass('hide');
+		$('#restaurant-whine').removeClass('hide');
 	});
 
-	$('#restaurant-info form').submit(function(event) {
+	$('#restaurant-whine form').submit(function(event) {
 		event.preventDefault();
 		$('.section').addClass('hide');
 		$('#latest-feeds').removeClass('hide');
+	});	
+
+	$('#back-button').click(function(event) {
+		event.preventDefault();
+		$('.section').addClass('hide');
+		$('#restaurant-info').removeClass('hide');
 	});	
 });
 
