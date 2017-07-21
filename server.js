@@ -21,6 +21,15 @@ const {Restaurant, Comment, User} = require('./models');
 const {PORT, DATABASE_URL, TEST_DATABASE_URL} = require('./config');
 const mockData = require('./mock-data');
 
+const session = require('express-session');
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+}));
+
+
+
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -49,6 +58,8 @@ if (require.main === module) {
 	mongoose.connect(DATABASE_URL);
 	https.createServer(options, app).listen(PORT);
 }
+
+
 
 
 
