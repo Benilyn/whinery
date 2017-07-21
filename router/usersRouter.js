@@ -31,6 +31,17 @@ router.post('/', (req, res) => {
 		});
 }); //router.post
 
-//router.get('/')
+router.get('/', (req, res) => {
+	User
+		.find()
+		.exec()
+		.then(users => {
+			res.json(users.map(user => user.apiRepr()));
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: 'Something went wrong'});
+		});
+}); //router.get
 
 module.exports = router;
