@@ -55,4 +55,19 @@ router.get('/:id', (req, res) => {
 		});
 }); //router.get(/:id)
 
+router.delete('/:id', (req, res) => {
+	User
+		.findByIdAndRemove(req.params.id)
+		.exec()
+		.then(() => {
+			res.status(204).json({message: 'Success'});
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: 'Something went wrong'});
+		})
+}); //router.delete
+
+
+
 module.exports = router;
