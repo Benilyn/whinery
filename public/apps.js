@@ -4,17 +4,11 @@ $(document).ready(function() {
 		$('.section').addClass('hide');
 		$('#signup-page').removeClass('hide');
 	});
-/*
-	$('#signup-page form').submit(function(event) {
-		event.preventDefault();
-		$('.section').addClass('hide');
-		$('#login-page').removeClass('hide');
-	});
-*/
+
 	$('#login-page form').submit(function(event) {
 		event.preventDefault();
 		$('.section').addClass('hide');
-		$('#search-result').removeClass('hide');
+		$('#search-result').removeClass('hide'); 
 		displayMap();
 	});
 
@@ -43,18 +37,19 @@ $(document).ready(function() {
 	$('#signup-page form').submit(function(event) {
 		event.preventDefault();
 		const userData = {
-			firstName: $('[name="first-name"]').val(),
-			lastName: $('[name="last-name"]').val(),
-			phone: $('[name="phone-number"]').val(),
-			email: $('[name="email-address"]').val(),
-			password: $('[name="password"]').val()
+			firstName: $('#signup-page [name="first-name"]').val(),
+			lastName: $('#signup-page [name="last-name"]').val(),
+			phone: $('#signup-page [name="phone-number"]').val(),
+			email: $('#signup-page [name="email-address"]').val(),
+			password: $('#signup-page [name="password"]').val()
 		};
 		$.ajax('/users', {
-			contentType: 'application/json charset=utf-8',
+			contentType: 'application/json',
 			data: JSON.stringify(userData),
-			method: 'POST'}) 
+			type: 'POST'}) 
 		.then(function(res) {
-			console.log(res);
+			$('.section').addClass('hide');
+			$('#login-page').removeClass('hide');
 		});
 	});
 });
