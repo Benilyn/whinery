@@ -44,4 +44,15 @@ router.get('/', (req, res) => {
 		});
 }); //router.get
 
+router.get('/:id', (req, res) => {
+	User
+		.findById(req.params.id)
+		.exec()
+		.then(user => res.json(user.apiRepr()))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: 'Something went wrong'});
+		});
+}); //router.get(/:id)
+
 module.exports = router;
