@@ -28,6 +28,10 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+const passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 app.set('view engine', 'ejs');
