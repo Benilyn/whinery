@@ -9,22 +9,6 @@ const restaurantSchema = mongoose.Schema({
 	zipcode: {type: String}
 }); //restaurantSchema	
 
-const commentSchema = mongoose.Schema({
-	author: {type: String, required: true},
-	review: {type: String, required: true},
-	created: {type: Date, default: Date.now},
-	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'}
-}); //reviewSchema
-
-
-const userSchema = mongoose.Schema({
-	firstName:{type: String, required: true},
-	lastName: {type: String, required: true},
-	phone: {type: String},
-	email: {type: String, required: true},
-	password: {type: String, required: true},
-});
-
 restaurantSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
@@ -37,6 +21,14 @@ restaurantSchema.methods.apiRepr = function() {
 	}; //return
 }; //restaurantSchema.methods.apiRepr
 
+
+const commentSchema = mongoose.Schema({
+	author: {type: String, required: true},
+	review: {type: String, required: true},
+	created: {type: Date, default: Date.now},
+	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'}
+}); //reviewSchema
+
 commentSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
@@ -45,7 +37,16 @@ commentSchema.methods.apiRepr = function() {
 		created: this.created,
 		restaurant: this.restaurant
 	}; //return
-}; //whineSchema
+}; //commentSchema
+
+
+const userSchema = mongoose.Schema({
+	firstName:{type: String, required: true},
+	lastName: {type: String, required: true},
+	phone: {type: String},
+	email: {type: String, required: true},
+	password: {type: String, required: true},
+});
 
 userSchema.methods.apiRepr = function() {
 	return {
@@ -57,6 +58,7 @@ userSchema.methods.apiRepr = function() {
 		password: this.password
 	}; //return
 }; //userSchema
+
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 const Comment = mongoose.model('Comment', commentSchema);
