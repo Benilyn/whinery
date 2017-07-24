@@ -32,6 +32,37 @@ const passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
+const localStrategy = require('passport-local').Strategy;
+passport.use(new localStrategy(  
+    {
+        usernameField: 'email-address',
+        passwordField: 'password'
+    },
+    function(email, password, done) {
+        User.findOne({ email: email-address })
+        	.then(function(user) {
+	            if (!user || !user.password === password) {
+	                return done(null, false, { message: 'Incorrect email or password.' });
+	            }
+	            done(null, user);
+        	}); //.then function
+    } //function(email, password, done)
+)); //passport.use
+
+passport.serializeUser(function(user, done) {  
+    done(null, user.id);
+}); //passport.serializeUser
+
+passport.deserializeUser(function(id, done) {  
+    User.findOne({ _id: id })
+    	.then(function(user) {
+        	done(null, user);
+    	}) //.then function
+    .catch(function(err) {
+        done(err, null);
+    }); //.catch function
+}); //passport.deserializeUser
+
 
 
 app.set('view engine', 'ejs');
