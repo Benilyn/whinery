@@ -23,19 +23,27 @@ restaurantSchema.methods.apiRepr = function() {
 
 
 const whineSchema = mongoose.Schema({
-	author: {type: String, required: true},
-	review: {type: String, required: true},
+	author: {type: String},
 	created: {type: Date, default: Date.now},
-	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'}
+	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'},
+	food: {type: String},
+	service: {type: String},
+	cleanliness: {type: String},
+	price: {type: String},
+	review: {type: String}
 }); //reviewSchema
 
 whineSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
-		author: this.author,
-		review: this.review,
 		created: this.created,
-		restaurant: this.restaurant
+		author: this.author,
+		restaurant: this.restaurant,
+		food: this.food,
+		service: this.service,
+		cleanliness: this.cleanliness,
+		price: this.price,
+		review: this.review
 	}; //return
 }; //commentSchema
 
