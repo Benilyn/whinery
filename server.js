@@ -14,10 +14,10 @@ mongoose.Promise = global.Promise;
 
 
 const restaurantsRouter = require('./router/restaurantsRouter');
-const commentsRouter = require('./router/commentsRouter');
+const whinesRouter = require('./router/whinesRouter');
 const usersRouter = require('./router/usersRouter');
 
-const {Restaurant, Comment, User} = require('./models');
+const {Restaurant, Whine, User} = require('./models');
 const {PORT, DATABASE_URL, TEST_DATABASE_URL} = require('./config');
 const mockData = require('./mock-data');
 
@@ -69,7 +69,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use('/restaurants', restaurantsRouter);
-app.use('/comments', commentsRouter);
+app.use('/whines', whinesRouter);
 app.use('/users', usersRouter);
 
 

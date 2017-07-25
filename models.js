@@ -22,14 +22,14 @@ restaurantSchema.methods.apiRepr = function() {
 }; //restaurantSchema.methods.apiRepr
 
 
-const commentSchema = mongoose.Schema({
+const whineSchema = mongoose.Schema({
 	author: {type: String, required: true},
 	review: {type: String, required: true},
 	created: {type: Date, default: Date.now},
 	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'}
 }); //reviewSchema
 
-commentSchema.methods.apiRepr = function() {
+whineSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
 		author: this.author,
@@ -61,7 +61,7 @@ userSchema.methods.apiRepr = function() {
 
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
-const Comment = mongoose.model('Comment', commentSchema);
+const Comment = mongoose.model('Whine', whineSchema);
 const User = mongoose.model('User', userSchema);
 
-module.exports = {Restaurant, Comment, User};
+module.exports = {Restaurant, Whine, User};
