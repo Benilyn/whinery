@@ -68,6 +68,28 @@ router.delete('/:id', (req, res) => {
 		})
 }); //router.delete
 
+router.put('/:id', (req, res) => {
+	if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+    	res.status(400).json({
+     		error: 'Request path id and request body id values must match'
+    	}); //res.status(400)
+ 	} //if
+
+	const updated = {};
+	const updateableFields = ['firstName', 'lastName', 'phone', 'email', 'password'];
+	updateableFields.forEach(field => {
+    	if (field in req.body) {
+    		updated[field] = req.body[field];
+    	}
+  	}); //updateableFields
+
+  	User
+    	.findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+    	.exec()
+    	.then(updatedUser => res.status(204).end())
+    	.catch(err => res.status(500).json({message: 'Internal server error'}));
+}); //router.put
+
 
 
 module.exports = router;
