@@ -35,11 +35,11 @@ app.use(passport.session());
 const localStrategy = require('passport-local').Strategy;
 passport.use(new localStrategy(  
     {
-        usernameField: 'email-address',
+        usernameField: 'email',
         passwordField: 'password'
     },
     function(email, password, done) {
-        User.findOne({ email: email-address })
+        User.findOne({ email: email })
         	.then(function(user) {
 	            if (!user || !user.password === password) {
 	                return done(null, false, { message: 'Incorrect email or password.' });
