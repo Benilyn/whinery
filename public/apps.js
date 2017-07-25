@@ -34,7 +34,7 @@ $(document).ready(function() {
 			firstName: $('#signup-page [name="first-name"]').val(),
 			lastName: $('#signup-page [name="last-name"]').val(),
 			phone: $('#signup-page [name="phone-number"]').val(),
-			email: $('#signup-page [name="email-address"]').val(),
+			email: $('#signup-page [name="email"]').val(),
 			password: $('#signup-page [name="password"]').val()
 		}; //const userData
 		$.ajax('/users', {
@@ -42,6 +42,7 @@ $(document).ready(function() {
 			data: JSON.stringify(userData),
 			type: 'POST'}) 
 		.then(function(res) {
+			alert('Thank you for signing up.');
 			$('.section').addClass('hide');
 			$('#login-page').removeClass('hide');
 		}); //.then function
@@ -50,13 +51,13 @@ $(document).ready(function() {
 	$('#login-page form').submit(function(event) {
 		event.preventDefault();
 		const loginData = {
-			email: $('#login-page [name="email-address"]').val(),
+			email: $('#login-page [name="email"]').val(),
 			password: $('#login-page [name="password"]').val()
 		}; //const loginData
 		$.ajax('/users', {
 			contentType: 'application/json',
 			data: JSON.stringify(loginData),
-			type: 'POST'}) 
+			type: 'GET'}) 
 		.then(function(res) {
 			$('.section').addClass('hide');
 			$('#search-result').removeClass('hide'); 
