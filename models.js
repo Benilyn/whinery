@@ -61,7 +61,7 @@ userSchema.methods.apiRepr = function() {
 
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
-const Comment = mongoose.model('Whine', whineSchema);
+const Whine = mongoose.model('Whine', whineSchema);
 const User = mongoose.model('User', userSchema);
 
 module.exports = {Restaurant, Whine, User};
