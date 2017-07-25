@@ -5,7 +5,8 @@ const {Whine} = require('../models');
 const {PORT, DATABASE_URL} = require('../config');
 
 router.post('/', (req, res) => {
-	const requiredFields = ['author', 'review'];
+	const requiredFields = [
+		'author', 'food', 'service', 'cleanliness', 'price'];
 	for (let i=0; i<requiredFields.length; i++) {
 		const field = requiredFields[i];
 		if (!(field in req.body)) {
@@ -18,9 +19,12 @@ router.post('/', (req, res) => {
 	Whine
 		.create({
 			author: req.body.author,
-			review: req.body.review,
-			restaurant: req.body.restaurant
-			})
+			food: req.body.food,
+			service: req.body.service,
+			cleanliness: req.body.cleanliness,
+			price: req.body.price,
+			review: req.body.review
+			}) //.create
 		.then(
 			whine => res.status(201).json(whine.apiRepr()))
 		.catch(err => {
