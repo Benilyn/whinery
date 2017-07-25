@@ -16,6 +16,7 @@ mongoose.Promise = global.Promise;
 const restaurantsRouter = require('./router/restaurantsRouter');
 const whinesRouter = require('./router/whinesRouter');
 const usersRouter = require('./router/usersRouter');
+const authenticationRouter = require('./router/authenticationRouter');
 
 const {Restaurant, Whine, User} = require('./models');
 const {PORT, DATABASE_URL, TEST_DATABASE_URL} = require('./config');
@@ -71,6 +72,7 @@ app.use(bodyParser.json());
 app.use('/restaurants', restaurantsRouter);
 app.use('/whines', whinesRouter);
 app.use('/users', usersRouter);
+app.use('/login', authenticationRouter);
 
 
 
