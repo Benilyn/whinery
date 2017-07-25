@@ -18,8 +18,22 @@ $(document).ready(function() {
 
 	$('#restaurant-whine form').submit(function(event) {
 		event.preventDefault();
-		$('.section').addClass('hide');
-		$('#latest-feeds').removeClass('hide');
+		const whineData = {
+			food: $('#whine-form [name="food-rating"]').val(),
+			service: $('#whine-form [name="food-rating"]').val(),
+			cleanliness: $('#whine-form [name="cleanliness-rating"]').val(),
+			price: $('#whine-form [name="price-rating"]').val(),
+			review: $('#whine-form [name="whine-review"]').val(),
+		}; //whineData
+		$.ajax('/whines', {
+			contentType: 'application/json',
+			data: JSON.stringify(whineData),
+			type: 'POST'}) 
+		.then(function(res) {
+			alert('Thank you for your whine.');
+			$('.section').addClass('hide');
+			$('#latest-feeds').removeClass('hide');
+		}); //.then function	
 	});	//$('#restaurant-whine form').submit(function(event)
 
 	$('#back-button').click(function(event) {
@@ -54,10 +68,10 @@ $(document).ready(function() {
 			email: $('#login-page [name="email"]').val(),
 			password: $('#login-page [name="password"]').val()
 		}; //const loginData
-		$.ajax('/users', {
+		$.ajax('/login', {
 			contentType: 'application/json',
 			data: JSON.stringify(loginData),
-			type: 'GET'}) 
+			type: 'POST'}) 
 		.then(function(res) {
 			$('.section').addClass('hide');
 			$('#search-result').removeClass('hide'); 
