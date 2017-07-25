@@ -89,38 +89,42 @@
 				<p>$$</p>
 			</div> <!-- #restaurant-details -->
 			<form id='whine-form' action='#' method="post">
-				<span>Food: </span>
-					<select name='food-rating'>
-						<option value=' '> </option>
-						<option value='Bad'>Bad</option>
-						<option value='So-So'>So-So</option>
-						<option value='good'>Good</option>
-					</select>
-					<br>
-				<span>Service: </span>
-					<select name='service-rating'>
-						<option value=' '> </option>
-						<option value='bad'>Bad</option>
-						<option value='so-so'>So-So</option>
-						<option value='good'>Good</option>
-					</select>
-					<br>
-				<span>Cleanliness: </span>
-					<select name='Cleanliness-rating'>
-						<option value=' '> </option>
-						<option value='bad'>Bad</option>
-						<option value='so-so'>So-So</option>
-						<option value='good'>Good</option>
-					</select>
-					<br>
-				<span>Price: </span>
-					<select name='Price-rating'>
-						<option value=' '> </option>
-						<option value='bad'>Bad</option>
-						<option value='so-so'>So-So</option>
-						<option value='good'>Good</option>
-					</select>
-					<br>
+				<ul>
+					<li class="rating">Food:
+						<select name='food-rating'>
+							<option value=' '> </option>
+							<option value='Bad'>Bad</option>
+							<option value='So-So'>So-So</option>
+							<option value='good'>Good</option>
+						</select>
+					</li>
+					<li class="rating">Service:
+						<select name='service-rating'>
+							<option value=' '> </option>
+							<option value='bad'>Bad</option>
+							<option value='so-so'>So-So</option>
+							<option value='good'>Good</option>
+						</select>
+					</li>
+					<li class="rating">Cleanliness: 
+						<select name='cleanliness-rating'>
+							<option value=' '> </option>
+							<option value='bad'>Bad</option>
+							<option value='so-so'>So-So</option>
+							<option value='good'>Good</option>
+						</select>
+					</li>
+					<li class="rating">Price: 
+						<select name='price-rating'>
+							<option value=' '> </option>
+							<option value='bad'>Bad</option>
+							<option value='so-so'>So-So</option>
+							<option value='good'>Good</option>
+						</select>
+					</li>
+					<textarea name="whine-review">Write review here...</textarea>
+				</ul>
+				
 			
 				<button type='submit' id='add-whine'>Add Whine</button>
 		</form> <!-- #whine-form -->
