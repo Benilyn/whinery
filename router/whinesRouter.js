@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
 
 	Whine
 		.create({
-			author: req.body.author,
+			author: req.user,
 			food: req.body.food,
 			service: req.body.service,
 			cleanliness: req.body.cleanliness,
