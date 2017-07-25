@@ -23,7 +23,7 @@ restaurantSchema.methods.apiRepr = function() {
 
 
 const whineSchema = mongoose.Schema({
-	author: {type: String},
+	author: {type: mongoose.Schema.ObjectId, ref: 'User'},
 	created: {type: Date, default: Date.now},
 //	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'},
 	food: {type: String},
@@ -62,8 +62,8 @@ userSchema.methods.apiRepr = function() {
 		firstName: this.firstName,
 		lastName: this.lastName,
 		phone: this.phone,
-		email: this.email,
-		password: this.password
+	//	email: this.email,
+	//	password: this.password
 	}; //return
 }; //userSchema
 
