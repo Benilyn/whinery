@@ -16,6 +16,12 @@ $(document).ready(function() {
 		$('#restaurant-whine').removeClass('hide');
 	}); //$('#write-whine').click(function()
 
+	$('#back-to-search-results').click(function(event) {
+		event.preventDefault();
+		$('.section').addClass('hide');
+		$('#search-result').removeClass('hide');
+	}); //$('#back-button').click(function(event)
+
 	$('#restaurant-whine form').submit(function(event) {
 		event.preventDefault();
 		const whineData = {
@@ -36,7 +42,7 @@ $(document).ready(function() {
 		}); //.then function	
 	});	//$('#restaurant-whine form').submit(function(event)
 
-	$('#back-button').click(function(event) {
+	$('#back-to-restaurant-info').click(function(event) {
 		event.preventDefault();
 		$('.section').addClass('hide');
 		$('#restaurant-info').removeClass('hide');
@@ -74,10 +80,24 @@ $(document).ready(function() {
 			type: 'POST'}) 
 		.then(function(res) {
 			$('.section').addClass('hide');
+			$('#logout').removeClass('hide');
 			$('#search-result').removeClass('hide'); 
 			displayMap();
 		});	//.then function
 	}); //$('#login-page form').submit(function(event)
+
+	$('#logout').click(function(event) {
+		event.preventDefault();
+		$.ajax('/logout', {
+			type: 'GET'
+		}) //$.ajax
+		.then(function(res) {
+			alert('Goodbye!');
+			$('.section').addClass('hide');
+			$('#logout').addClass('hide');
+			$('#login-page').removeClass('hide');
+		}); //.then function
+	}); //$(#logout)
 
 
 }); //$(document).ready(function()
