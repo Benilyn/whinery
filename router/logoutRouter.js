@@ -3,9 +3,9 @@ const passport = require('passport');
 const router = express.Router();
 
 
-router.get('/logout', function(req, res) {
+router.get('/', function(req, res) {
     req.logout();
-    //res.redirect('/');
+    res.sendStatus(200);
 });
 
 module.exports = router;
