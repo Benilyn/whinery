@@ -42,7 +42,7 @@ $(document).ready(function() {
 		}); //.then function	
 	});	//$('#restaurant-whine form').submit(function(event)
 
-	$('#back-to-restaurant-info').click(function(event) {
+	$('.back-to-restaurant-info').click(function(event) {
 		event.preventDefault();
 		$('.section').addClass('hide');
 		$('#restaurant-info').removeClass('hide');
