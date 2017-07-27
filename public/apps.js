@@ -16,7 +16,7 @@ $(document).ready(function() {
 		$('#restaurant-whine').removeClass('hide');
 	}); //$('#write-whine').click(function()
 
-	$('#back-to-search-results').click(function(event) {
+	$('.back-to-search-results').click(function(event) {
 		event.preventDefault();
 		$('.section').addClass('hide');
 		$('#search-result').removeClass('hide');
@@ -91,7 +91,7 @@ $(document).ready(function() {
 		$.ajax('/logout', {
 			type: 'GET'
 		}) //$.ajax
-		.then(function(res) {
+		.then(function() {
 			alert('Goodbye!');
 			$('.section').addClass('hide');
 			$('#logout').addClass('hide');
