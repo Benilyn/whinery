@@ -5,12 +5,13 @@ $(document).ready(function() {
 		$('.section').addClass('hide');
 		$('#signup-page').removeClass('hide');
 	}); //$('#sign-up').click(function()
-
-	$('#restaurants li').click(function() {
+/*
+	$('.restaurant-name').click(function() {
+		console.log('TEST');
 		$('.section').addClass('hide');
 		$('#restaurant-info').removeClass('hide');
 	}); //$('#restaurants li').click(function()
-
+*/
 	$('#write-whine').click(function() {
 		$('.section').addClass('hide');
 		$('#restaurant-whine').removeClass('hide');
@@ -111,6 +112,27 @@ function displayMap() {
 	      center: currentLocation,
 	      zoom: 13
 	    }); //map
+	    $.ajax('/restaurants', {
+	    	type: 'GET',
+	    	data: currentLocation
+	    })
+	    .then(function(result) {
+	    	console.log(result);
+	    	for (var i=0; i<result.length; i++) {
+	    		var $restaurantInfo = 
+	    			$('<li class="restaurant-name">' + result[i].name + '</li>')
+	    			.appendTo('ul#results-list');
+	    	//		$('<a href="#" class="restaurant-name">' + result[i].name + '</a><br>')
+	    	//		.appendTo('div#restaurants');
+	    	}	
+	    }) //.then funtion(res)
+	    .then(function() {
+	    	$('.restaurant-name').click(function() {
+				console.log('TEST');
+				$('.section').addClass('hide');
+				$('#restaurant-info').removeClass('hide');
+			}); //$('.restaurant-name').click(function()
+	    });
 	}); //getCurrentPosition function
 } //function displayMap()
 
