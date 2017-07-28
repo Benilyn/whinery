@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const maps = require('@google/maps').createClient({
+	key: 'AIzaSyC4Lq366S1SDP6j4iMrFUnbgwnsC4e6gU4',
+	Promise: global.Promise
+});
 
 
 const {Restaurant} = require('../models');
@@ -10,15 +14,18 @@ router.get('/', (req, res) => {
 }); //router.get
 */
 router.get('/', (req, res) => {
-	Restaurant
-		.find()
-		.limit(10)
-		.exec()
-		.then(restaurants => res.render('restaurants.ejs', {restaurants}))
-		.catch(err => {
-			console.error(err);
-			res.status(500).json({message: "Internal server error"});
-		});
+	maps.places({
+		type: 'restaurant',
+		location: [req.query.lat, req.query.lng]
+	}) //maps.places
+	.asPromise()
+	.then(function(data) {
+		res.json(data.json.results.slice(10));
+		
+	});
+	
+	console.log(req.query);
+	
 }); //router.get
 
 router.get('/:id', (req, res) => {
@@ -97,6 +104,7 @@ router.put ('/:id', (req, res) => {
 		.then(updatedRestaurant => res.status(201).json(updatedRestaurant.apiRepr()))
 		.catch(err => res.status(500).json({message: "Something went wrong"}));
 }); //router.put(/:id)
+
 
 
 module.exports = router;
