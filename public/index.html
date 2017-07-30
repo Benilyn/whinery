@@ -50,32 +50,21 @@
 	<div id='restaurant-info' class='hide section'>
 		<div id='restaurant-reviews'>
 			<div id='restaurant-details'>
-				<p>Restaurant 1</p>
-				<p>Address</p>
-				<p>Phone</p>
-				<p>Cuisine</p>
-				<p>$$</p>
+				<p class="name">Restaurant Name</p>
+				<p class="address">Address</p>
+				<p class="phone">Phone</p>
+				<p class="cuisine">Cuisine</p>
+				<p class="price">$$</p>
 			</div> <!-- #restaurant-details -->
 			<button type='submit' id='write-whine'>Write Review</button>
 			<div id='whine-reviews'>
 				<p>review 1</p>
 				<p>review 2</p>
 			</div> <!-- #whine-reviews -->
-			<a href="#" class='back-to-search-results'>Back to Search Results</a><br>
-		</div>
 
-		
-	</div> <!-- #restaurant-info -->
-
-	<div id='restaurant-whine' class='section hide'>
-			<div id='restaurant-details'>
-				<p>Restaurant 1</p>
-				<p>Address</p>
-				<p>Phone</p>
-				<p>Cuisine</p>
-				<p>$$</p>
-			</div> <!-- #restaurant-details -->
-			<form id='whine-form' action='#' method="post">
+			<!-- add whine-form here -->
+			<!-- make sure to change hide/show on apps.js -->
+			<form id='whine-form' action='#' method="post" class="hide">
 				<ul>
 					<li class="rating">Food:
 						<select name='food-rating'>
@@ -114,9 +103,26 @@
 				
 			
 				<button type='submit' id='add-whine'>Add Whine</button>
-		</form> <!-- #whine-form -->
-		<a href="#" class='back-to-search-results'>Back to Search Results</a><br>
-		<a href="#" class='back-to-restaurant-info'>Back</a><br>
+				<a href="#" class='back-to-restaurant-info'>Back</a><br>
+			</form> <!-- #whine-form -->
+
+			<a href="#" class='back-to-search-results'>Back to Search Results</a><br>
+			
+		</div>
+
+		
+	</div> <!-- #restaurant-info -->
+
+	<div id='restaurant-whine' class='section hide'>
+			<div id='restaurant-details'>
+				<p>Restaurant 1</p>
+				<p>Address</p>
+				<p>Phone</p>
+				<p>Cuisine</p>
+				<p>$$</p>
+			</div> <!-- #restaurant-details -->
+			
+		
 		</div>
 
 	<div id='latest-feeds' class='hide section'>
