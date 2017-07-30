@@ -5,16 +5,25 @@ $(document).ready(function() {
 		$('.section').addClass('hide');
 		$('#signup-page').removeClass('hide');
 	}); //$('#sign-up').click(function()
-/*
-	$('.restaurant-name').click(function() {
-		console.log('TEST');
+
+	$('ul#results-list').on('click', 'li', function() {
+		var restaurant = $(this).data('restaurant');
+		console.log($(this).data('restaurant'));
 		$('.section').addClass('hide');
-		$('#restaurant-info').removeClass('hide');
-	}); //$('#restaurants li').click(function()
-*/
+		$('#restaurant-info').data('restaurant', restaurant).removeClass('hide');
+		
+		var price = '$';
+		$('#restaurant-details .name').text(restaurant.name);
+		$('#restaurant-details .address').text(restaurant.formatted_address);
+		$('#restaurant-details .price').text('Price: ' + (price.repeat(restaurant.price_level)));
+		
+
+	}); //$('ul#results-list').on('click', 'li', function()
+
 	$('#write-whine').click(function() {
-		$('.section').addClass('hide');
-		$('#restaurant-whine').removeClass('hide');
+		$('#whine-reviews').addClass('hide');
+		$('#write-whine').addClass('hide');
+		$('#whine-form').removeClass('hide');
 	}); //$('#write-whine').click(function()
 
 	$('.back-to-search-results').click(function(event) {
@@ -45,9 +54,11 @@ $(document).ready(function() {
 
 	$('.back-to-restaurant-info').click(function(event) {
 		event.preventDefault();
-		$('.section').addClass('hide');
-		$('#restaurant-info').removeClass('hide');
-	}); //$('#back-button').click(function(event)
+		console.log('its working');
+		$('#whine-form').addClass('hide');
+		$('#write-whine').removeClass('hide');
+		$('#whine-reviews').removeClass('hide');
+	}); //$('.back-to-restaurant-info').click(function(event)
 
 	$('#signup-page form').submit(function(event) {
 		event.preventDefault();
@@ -116,23 +127,18 @@ function displayMap() {
 	    	type: 'GET',
 	    	data: currentLocation
 	    })
-	    .then(function(result) {
-	    	console.log(result);
-	    	for (var i=0; i<result.length; i++) {
+	    .then(function(results) {
+	    	console.log(results);
+	    	for (var i=0; i<results.length; i++) {
+	    		var result = results[i];
 	    		var $restaurantInfo = 
-	    			$('<li class="restaurant-name">' + result[i].name + '</li>')
+	    			$('<li class="restaurant-name">' + result.name + '</li>')
+	    			.data('restaurant', result)
 	    			.appendTo('ul#results-list');
-	    	//		$('<a href="#" class="restaurant-name">' + result[i].name + '</a><br>')
-	    	//		.appendTo('div#restaurants');
+	  
 	    	}	
-	    }) //.then funtion(res)
-	    .then(function() {
-	    	$('.restaurant-name').click(function() {
-				console.log('TEST');
-				$('.section').addClass('hide');
-				$('#restaurant-info').removeClass('hide');
-			}); //$('.restaurant-name').click(function()
-	    });
+	   }); //.then funtion(res)
+	   
 	}); //getCurrentPosition function
 } //function displayMap()
 
