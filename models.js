@@ -25,7 +25,7 @@ restaurantSchema.methods.apiRepr = function() {
 const whineSchema = mongoose.Schema({
 	author: {type: mongoose.Schema.ObjectId, ref: 'User'},
 	created: {type: Date, default: Date.now},
-//	restaurant: {type: mongoose.Schema.ObjectId, ref: 'restaurant'},
+	restaurant: {type: String},
 	food: {type: String},
 	service: {type: String},
 	cleanliness: {type: String},
@@ -38,7 +38,7 @@ whineSchema.methods.apiRepr = function() {
 		id: this._id,
 		created: this.created,
 		author: this.author,
-	//	restaurant: this.restaurant,
+		restaurant: this.restaurant,
 		food: this.food,
 		service: this.service,
 		cleanliness: this.cleanliness,
