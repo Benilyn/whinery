@@ -4,6 +4,8 @@ const bodyParser =	require('body-parser');
 const mongoose = require('mongoose');
 const https = require('https');
 const fs = require('fs');
+const morgan = require('morgan');
+app.use(morgan('dev'));
 
 const options = {
   key: fs.readFileSync('./key.pem'),
