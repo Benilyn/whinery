@@ -16,11 +16,13 @@ $(document).ready(function() {
 		$('#restaurant-details .name').text(restaurant.name);
 		$('#restaurant-details .address').text(restaurant.formatted_address);
 		$('#restaurant-details .price').text('Price: ' + (price.repeat(restaurant.price_level)));
-		
-
+		 
+		getRestaurantInfo(restaurant);
 	}); //$('ul#results-list').on('click', 'li', function()
 
 	$('#write-whine').click(function() {
+		var restaurant = $('#restaurant-info').data('restaurant');
+		console.log(restaurant.place_id);
 		$('#whine-reviews').addClass('hide');
 		$('#write-whine').addClass('hide');
 		$('#whine-form').removeClass('hide');
@@ -32,14 +34,17 @@ $(document).ready(function() {
 		$('#search-result').removeClass('hide');
 	}); //$('#back-button').click(function(event)
 
-	$('#restaurant-whine form').submit(function(event) {
+	$('#whine-form').submit(function(event) {
 		event.preventDefault();
+		var restaurant = $('#restaurant-info').data('restaurant');
+		console.log(restaurant.place_id);
 		const whineData = {
 			food: $('#whine-form [name="food-rating"]').val(),
 			service: $('#whine-form [name="food-rating"]').val(),
 			cleanliness: $('#whine-form [name="cleanliness-rating"]').val(),
 			price: $('#whine-form [name="price-rating"]').val(),
 			review: $('#whine-form [name="whine-review"]').val(),
+			restaurant: restaurant.place_id
 		}; //whineData
 		$.ajax('/whines', {
 			contentType: 'application/json',
@@ -59,6 +64,16 @@ $(document).ready(function() {
 		$('#write-whine').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
 	}); //$('.back-to-restaurant-info').click(function(event)
+
+	$('.back-to-info').click(function(event) {
+		event.preventDefault();
+		console.log('its working');
+		$('.section').addClass('hide');
+		$('#whine-form').addClass('hide');
+		$('#restaurant-info').removeClass('hide');
+		$('#write-whine').removeClass('hide');
+		$('#whine-reviews').removeClass('hide');
+	}); //$('.back-to-info').click(function(event)
 
 	$('#signup-page form').submit(function(event) {
 		event.preventDefault();
@@ -141,5 +156,20 @@ function displayMap() {
 	   
 	}); //getCurrentPosition function
 } //function displayMap()
+
+function getRestaurantInfo(restaurant){
+	console.log('getting restaurant details');
+	console.log(restaurant.place_id);
+	$.ajax('/restaurants/' + restaurant.place_id, {
+		type: 'GET',
+		data: {placeid: restaurant.place_id}
+	})
+	.then(function(result) {
+		console.log(result);
+		$('#restaurant-details .phone').text(result.formatted_phone_number);
+		$('#restaurant-details .website a').attr('href', result.website);
+	});
+
+} // getRestaurantInfo function
 
 
