@@ -35,8 +35,10 @@ router.post('/', (req, res) => {
 }); //router.post
 
 router.get('/', (req, res) => {
+	let created = {created: -1};
 	Whine
 		.find()
+		.sort(created)
 	//	.limit(10)
 		.exec()
 		.then(whine => {
@@ -52,8 +54,10 @@ router.get('/', (req, res) => {
 }); //router.get
 
 router.get('/:id', (req, res) => {
+	let created = {created: -1};
 	Whine
 		.findById(req.params.id)
+		.sort(created)
 		.exec()
 		.then(whine => res.json(whine.apiRepr()))
 		.catch(err => {
