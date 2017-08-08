@@ -15,10 +15,11 @@ router.post('/', (req, res) => {
 		return res.status(400).send(message);
 		} //if (!(field in req.body))
 	} //for (let i=0)
-
+	console.log(req.body);
 	Whine
 		.create({
 			author: req.user,
+			restaurant: req.body.restaurant,
 			food: req.body.food,
 			service: req.body.service,
 			cleanliness: req.body.cleanliness,
@@ -36,7 +37,7 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
 	Whine
 		.find()
-		.limit(10)
+	//	.limit(10)
 		.exec()
 		.then(whine => {
 			res.json(
