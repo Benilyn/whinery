@@ -23,7 +23,6 @@ $(document).ready(function() {
 
 	$('#write-whine').click(function() {
 		var restaurant = $('#restaurant-info').data('restaurant');
-		console.log(restaurant.name);
 		$('#whine-reviews').addClass('hide');
 		$('#write-whine').addClass('hide');
 		$('#whine-form').removeClass('hide');
@@ -38,14 +37,13 @@ $(document).ready(function() {
 	$('#whine-form').submit(function(event) {
 		event.preventDefault();
 		var restaurant = $('#restaurant-info').data('restaurant');
-		console.log(restaurant.place_id);
 		const whineData = {
-			Food: $('#whine-form [name="food-rating"]').val(),
-			Service: $('#whine-form [name="food-rating"]').val(),
-			Cleanliness: $('#whine-form [name="cleanliness-rating"]').val(),
-			Price: $('#whine-form [name="price-rating"]').val(),
-			Whine: $('#whine-form [name="whine-review"]').val(),
-			Restaurant: restaurant.place_id
+			food: $('#whine-form [name="food-rating"]').val(),
+			service: $('#whine-form [name="food-rating"]').val(),
+			cleanliness: $('#whine-form [name="cleanliness-rating"]').val(),
+			price: $('#whine-form [name="price-rating"]').val(),
+			review: $('#whine-form [name="whine-review"]').val(),
+			restaurant: restaurant.place_id
 		}; //whineData
 		$.ajax('/whines', {
 			contentType: 'application/json',
@@ -145,14 +143,12 @@ function displayMap() {
 	    	data: currentLocation
 	    })
 	    .then(function(results) {
-	    	console.log(results);
 	    	for (var i=0; i<results.length; i++) {
 	    		var result = results[i];
 	    		var $restaurantInfo = 
 	    			$('<li class="restaurant-name">' + result.name + '</li>')
 	    			.data('restaurant', result)
 	    			.appendTo('ul#results-list');
-	  
 	    	}	
 	   }); //.then funtion(res)
 	   
@@ -167,7 +163,6 @@ function getRestaurantInfo(restaurant){
 		data: {placeid: restaurant.place_id}
 	}) //$.ajax
 	.then(function(result) {
-		console.log(result);
 		$('#restaurant-details .phone').text(result.formatted_phone_number);
 		$('#restaurant-details .website a').attr('href', result.website);
 	});
@@ -187,9 +182,13 @@ function getLatestWhines() {
 		
 		success: function(whines) {
 			$.each(whines, function(index, whine) {
-				$.each(whine, function(key, value) {
-					$whine.append(key + ': ' + value + '</span><br>');
-				}); //$.each(whine, function(key, value)
+				$('<span> Restaurant: ' + whine.id + '</span><br>').appendTo($whine);
+				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span><br>').appendTo($whine);
+				$('<span> Food: ' + whine.food + '</span><br>').appendTo($whine);
+				$('<span> Service: ' + whine.service + '</span><br>').appendTo($whine);
+				$('<span> Cleanliness: ' + whine.cleanliness + '</span><br>').appendTo($whine);	
+				$('<span> Price: ' + whine.price + '</span><br>').appendTo($whine);
+				$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
 				$whine.append('<br><br>');
 			}); //$.each(review, function(index, whine)
 		}, //success: function
