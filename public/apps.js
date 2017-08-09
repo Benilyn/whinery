@@ -18,6 +18,7 @@ $(document).ready(function() {
 		$('#restaurant-details .price').text('Price: ' + (price.repeat(restaurant.price_level)));
 		 
 		getRestaurantInfo(restaurant);
+
 	}); //$('ul#results-list').on('click', 'li', function()
 
 	$('#write-whine').click(function() {
@@ -54,6 +55,8 @@ $(document).ready(function() {
 			alert('Thank you for your whine.');
 			$('.section').addClass('hide');
 			$('#latest-feeds').removeClass('hide');
+
+		//	getLatestWhines();
 		}); //.then function	
 	});	//$('#restaurant-whine form').submit(function(event)
 
@@ -126,7 +129,6 @@ $(document).ready(function() {
 		}); //.then function
 	}); //$(#logout)
 
-
 }); //$(document).ready(function()
 
 
@@ -171,5 +173,29 @@ function getRestaurantInfo(restaurant){
 	});
 
 } // getRestaurantInfo function
+
+function getLatestWhines(whines) {
+	console.log('getting latest whines');
+	$.ajax('/whines', {
+		type: 'GET'
+	})
+	.then(function(results) {
+		console.log('getting results for whines');
+		console.log(results);
+		for (var i=0; i<results.length; i++) {
+			var result = results[i];
+			console.log(result.restaurant);
+
+			$('#whine .restaurant-name').text(result.restaurant);
+			$('#whine .whine-post-date').text(result.created);
+			$('#whine .whine-post-by').text(result.author);
+			$('#whine .restaurant-food-rating').text(result.food);
+			$('#whine .restaurant-service-rating').text(result.service);
+			$('#whine .restaurant-cleanliness-rating').text(result.cleanliness);
+			$('#whine .restaurant-price-rating').text(result.price);
+			$('#whine .restaurant-comment').text(result.review);
+		}
+	}); //.then function
+}
 
 
