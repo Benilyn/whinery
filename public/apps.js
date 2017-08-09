@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 	$('#write-whine').click(function() {
 		var restaurant = $('#restaurant-info').data('restaurant');
-		console.log(restaurant.place_id);
+		console.log(restaurant.name);
 		$('#whine-reviews').addClass('hide');
 		$('#write-whine').addClass('hide');
 		$('#whine-form').removeClass('hide');
@@ -40,12 +40,12 @@ $(document).ready(function() {
 		var restaurant = $('#restaurant-info').data('restaurant');
 		console.log(restaurant.place_id);
 		const whineData = {
-			food: $('#whine-form [name="food-rating"]').val(),
-			service: $('#whine-form [name="food-rating"]').val(),
-			cleanliness: $('#whine-form [name="cleanliness-rating"]').val(),
-			price: $('#whine-form [name="price-rating"]').val(),
-			review: $('#whine-form [name="whine-review"]').val(),
-			restaurant: restaurant.place_id
+			Food: $('#whine-form [name="food-rating"]').val(),
+			Service: $('#whine-form [name="food-rating"]').val(),
+			Cleanliness: $('#whine-form [name="cleanliness-rating"]').val(),
+			Price: $('#whine-form [name="price-rating"]').val(),
+			Whine: $('#whine-form [name="whine-review"]').val(),
+			Restaurant: restaurant.place_id
 		}; //whineData
 		$.ajax('/whines', {
 			contentType: 'application/json',
@@ -160,12 +160,12 @@ function displayMap() {
 } //function displayMap()
 
 function getRestaurantInfo(restaurant){
-	console.log('getting restaurant details');
+	alert('Getting restaurant details');
 	console.log(restaurant.place_id);
 	$.ajax('/restaurants/' + restaurant.place_id, {
 		type: 'GET',
 		data: {placeid: restaurant.place_id}
-	})
+	}) //$.ajax
 	.then(function(result) {
 		console.log(result);
 		$('#restaurant-details .phone').text(result.formatted_phone_number);
@@ -174,42 +174,31 @@ function getRestaurantInfo(restaurant){
 
 } // getRestaurantInfo function
 
-function getLatestWhines(whines) {
-	console.log('getting latest whines');
+function getLatestWhines() {
+	alert('Getting latest whines');
+	var $whines = $('ul#whines');
+	var $whine = $('<li></li>').appendTo($whines);
+	
+
 	$.ajax({
 		type: 'GET',
 		url: '/whines',
 		dataType: 'json',
-		success: function(review) {
-			$.each(review, function(index, whine) {
+		
+		success: function(whines) {
+			$.each(whines, function(index, whine) {
 				$.each(whine, function(key, value) {
-					$('div#latest-feeds-test')
-					.append(key + ': ' + value + '<br>');
+					$whine.append(key + ': ' + value + '</span><br>');
 				}); //$.each(whine, function(key, value)
-				$('div#latest-feeds-test').append('<br><br>');
+				$whine.append('<br><br>');
 			}); //$.each(review, function(index, whine)
-		} //success: function
+		}, //success: function
+		
+		error: function() {
+			alert('Error getting whines');
+		} //error: function
 
-	}) //$.ajax
-/*	
-	.then(function(results) {
-		console.log('getting results for whines');
-		console.log(results);
-		for (var i=0; i<results.length; i++) {
-			var result = results[i];
-			console.log(result.restaurant);
-
-			$('#whine .restaurant-name').text(result.restaurant);
-			$('#whine .whine-post-date').text(result.created);
-			$('#whine .whine-post-by').text(result.author);
-			$('#whine .restaurant-food-rating').text(result.food);
-			$('#whine .restaurant-service-rating').text(result.service);
-			$('#whine .restaurant-cleanliness-rating').text(result.cleanliness);
-			$('#whine .restaurant-price-rating').text(result.price);
-			$('#whine .restaurant-comment').text(result.review);
-		}
-	}); //.then function
-*/
-}
+	}); //$.ajax
+} //function getLatestWhines()
 
 
