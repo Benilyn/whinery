@@ -43,8 +43,7 @@
 		<div id='map'></div>
 		<div id='restaurants'>
 			<ul id='results-list'></ul>
-		</div> <!-- #restaurants -->
-		
+		</div> <!-- #restaurants -->	
 	</div> <!-- #search-result -->
 
 	<div id='restaurant-info' class='hide section'>
@@ -56,22 +55,13 @@
 				<p class="website"><a>Website</a></p>
 				<p class="price">$$</p>
 			</div> <!-- #restaurant-details -->
+
 			<button type='submit' id='write-whine'>Write Review</button>
+			
 			<div id='whine-reviews'>
-				<div id='whine'>
-					<p class="restaurant-name">Restaurant Name</p>
-					<p class="whine-post-by">Whine by</p>
-					<p class="whine-post-date">Whine date</p>
-					<p class="restaurant-food-rating">Food Rating</p>
-					<p class="restaurant-service-rating">Service Rating</p>
-					<p class="restaurant-cleanliness-rating">Cleanliness Rating</p>
-					<p class="restaurant-price-rating">Price Rating</p>
-					<p class="restaurant-comment">Restaurant Comment</p>
-				</div>
+				<ul id='restaurant-whines'></ul>
 			</div> <!-- #whine-reviews -->
 
-			<!-- add whine-form here -->
-			<!-- make sure to change hide/show on apps.js -->
 			<form id='whine-form' action='#' method="post" class="hide">
 				<ul>
 					<li class="rating">Food:
@@ -109,45 +99,21 @@
 					<textarea name="whine-review">Write review here...</textarea>
 				</ul>
 				
-			
-				<button type='submit' id='add-whine'>Add Whine</button>
-				<a href="#" class='back-to-restaurant-info'>Back</a><br>
+				<button type='submit' id='add-whine'>Add Whine</button>	
 			</form> <!-- #whine-form -->
 
-			<a href="#" class='back-to-search-results'>Back to Search Results</a><br>
-			
-		</div>
-
-		
+			<a href="#" class='back-to-restaurant-info'>Back</a><br>
+			<a href="#" class='back-to-search-results'>Back to Search Results</a><br>	
+		</div> <!-- #restaurant-reviews -->		
 	</div> <!-- #restaurant-info -->
-
-<!--	<div id='restaurant-whine' class='section hide'>  
-			<div id='restaurant-details'>
-				<p>Restaurant 1</p>
-				<p>Address</p>
-				<p>Phone</p>
-				<p>Cuisine</p>
-				<p>$$</p>
-			</div>  #restaurant-details 
--->
-			
+	
 		
 		</div>
 
 	<div id='latest-feeds' class='hide section'>
 		
-		<div id='whine'>
-			<p class="restaurant-name">Restaurant Name</p>
-			<p class="whine-post-by">Whine by</p>
-			<p class="whine-post-date">Whine date</p>
-			<p class="restaurant-food-rating">Food Rating</p>
-			<p class="restaurant-service-rating">Service Rating</p>
-			<p class="restaurant-cleanliness-rating">Cleanliness Rating</p>
-			<p class="restaurant-price-rating">Price Rating</p>
-			<p class="restaurant-comment">Restaurant Comment</p>
-		</div>
-		<div id='latest-feeds-test'></div>
-
+		<ul id='whines'></ul>
+		
 		<a href="#" class='back-to-search-results'>Back to Search Results</a><br>
 		<a href="#" class='back-to-info'>Back</a><br>
 	</div> <!-- #latest-feeds -->
