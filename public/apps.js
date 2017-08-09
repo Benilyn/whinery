@@ -56,7 +56,7 @@ $(document).ready(function() {
 			$('.section').addClass('hide');
 			$('#latest-feeds').removeClass('hide');
 
-		//	getLatestWhines();
+			getLatestWhines();
 		}); //.then function	
 	});	//$('#restaurant-whine form').submit(function(event)
 
@@ -176,9 +176,22 @@ function getRestaurantInfo(restaurant){
 
 function getLatestWhines(whines) {
 	console.log('getting latest whines');
-	$.ajax('/whines', {
-		type: 'GET'
-	})
+	$.ajax({
+		type: 'GET',
+		url: '/whines',
+		dataType: 'json',
+		success: function(review) {
+			$.each(review, function(index, whine) {
+				$.each(whine, function(key, value) {
+					$('div#latest-feeds-test')
+					.append(key + ': ' + value + '<br>');
+				}); //$.each(whine, function(key, value)
+				$('div#latest-feeds-test').append('<br><br>');
+			}); //$.each(review, function(index, whine)
+		} //success: function
+
+	}) //$.ajax
+/*	
 	.then(function(results) {
 		console.log('getting results for whines');
 		console.log(results);
@@ -196,6 +209,7 @@ function getLatestWhines(whines) {
 			$('#whine .restaurant-comment').text(result.review);
 		}
 	}); //.then function
+*/
 }
 
 
