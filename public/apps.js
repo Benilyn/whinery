@@ -18,9 +18,11 @@ $(document).ready(function() {
 		$('#restaurant-details .price').text('Price: ' + (price.repeat(restaurant.price_level)));
 		 
 		getRestaurantInfo(restaurant);
+		getRestaurantWhines();
 
 	}); //$('ul#results-list').on('click', 'li', function()
 
+	//Write Review button handler
 	$('#write-whine').click(function() {
 		var restaurant = $('#restaurant-info').data('restaurant');
 		$('#whine-reviews').addClass('hide');
@@ -34,6 +36,7 @@ $(document).ready(function() {
 		$('#search-result').removeClass('hide');
 	}); //$('#back-button').click(function(event)
 
+	//Add Whine button handler
 	$('#whine-form').submit(function(event) {
 		event.preventDefault();
 		var restaurant = $('#restaurant-info').data('restaurant');
@@ -196,8 +199,12 @@ function getLatestWhines() {
 		error: function() {
 			alert('Error getting whines');
 		} //error: function
-
 	}); //$.ajax
 } //function getLatestWhines()
+
+function getRestaurantWhines() {
+	alert('Getting whines for restaurant');
+	$('<li> Getting whines for restaurants </li>').appendTo('ul#restaurant-whines');
+}
 
 
