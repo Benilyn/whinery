@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
 	Whine
 		.find()
 		.sort(created)
-	//	.limit(10)
+		.limit(10)
 		.exec()
 		.then(whine => {
 			res.json(
