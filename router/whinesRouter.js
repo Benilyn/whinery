@@ -6,7 +6,7 @@ const {PORT, DATABASE_URL} = require('../config');
 
 router.post('/', (req, res) => {
 	const requiredFields = [
-		'food', 'service', 'cleanliness', 'price'];
+		'food', 'service', 'cleanliness', 'price', 'restaurant'];
 	for (let i=0; i<requiredFields.length; i++) {
 		const field = requiredFields[i];
 		if (!(field in req.body)) {
@@ -20,6 +20,7 @@ router.post('/', (req, res) => {
 		.create({
 			author: req.user,
 			restaurant: req.body.restaurant,
+			restaurantName: req.body.restaurantName,
 			food: req.body.food,
 			service: req.body.service,
 			cleanliness: req.body.cleanliness,
@@ -36,8 +37,13 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
 	let created = {created: -1};
+	let query = {};
+	if (req.query.restaurant) {
+		query.restaurant = req.query.restaurant;
+	}
 	Whine
-		.find()
+		.find(query)
+		.populate('author')
 		.sort(created)
 		.limit(10)
 		.exec()
