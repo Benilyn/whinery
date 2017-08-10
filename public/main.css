@@ -12,12 +12,11 @@ li {
 	cursor: pointer;
 }
 
-#restaurant-whines li {
+li#restaurant-whines, li#whines {
 	background-color: lightgray;
 	border-bottom-style: inset;
 }
 
-#whines li {
-	background-color: lightgray;
-	border-bottom-style: inset;
+ul#whines, ul#restaurant-whines {
+	padding-left: 0;
 }
