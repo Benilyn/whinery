@@ -7,7 +7,16 @@ li {
 	list-style: none;
 }
 
-#restaurants li:hover {
+ul#results-list {
+	padding: 0;
+}
+
+#results-list li {
+	text-align: center;
+	border-style: ridge;
+}
+
+#results-list li:hover {
 	color: blue;
 	cursor: pointer;
 }
