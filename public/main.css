@@ -3,7 +3,21 @@
 	height: 400px;
 }
 
+li {
+	list-style: none;
+}
+
 #restaurants li:hover {
 	color: blue;
 	cursor: pointer;
+}
+
+#restaurant-whines li {
+	background-color: lightgray;
+	border-bottom-style: inset;
+}
+
+#whines li {
+	background-color: lightgray;
+	border-bottom-style: inset;
 }
