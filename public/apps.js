@@ -63,7 +63,6 @@ $(document).ready(function() {
 
 	$('.back-to-restaurant-info').click(function(event) {
 		event.preventDefault();
-		console.log('its working');
 		$('#whine-form').addClass('hide');
 		$('#write-whine').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
@@ -71,7 +70,6 @@ $(document).ready(function() {
 
 	$('.back-to-info').click(function(event) {
 		event.preventDefault();
-		console.log('its working');
 		$('.section').addClass('hide');
 		$('#whine-form').addClass('hide');
 		$('#restaurant-info').removeClass('hide');
@@ -174,10 +172,7 @@ function getRestaurantInfo(restaurant){
 
 function getLatestWhines() {
 	alert('Getting latest whines');
-	var $whines = $('ul#whines');
-	var $whine = $('<li></li>').appendTo($whines);
 	
-
 	$.ajax({
 		type: 'GET',
 		url: '/whines',
@@ -185,6 +180,9 @@ function getLatestWhines() {
 		
 		success: function(whines) {
 			$.each(whines, function(index, whine) {
+				var $whines = $('ul#whines');
+				var $whine = $('<li></li>').appendTo($whines);
+
 				$('<span> Restaurant: ' + whine.id + '</span><br>').appendTo($whine);
 				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span><br>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span><br>').appendTo($whine);
@@ -193,7 +191,7 @@ function getLatestWhines() {
 				$('<span> Price: ' + whine.price + '</span><br>').appendTo($whine);
 				$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
 				$whine.append('<br><br>');
-			}); //$.each(review, function(index, whine)
+			}); //$.each(whines, function(index, whine)
 		}, //success: function
 		
 		error: function() {
@@ -203,8 +201,29 @@ function getLatestWhines() {
 } //function getLatestWhines()
 
 function getRestaurantWhines() {
-	alert('Getting whines for restaurant');
-	$('<li> Getting whines for restaurants </li>').appendTo('ul#restaurant-whines');
-}
+	$('<li> Getting whines for restaurants </li><br>').appendTo('ul#restaurant-whines');
+
+	$.ajax({
+		type: 'GET',
+		url: '/whines',
+		dataType: 'json',
+
+		success: function(whines) {
+			$.each(whines, function(index, whine) {
+				var $whines = $('ul#restaurant-whines');
+				var $whine = $('<li></li>').appendTo($whines);
+
+				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span><br>').appendTo($whine);
+				$('<span> Food: ' + whine.food + '</span><br>').appendTo($whine);
+				$('<span> Service: ' + whine.service + '</span><br>').appendTo($whine);
+				$('<span> Cleanliness: ' + whine.cleanliness + '</span><br>').appendTo($whine);	
+				$('<span> Price: ' + whine.price + '</span><br>').appendTo($whine);
+				$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
+				$whine.append('<br><br>');
+			}); //$.each(whines, function(index, whine)
+		}
+	}); //$.ajax
+} //function getRestaurantWhines() 
+
 
 
