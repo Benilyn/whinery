@@ -18,7 +18,7 @@ $(document).ready(function() {
 		$('#restaurant-details .price').text('Price: ' + (price.repeat(restaurant.price_level)));
 		 
 		getRestaurantInfo(restaurant);
-		getRestaurantWhines();
+		getRestaurantWhines(restaurant);
 
 	}); //$('ul#results-list').on('click', 'li', function()
 
@@ -46,7 +46,8 @@ $(document).ready(function() {
 			cleanliness: $('#whine-form [name="cleanliness-rating"]').val(),
 			price: $('#whine-form [name="price-rating"]').val(),
 			review: $('#whine-form [name="whine-review"]').val(),
-			restaurant: restaurant.place_id
+			restaurant: restaurant.place_id,
+			restaurantName: restaurant.name
 		}; //whineData
 		$.ajax('/whines', {
 			contentType: 'application/json',
@@ -176,14 +177,15 @@ function getLatestWhines() {
 	$.ajax({
 		type: 'GET',
 		url: '/whines',
-		dataType: 'json',
-		
+			
 		success: function(whines) {
+			var $whines = $('ul#whines');
+			$whines.empty();
+
 			$.each(whines, function(index, whine) {
-				var $whines = $('ul#whines');
 				var $whine = $('<li></li>').appendTo($whines);
 
-				$('<span> Restaurant: ' + whine.id + '</span><br>').appendTo($whine);
+				$('<span> Restaurant: ' + whine.restaurantName + '</span><br>').appendTo($whine);
 				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span><br>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span><br>').appendTo($whine);
 				$('<span> Service: ' + whine.service + '</span><br>').appendTo($whine);
@@ -200,19 +202,21 @@ function getLatestWhines() {
 	}); //$.ajax
 } //function getLatestWhines()
 
-function getRestaurantWhines() {
+function getRestaurantWhines(restaurant) {
 	$('<li> Getting whines for restaurants </li><br>').appendTo('ul#restaurant-whines');
 
 	$.ajax({
 		type: 'GET',
 		url: '/whines',
-		dataType: 'json',
+		data: {restaurant: restaurant.place_id},
 
 		success: function(whines) {
-			$.each(whines, function(index, whine) {
-				var $whines = $('ul#restaurant-whines');
-				var $whine = $('<li></li>').appendTo($whines);
+			var $whines = $('ul#restaurant-whines');
+			$whines.empty();
 
+			$.each(whines, function(index, whine) {
+				var $whine = $('<li></li>').appendTo($whines);
+				
 				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span><br>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span><br>').appendTo($whine);
 				$('<span> Service: ' + whine.service + '</span><br>').appendTo($whine);
