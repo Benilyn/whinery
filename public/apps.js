@@ -145,8 +145,16 @@ function displayMap() {
 	    	data: currentLocation
 	    })
 	    .then(function(results) {
+	    //	results.forEach(createMarker);
+
 	    	for (var i=0; i<results.length; i++) {
 	    		var result = results[i];
+	    		console.log(result);
+	    		var marker = new google.maps.Marker({
+					map: map,
+					position: result.geometry.location,
+				});
+	    		
 	    		var $restaurantInfo = 
 	    			$('<li class="restaurant-name">' + result.name + '</li>')
 	    			.data('restaurant', result)
@@ -156,6 +164,21 @@ function displayMap() {
 	   
 	}); //getCurrentPosition function
 } //function displayMap()
+
+var infoWINDOW;
+function createMarker(restaurant) {
+	var marker = new google.maps.Marker({
+		map: map,
+		position: restaurant.geometry.currentLocation,
+	});
+
+	google.maps.event.addListener(marker, 'click', function() {
+		if (infoWINDOW) { infoWINDOW.close(); }
+		infoWINDOW = infowindow;
+		infowindow.setContent(restaurant.name);
+		infowindow.open(map, this);
+	}); //google.maps.event.addListener
+} //function createMarker(restaurant)
 
 function getRestaurantInfo(restaurant){
 	alert('Getting restaurant details');
