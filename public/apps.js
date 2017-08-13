@@ -146,13 +146,22 @@ function displayMap() {
 	    })
 	    .then(function(results) {
 	    //	results.forEach(createMarker);
-
+	    	var currentPosition = new google.maps.Marker({
+			    	position: currentLocation,
+			    	map: map,
+			    	icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+			    	label: 'You are here',
+		    	}); //currentPosition
+	    	
+	    	var labels = 'ABCDEFGHIJ';
 	    	for (var i=0; i<results.length; i++) {
 	    		var result = results[i];
 	    		console.log(result);
+
 	    		var marker = new google.maps.Marker({
 					map: map,
 					position: result.geometry.location,
+					label: labels[i],
 				});
 	    		
 	    		var $restaurantInfo = 
