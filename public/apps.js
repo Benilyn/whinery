@@ -129,7 +129,6 @@ $(document).ready(function() {
 		}); //.then function
 	}); //$(#logout)
 
-
 }); //$(document).ready(function()
 
 
@@ -157,8 +156,7 @@ function displayMap() {
 	    	var labels = 'ABCDEFGHIJ';
 	    	for (var i=0; i<results.length; i++) {
 	    		var result = results[i];
-	    		console.log(result);
-
+	    		
 	    		var marker = new google.maps.Marker({
 					map: map,
 					position: result.geometry.location,
@@ -172,7 +170,7 @@ function displayMap() {
 	    				'</li>')
 	    			.data('restaurant', result)
 	    			.appendTo('ul#results-list');
-	    	}	
+	    	} //for
 	   }); //.then funtion(res)
 	   
 	}); //getCurrentPosition function
@@ -249,9 +247,12 @@ function getRestaurantWhines(restaurant) {
 		success: function(whines) {
 			var $whines = $('ul#restaurant-whines');
 			$whines.empty();
-
+			console.log(whines);
+		
 			$.each(whines, function(index, whine) {
-				var $whine = $('<li></li>').appendTo($whines);
+			//	console.log(whine.id);
+	    			
+				var $whine = $('<li class="restaurant-whine"></li>').data('whine_id', whine.id).appendTo($whines);
 				
 				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span><br>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span><br>').appendTo($whine);
@@ -259,16 +260,24 @@ function getRestaurantWhines(restaurant) {
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span><br>').appendTo($whine);	
 				$('<span> Price: ' + whine.price + '</span><br>').appendTo($whine);
 				$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
-					
+				
+				$('<button class="remove">Delete</button><br>').appendTo($whine);
+				$('<button class="edit">Edit</button><br>').appendTo($whine);	
+
+				modifyRestaurantWhine(whine);
 			}); //$.each(whines, function(index, whine)
-			modifyRestaurantWhine();
+			
 		}
 	}); //$.ajax
 } //function getRestaurantWhines() 
 
-function modifyRestaurantWhine() {
-	console.log('testing change on whine');
-	$('<button class="remove">Delete</button><br>').appendTo('li');
+function modifyRestaurantWhine(whine) {
+	console.log('testing', $('.restaurant-whine').data('whine_id'));
+	$('.remove').click(function() {
+		alert('need to delete restaurant whine');
+	}); //$('.remove button').click(function()
+	
+	
 }
 
 
