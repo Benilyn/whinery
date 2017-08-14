@@ -129,6 +129,7 @@ $(document).ready(function() {
 		}); //.then function
 	}); //$(#logout)
 
+
 }); //$(document).ready(function()
 
 
@@ -258,11 +259,19 @@ function getRestaurantWhines(restaurant) {
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span><br>').appendTo($whine);	
 				$('<span> Price: ' + whine.price + '</span><br>').appendTo($whine);
 				$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
-				$whine.append('<br><br>');
+					
 			}); //$.each(whines, function(index, whine)
+			modifyRestaurantWhine();
 		}
 	}); //$.ajax
 } //function getRestaurantWhines() 
+
+function modifyRestaurantWhine() {
+	console.log('testing change on whine');
+	$('<button class="remove">Delete</button><br>').appendTo('li');
+}
+
+
 
 
 
