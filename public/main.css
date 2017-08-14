@@ -24,3 +24,12 @@ li#restaurant-whines, li#whines {
 ul#whines, ul#restaurant-whines {
 	padding-left: 0;
 }
+
+
+.remove, .edit {
+	color: red;
+	background-color: lightgray;
+	height: auto;
+	width: auto;
+	display: inline-block;
+}
