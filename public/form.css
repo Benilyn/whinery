@@ -47,6 +47,14 @@ button {
 	color: blue;
 }
 
+.remove {
+	color: black;
+	background-color: lightgray;
+	height: auto;
+	width: auto;
+	display: inline-flex;
+}
+
 .login-page label {
 	color: black;
 	font-size: 17px;
