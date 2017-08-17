@@ -129,6 +129,22 @@ $(document).ready(function() {
 		}); //.then function
 	}); //$(#logout)
 
+	$('ul#restaurant-whines').on('click', '.remove', function() {
+		var whine = $(this).parent().data('whine_id');
+		var whine_element = $(this).parent();
+		console.log('deleting', whine);
+		alert('need to delete restaurant whine');
+
+		$.ajax({
+			type: 'DELETE',
+			url: '/whines/' + whine
+		}) //$.ajax
+		.then(function(){
+			whine_element.remove();
+			console.log('removing whine id ' + whine);
+		}); //.then
+	}); //$('.remove button').click(function()
+
 }); //$(document).ready(function()
 
 
@@ -238,7 +254,7 @@ function getLatestWhines() {
 
 function getRestaurantWhines(restaurant) {
 	$('<li> Getting whines for restaurants </li><br>').appendTo('ul#restaurant-whines');
-
+	
 	$.ajax({
 		type: 'GET',
 		url: '/whines',
@@ -264,17 +280,21 @@ function getRestaurantWhines(restaurant) {
 				$('<button class="remove">Delete</button><br>').appendTo($whine);
 				$('<button class="edit">Edit</button><br>').appendTo($whine);	
 
-				modifyRestaurantWhine(whine);
+				
 			}); //$.each(whines, function(index, whine)
 			
 		}
 	}); //$.ajax
 } //function getRestaurantWhines() 
 
-function modifyRestaurantWhine(whine) {
+function modifyRestaurantWhine() {
 	console.log('testing', $('.restaurant-whine').data('whine_id'));
-	$('.remove').click(function() {
-		alert('need to delete restaurant whine');
+
+
+	$('ul#restaurant-whines').on('click', '.edit', function() {
+		var whine = $(this).parent().data('whine_id');
+		console.log("editing", whine);
+		alert('need to edit restaurant whine');
 	}); //$('.remove button').click(function()
 	
 	
