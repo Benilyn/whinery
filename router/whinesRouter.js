@@ -50,7 +50,17 @@ router.get('/', (req, res) => {
 		.then(whine => {
 			res.json(
 				whine.map(
-					(whine) => whine.apiRepr())
+					(whine) => {
+						const data = whine.apiRepr();
+						if (req.user) {
+							data.owned = req.user.id == whine.author.id;
+						}
+						else {
+							data.owned = false;
+						}
+						return data;
+
+					} )
 			);
 		})
 		.catch(err => {
@@ -74,7 +84,7 @@ router.get('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
 	Whine
-		.findByIdAndRemove(req.params.id)
+		.findOneAndRemove({id: req.params.id, author: req.user})
 		.exec()
 		.then(() => {
 			console.log(`Deleted whine \`${req.params.id}\``);
