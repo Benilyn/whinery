@@ -26,10 +26,17 @@ ul#whines, ul#restaurant-whines {
 }
 
 
-.remove, .edit {
+.edit {
 	color: red;
 	background-color: lightgray;
 	height: auto;
 	width: auto;
+}
+
+.delete, .save, .cancel {
+	display: none;
+}
+
+.edit-whine .delete, .edit-whine .save, .edit-whine .cancel {
 	display: inline-block;
 }
