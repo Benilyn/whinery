@@ -129,7 +129,7 @@ $(document).ready(function() {
 		}); //.then function
 	}); //$(#logout)
 
-	$('ul#restaurant-whines').on('click', '.remove', function() {
+	$('ul#restaurant-whines').on('click', '.delete', function() {
 		var whine = $(this).parent().data('whine_id');
 		var whine_element = $(this).parent();
 		console.log('deleting', whine);
@@ -144,6 +144,33 @@ $(document).ready(function() {
 			console.log('removing whine id ' + whine);
 		}); //.then
 	}); //$('.remove button').click(function()
+
+	$('ul#restaurant-whines').on('click', '.edit', function() {
+		var whine = $(this).parent().data('whine_id');
+		var whine_element = $(this).parent();
+		whine_element.addClass('edit-whine');
+		$('.edit').addClass('hide');
+
+		console.log("editing", whine);
+	}); //$('.remove button').click(function()
+
+		
+		
+		
+		//show form to edit whine, when submitted then you can do PUT request
+
+		/*
+		$.ajax({
+			type: 'PUT',
+			url: '/whines/' + whine
+		}) //$.ajax
+		.then(function(){
+			
+			console.log('need to edit');
+		}); //.then function
+		*/
+
+	
 
 }); //$(document).ready(function()
 
@@ -277,9 +304,12 @@ function getRestaurantWhines(restaurant) {
 				$('<span> Price: ' + whine.price + '</span><br>').appendTo($whine);
 				$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
 				
-				$('<button class="remove">Delete</button><br>').appendTo($whine);
-				$('<button class="edit">Edit</button><br>').appendTo($whine);	
-
+				if(whine.owned) {
+					$('<button class="edit">Edit</button><br>').appendTo($whine);
+					$('<button class="delete">Delete</button><br>').appendTo($whine);
+					$('<button class="save">Save</button><br>').appendTo($whine);
+					$('<button class="cancel">Cancel</button><br>').appendTo($whine);
+				}
 				
 			}); //$.each(whines, function(index, whine)
 			
@@ -287,18 +317,8 @@ function getRestaurantWhines(restaurant) {
 	}); //$.ajax
 } //function getRestaurantWhines() 
 
-function modifyRestaurantWhine() {
-	console.log('testing', $('.restaurant-whine').data('whine_id'));
-
-
-	$('ul#restaurant-whines').on('click', '.edit', function() {
-		var whine = $(this).parent().data('whine_id');
-		console.log("editing", whine);
-		alert('need to edit restaurant whine');
-	}); //$('.remove button').click(function()
 	
-	
-}
+
 
 
 
