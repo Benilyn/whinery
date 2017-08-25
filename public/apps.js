@@ -124,6 +124,7 @@ $(document).ready(function() {
 		.then(function() {
 			alert('Goodbye!');
 			$(':input').val('');
+			$('ul#results-list').empty();
 			$('.section').addClass('hide');
 			$('#logout').addClass('hide');
 			$('#login-page').removeClass('hide');
