@@ -129,7 +129,6 @@ $(document).ready(function() {
 			$('#logout').addClass('hide');
 			$('#login-page').removeClass('hide');
 			$('#sign-up').removeClass('hide');
-
 		}); //.then function
 	}); //$(#logout)
 
