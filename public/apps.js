@@ -123,6 +123,7 @@ $(document).ready(function() {
 		}) //$.ajax
 		.then(function() {
 			alert('Goodbye!');
+			$(':input').val('');
 			$('.section').addClass('hide');
 			$('#logout').addClass('hide');
 			$('#login-page').removeClass('hide');
