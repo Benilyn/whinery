@@ -152,11 +152,15 @@ $(document).ready(function() {
 		$('.edit').addClass('hide');
 
 		console.log("editing", whine);
+
 	}); //$('.remove button').click(function()
 
+	$('ul#restaurant-whines').on('click', '.cancel', function() {
+		var whine_element = $(this).parent();
+		whine_element.removeClass('edit-whine');
+		$('.edit').removeClass('hide');
 		
-		
-		
+	});	
 		//show form to edit whine, when submitted then you can do PUT request
 
 		/*
