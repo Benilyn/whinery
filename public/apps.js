@@ -41,10 +41,10 @@ $(document).ready(function() {
 		event.preventDefault();
 		var restaurant = $('#restaurant-info').data('restaurant');
 		const whineData = {
-			food: $('#whine-form [name="food-rating"]').val(),
-			service: $('#whine-form [name="food-rating"]').val(),
-			cleanliness: $('#whine-form [name="cleanliness-rating"]').val(),
-			price: $('#whine-form [name="price-rating"]').val(),
+			food: $('#whine-form [name="food"]').val(),
+			service: $('#whine-form [name="service"]').val(),
+			cleanliness: $('#whine-form [name="cleanliness"]').val(),
+			price: $('#whine-form [name="price"]').val(),
 			review: $('#whine-form [name="whine-review"]').val(),
 			restaurant: restaurant.place_id,
 			restaurantName: restaurant.name
@@ -57,7 +57,7 @@ $(document).ready(function() {
 			alert('Thank you for your whine.');
 			$('.section').addClass('hide');
 			$('#latest-feeds').removeClass('hide');
-
+			
 			getLatestWhines();
 		}); //.then function	
 	});	//$('#restaurant-whine form').submit(function(event)
@@ -130,6 +130,7 @@ $(document).ready(function() {
 			$('#login-page').removeClass('hide');
 			$('#sign-up').removeClass('hide');
 		}); //.then function
+		
 	}); //$(#logout)
 
 	$('ul#restaurant-whines').on('click', '.delete', function() {
