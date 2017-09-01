@@ -33,10 +33,6 @@ ul#whines, ul#restaurant-whines {
 	width: auto;
 }
 
-.delete, .save, .cancel {
-	display: none;
-}
-
-.edit-whine .delete, .edit-whine .save, .edit-whine .cancel {
-	display: inline-block;
+.delete button, .save button, .cancel button {
+	display: inline-flex;
 }
