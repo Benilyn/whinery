@@ -28,6 +28,8 @@ router.post('/', (req, res) => {
 			review: req.body.review
 			}) //.create
 		.then(
+			whine => whine.populate('author'))
+		.then(
 			whine => res.status(201).json(whine.apiRepr()))
 		.catch(err => {
 			console.error(err);
@@ -51,6 +53,7 @@ router.get('/', (req, res) => {
 			res.json(
 				whine.map(
 					(whine) => {
+						console.log(whine);
 						const data = whine.apiRepr();
 						if (req.user) {
 							data.owned = req.user.id == whine.author.id;
@@ -84,9 +87,10 @@ router.get('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
 	Whine
-		.findOneAndRemove({id: req.params.id, author: req.user})
+		.findOneAndRemove({_id: req.params.id, author: req.user})
 		.exec()
-		.then(() => {
+		.then((doc) => {
+			console.log(doc);
 			console.log(`Deleted whine \`${req.params.id}\``);
 			res.status(200).end();
 		});
