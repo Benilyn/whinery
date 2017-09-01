@@ -23,7 +23,7 @@ legend {
 	color: darkgray;
 }
 
-input, button {
+#signup-page input, #login-page input {
 	display: block;
 	height: 55px;
 	width: 450px;
