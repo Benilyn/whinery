@@ -152,8 +152,9 @@ $(document).ready(function() {
 	$('ul#restaurant-whines').on('click', '.edit', function() {
 		var whine = $(this).parent().data('whine_id');
 		var whine_element = $(this).parent();
-		whine_element.addClass('edit-whine');
+	//	whine_element.addClass('edit-whine');
 		$('.edit').addClass('hide');
+		$('.to-edit').removeClass('hide');
 
 		console.log("editing", whine);
 
@@ -161,8 +162,9 @@ $(document).ready(function() {
 
 	$('ul#restaurant-whines').on('click', '.cancel', function() {
 		var whine_element = $(this).parent();
-		whine_element.removeClass('edit-whine');
+	//	whine_element.removeClass('edit-whine');
 		$('.edit').removeClass('hide');
+		$('.to-edit').addClass('hide');
 		
 	});	
 		//show form to edit whine, when submitted then you can do PUT request
@@ -314,9 +316,9 @@ function getRestaurantWhines(restaurant) {
 				
 				if(whine.owned) {
 					$('<button class="edit">Edit</button><br>').appendTo($whine);
-					$('<button class="delete">Delete</button><br>').appendTo($whine);
-					$('<button class="save">Save</button><br>').appendTo($whine);
-					$('<button class="cancel">Cancel</button><br>').appendTo($whine);
+					$('<button class="delete hide to-edit">Delete</button><br>').appendTo($whine);
+					$('<button class="save hide to-edit">Save</button><br>').appendTo($whine);
+					$('<button class="cancel hide to-edit">Cancel</button><br>').appendTo($whine);
 				}
 				
 			}); //$.each(whines, function(index, whine)
