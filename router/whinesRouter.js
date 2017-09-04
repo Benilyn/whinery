@@ -105,7 +105,7 @@ router.put ('/:id', (req, res) => {
 
 	const updated = {};
 	const updateableFields = [
-		'author', 'food', 'service', 'cleanliness', 'price', 'review'];
+		'food', 'service', 'cleanliness', 'price', 'review'];
 	updateableFields.forEach(field => {
 		if (field in req.body) {
 			updated[field] = req.body[field];
