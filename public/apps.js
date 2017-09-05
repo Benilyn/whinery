@@ -345,9 +345,6 @@ function getRestaurantWhines(restaurant) {
 				
 				if(whine.owned) {
 					$('<button class="edit">Edit</button><br>').appendTo($whine);
-				//	$('<button class="delete hide to-edit">Delete</button><br>').appendTo($whine);
-				//	$('<button class="save hide to-edit">Save</button><br>').appendTo($whine);
-				//	$('<button class="cancel hide to-edit">Cancel</button><br>').appendTo($whine);
 				}
 				
 			}); //$.each(whines, function(index, whine)
