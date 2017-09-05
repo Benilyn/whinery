@@ -154,7 +154,7 @@ $(document).ready(function() {
 					deleteReview(whine);
 				},
 				'Save': function() {
-					console.log('testing save');
+					saveEditReview(whine);
 				},	
 				Cancel: function() {
 					$('#edit-whine-form').dialog('close');
@@ -167,32 +167,6 @@ $(document).ready(function() {
 		console.log("editing", whine);
 
 	}); //$('ul#restaurant-whines').on('click', '.edit', function()
-
-	$('ul#restaurant-whines').on('click', '.cancel', function() {
-		var whine_element = $(this).parent();
-	//	whine_element.removeClass('edit-whine');
-		$('.edit').removeClass('hide');
-		$('.to-edit').addClass('hide');
-	});	//$('ul#restaurant-whines').on('click', '.cancel', function()
-
-	$('ul#restaurant-whines').on('click', '.delete', function() {
-		var whine = $(this).parent().data('whine_id');
-		var whine_element = $(this).parent();
-		console.log('deleting', whine);
-		alert('need to delete restaurant whine');
-
-		$.ajax({
-			type: 'DELETE',
-			url: '/whines/' + whine
-		}) //$.ajax
-		.then(function(){
-			whine_element.remove();
-			console.log('removing whine id ' + whine);
-			$('#edit-whine-form').dialog('close');
-		}); //.then
-	}); //$('ul#restaurant-whines').on('click', '.delete', function()
-
-	
 
 }); //$(document).ready(function()
 
@@ -213,6 +187,20 @@ function deleteReview(whine) {
 		}); //.then
 }
 
+function saveEditReview(whine) {
+//	var whine = $(this).parent().data('whine_id');
+		var whine_element = $(this).parent();
+		console.log('saving edit', whine);
+		
+		$.ajax({
+			type: 'PUT',
+			url: '/whines/' + whine
+		}) //$.ajax
+		.then(function(){
+			console.log('saving edit for whine ' + whine);
+			$('#edit-whine-form').dialog('close');
+		}); //.then
+}
 
 
 function displayMap() {
