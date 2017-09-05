@@ -15,6 +15,12 @@
 <body>
 	<h1>Whinery</h1>
 
+	<div id='whineryNav' class='topNav hide'>
+		<a href="#" id='get-latest-whines'>Whines</a>
+		<a href="#" id='back-to-search-results' class='hide'>Search Results</a>
+		<a href="#" id='logout'>Log Out</a>
+	</div>
+
 	<div id="login-page" class='section'>
 		<form class="login-page">
 			<fieldset name="login-info">
@@ -39,7 +45,6 @@
 	</div> <!-- #signup-page -->
 
 	<div id='search-result' class='hide section'>
-		<p>display map</p>
 		<div id='map'></div>
 		<div id='restaurants'>
 			<ul id='results-list'></ul>
@@ -88,7 +93,6 @@
 				<a href="#" class='back-to-restaurant-info'>Back</a><br>
 			</div> <!-- #whine-form -->
 			
-			<a href="#" class='back-to-search-results'>Back to Search Results</a><br>	
 		</div> <!-- #restaurant-reviews -->		
 	</div> <!-- #restaurant-info -->
 	
@@ -121,12 +125,8 @@
 	<div id='latest-feeds' class='hide section'>
 		
 		<ul id='whines'></ul>
-		
-		<a href="#" class='back-to-search-results'>Back to Search Results</a><br>
 		<a href="#" class='back-to-info'>Back</a><br>
 	</div> <!-- #latest-feeds -->
-	
-	<a href="#" id='logout' class='hide'>Log Out</a>
 	
 
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
