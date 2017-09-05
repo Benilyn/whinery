@@ -1,15 +1,9 @@
 $.noConflict();
 $(document).ready(function() {
 
-	$('#test-dialog').click(function() {
-	//	$('#dialog').removeClass('hide');
-		$('#dialog').dialog({
-			title: "Testing Dialog Box"
-		});
-	});
-	
 	$('#sign-up').click(function() {
 		$('.section').addClass('hide');
+		$('#sign-up').addClass('hide');
 		$('#signup-page input').val('');
 		$('#signup-page').dialog({
 			title: "Sign Up",
@@ -20,16 +14,15 @@ $(document).ready(function() {
 				'Reset': function(){
 					$('input').val('');
 				} //reset button
-			},
+			}, //buttons
 			close: function(){
 				$('#login-page').removeClass('hide');
+				$('#sign-up').removeClass('hide');
 			}
-		});
-		
+		}); //.dialog box
 		$('#signup-page').removeClass('hide');
 	}); //$('#sign-up').click(function()
 
-	
 
 	$('ul#results-list').on('click', 'li', function() {
 		var restaurant = $(this).data('restaurant');
@@ -164,6 +157,9 @@ $(document).ready(function() {
 
 }); //$(document).ready(function()
 
+
+
+
 function signUp() {
 	event.preventDefault();
 	const userData = {
@@ -181,6 +177,7 @@ function signUp() {
 		$('#signup-page').dialog('close');
 		alert('Thank you for signing up.');
 		$('#login-page').removeClass('hide');
+		$('#sign-up').removeClass('hide');
 	}); //.then function
 } //signUp function
 
@@ -199,7 +196,7 @@ function deleteReview(whine) {
 			console.log('removing whine id ' + whine);
 			$('#edit-whine-form').dialog('close');
 		}); //.then
-}
+} //deleteReview funtion
 
 function saveEditReview(whine) {
 //	var whine = $(this).parent().data('whine_id');
@@ -214,7 +211,7 @@ function saveEditReview(whine) {
 			console.log('saving edit for whine ' + whine);
 			$('#edit-whine-form').dialog('close');
 		}); //.then
-}
+} //saveEditReview funtion
 
 
 function displayMap() {
