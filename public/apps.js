@@ -26,6 +26,7 @@ $(document).ready(function() {
 	$('ul#results-list').on('click', 'li', function() {
 		var restaurant = $(this).data('restaurant');
 		console.log($(this).data('restaurant'));
+		$('#back-to-search-results').removeClass('hide');
 		$('.section').addClass('hide');
 		$('#restaurant-info').data('restaurant', restaurant).removeClass('hide');
 		
@@ -47,10 +48,19 @@ $(document).ready(function() {
 		$('#whine-form').removeClass('hide');
 	}); //$('#write-whine').click(function()
 
-	$('.back-to-search-results').click(function(event) {
+	$('#back-to-search-results').click(function(event) {
 		event.preventDefault();
+		$('#back-to-search-results').addClass('hide');
 		$('.section').addClass('hide');
 		$('#search-result').removeClass('hide');
+	}); //$('#back-button').click(function(event)
+
+	$('#get-latest-whines').click(function(event) {
+		event.preventDefault();
+		$('#back-to-search-results').removeClass('hide');
+		$('.section').addClass('hide');
+		$('#latest-feeds').removeClass('hide');
+		getLatestWhines();
 	}); //$('#back-button').click(function(event)
 
 	//Add Whine button handler
@@ -107,9 +117,9 @@ $(document).ready(function() {
 			type: 'POST'}) 
 		.then(function(res) {
 			$('.section').addClass('hide');
-			$('#logout').removeClass('hide');
 			$('#search-result').removeClass('hide'); 
 			displayMap();
+			$('#whineryNav').removeClass('hide');
 		});	//.then function
 	}); //$('#login-page form').submit(function(event)
 
@@ -123,7 +133,7 @@ $(document).ready(function() {
 			$(':input').val('');
 			$('ul#results-list').empty();
 			$('.section').addClass('hide');
-			$('#logout').addClass('hide');
+			$('#whineryNav').addClass('hide');
 			$('#login-page').removeClass('hide');
 			$('#sign-up').removeClass('hide');
 		}); //.then function
