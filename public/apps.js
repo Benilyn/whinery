@@ -3,7 +3,6 @@ $(document).ready(function() {
 
 	$('#sign-up').click(function() {
 		$('.section').addClass('hide');
-		$('#sign-up').addClass('hide');
 		$('#signup-page input').val('');
 		$('#signup-page').dialog({
 			title: "Sign Up",
