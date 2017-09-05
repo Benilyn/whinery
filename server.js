@@ -26,10 +26,14 @@ const {PORT, DATABASE_URL, TEST_DATABASE_URL} = require('./config');
 const mockData = require('./mock-data');
 
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection
+  })
 }));
 
 const passport = require('passport');
