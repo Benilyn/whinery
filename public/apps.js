@@ -1,5 +1,12 @@
-
+$.noConflict();
 $(document).ready(function() {
+
+	$('#test-dialog').click(function() {
+	//	$('#dialog').removeClass('hide');
+		$('#dialog').dialog({
+			title: "Testing Dialog Box"
+		});
+	});
 	
 	$('#sign-up').click(function() {
 		$('.section').addClass('hide');
@@ -133,6 +140,41 @@ $(document).ready(function() {
 		
 	}); //$(#logout)
 
+	$('ul#restaurant-whines').on('click', '.edit', function() {
+		var whine = $(this).parent().data('whine_id');
+		var whine_element = $(this).parent();
+	//	whine_element.addClass('edit-whine');
+	//	$('.edit').addClass('hide');
+	//	$('.to-edit').removeClass('hide');
+
+		$('#edit-whine-form').dialog({
+			title: 'Edit review',
+			buttons: {
+				'Delete': function() {
+					deleteReview(whine);
+				},
+				'Save': function() {
+					console.log('testing save');
+				},	
+				Cancel: function() {
+					$('#edit-whine-form').dialog('close');
+				}
+			}
+
+		}); //$('#edit-whine-form').dialog
+	
+
+		console.log("editing", whine);
+
+	}); //$('ul#restaurant-whines').on('click', '.edit', function()
+
+	$('ul#restaurant-whines').on('click', '.cancel', function() {
+		var whine_element = $(this).parent();
+	//	whine_element.removeClass('edit-whine');
+		$('.edit').removeClass('hide');
+		$('.to-edit').addClass('hide');
+	});	//$('ul#restaurant-whines').on('click', '.cancel', function()
+
 	$('ul#restaurant-whines').on('click', '.delete', function() {
 		var whine = $(this).parent().data('whine_id');
 		var whine_element = $(this).parent();
@@ -146,43 +188,30 @@ $(document).ready(function() {
 		.then(function(){
 			whine_element.remove();
 			console.log('removing whine id ' + whine);
+			$('#edit-whine-form').dialog('close');
 		}); //.then
-	}); //$('.remove button').click(function()
-
-	$('ul#restaurant-whines').on('click', '.edit', function() {
-		var whine = $(this).parent().data('whine_id');
-		var whine_element = $(this).parent();
-	//	whine_element.addClass('edit-whine');
-		$('.edit').addClass('hide');
-		$('.to-edit').removeClass('hide');
-
-		console.log("editing", whine);
-
-	}); //$('.remove button').click(function()
-
-	$('ul#restaurant-whines').on('click', '.cancel', function() {
-		var whine_element = $(this).parent();
-	//	whine_element.removeClass('edit-whine');
-		$('.edit').removeClass('hide');
-		$('.to-edit').addClass('hide');
-		
-	});	
-		//show form to edit whine, when submitted then you can do PUT request
-
-		/*
-		$.ajax({
-			type: 'PUT',
-			url: '/whines/' + whine
-		}) //$.ajax
-		.then(function(){
-			
-			console.log('need to edit');
-		}); //.then function
-		*/
+	}); //$('ul#restaurant-whines').on('click', '.delete', function()
 
 	
 
 }); //$(document).ready(function()
+
+function deleteReview(whine) {
+//	var whine = $(this).parent().data('whine_id');
+		var whine_element = $(this).parent();
+		console.log('deleting', whine);
+		alert('need to delete restaurant whine');
+
+		$.ajax({
+			type: 'DELETE',
+			url: '/whines/' + whine
+		}) //$.ajax
+		.then(function(){
+			whine_element.remove();
+			console.log('removing whine id ' + whine);
+			$('#edit-whine-form').dialog('close');
+		}); //.then
+}
 
 
 
@@ -316,9 +345,9 @@ function getRestaurantWhines(restaurant) {
 				
 				if(whine.owned) {
 					$('<button class="edit">Edit</button><br>').appendTo($whine);
-					$('<button class="delete hide to-edit">Delete</button><br>').appendTo($whine);
-					$('<button class="save hide to-edit">Save</button><br>').appendTo($whine);
-					$('<button class="cancel hide to-edit">Cancel</button><br>').appendTo($whine);
+				//	$('<button class="delete hide to-edit">Delete</button><br>').appendTo($whine);
+				//	$('<button class="save hide to-edit">Save</button><br>').appendTo($whine);
+				//	$('<button class="cancel hide to-edit">Cancel</button><br>').appendTo($whine);
 				}
 				
 			}); //$.each(whines, function(index, whine)
