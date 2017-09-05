@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 	}); //$('ul#results-list').on('click', 'li', function()
 
-	//Write Review button handler
+	//Write Review 
 	$('#write-whine').click(function() {
 		var restaurant = $('#restaurant-info').data('restaurant');
 		$('#whine-reviews').addClass('hide');
@@ -60,10 +60,11 @@ $(document).ready(function() {
 		$('#back-to-search-results').removeClass('hide');
 		$('.section').addClass('hide');
 		$('#latest-feeds').removeClass('hide');
+
 		getLatestWhines();
 	}); //$('#back-button').click(function(event)
 
-	//Add Whine button handler
+	//Add Whine
 	$('#whine-form').submit(function(event) {
 		event.preventDefault();
 		var restaurant = $('#restaurant-info').data('restaurant');
@@ -89,22 +90,7 @@ $(document).ready(function() {
 		}); //.then function	
 	});	//$('#restaurant-whine form').submit(function(event)
 
-	$('.back-to-restaurant-info').click(function(event) {
-		event.preventDefault();
-		$('#whine-form').addClass('hide');
-		$('#write-whine').removeClass('hide');
-		$('#whine-reviews').removeClass('hide');
-	}); //$('.back-to-restaurant-info').click(function(event)
-
-	$('.back-to-info').click(function(event) {
-		event.preventDefault();
-		$('.section').addClass('hide');
-		$('#whine-form').addClass('hide');
-		$('#restaurant-info').removeClass('hide');
-		$('#write-whine').removeClass('hide');
-		$('#whine-reviews').removeClass('hide');
-	}); //$('.back-to-info').click(function(event)
-
+	
 	$('#login-page form').submit(function(event) {
 		event.preventDefault();
 		const loginData = {
@@ -134,6 +120,7 @@ $(document).ready(function() {
 			$('ul#results-list').empty();
 			$('.section').addClass('hide');
 			$('#whineryNav').addClass('hide');
+			$('#back-to-search-results').addClass('hide');
 			$('#login-page').removeClass('hide');
 			$('#sign-up').removeClass('hide');
 		}); //.then function
