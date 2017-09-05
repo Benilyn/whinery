@@ -4,6 +4,12 @@
 	<title>Whinery</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="stylesheet" type="text/css" href="form.css">
+
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+   rel = "stylesheet">
+
+	<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -21,6 +27,12 @@
 	</div> <!-- #login-page -->
 
 	<a href="#" id="sign-up" class='section sign-up'>Sign Up</a>
+	<a href="#" id="test-dialog">dialog box</a>
+
+	<div id='dialog' class='hide'>
+		Testing dialog box for edit mode.
+	</div>
+
 	
 
 	
@@ -93,7 +105,7 @@
 		</div> <!-- #restaurant-reviews -->		
 	</div> <!-- #restaurant-info -->
 	
-
+	
 	<div id='edit-whine-form' class="hide">
 		<form action='#' method="post">
 			FOOD: <br>
@@ -114,10 +126,12 @@
 				<input type='radio' name='price' value='good'>Good<br>
 			REVIEW: <br>
 				<textarea name="whine-review" placeholder="Write review here"></textarea><br>
+			<input type='submit' id='edit-delete' value='Delete'>
 			<input type='submit' id='edit-save' value='Save'>
 			<input type='submit' id='edit-cancel' value='Cancel'>
+
 		</form>
-		<a href="#" class='back-to-restaurant-info'>Back</a><br>
+	
 	</div> <!-- #edit-whine-form -->
 		
 
