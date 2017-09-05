@@ -5,6 +5,14 @@ const {Whine} = require('../models');
 const {PORT, DATABASE_URL} = require('../config');
 
 router.post('/', (req, res) => {
+	if (!(req.user)) {
+		const message = 'Authentication required';
+		console.error(message);
+	return res.status(401).send(message);
+	}
+
+
+
 	const requiredFields = [
 		'food', 'service', 'cleanliness', 'price', 'restaurant'];
 	for (let i=0; i<requiredFields.length; i++) {
@@ -115,8 +123,12 @@ router.put ('/:id', (req, res) => {
 	Whine
 		.findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
 		.exec()
-		.then(updatedWhine => res.status(201).json(updatedWhine.apiRepr()))
-		.catch(err => res.status(500).json({message: "Something went wrong"}));
+		.then((updatedWhine) => {
+			console.log(updatedWhine);
+			res.status(201).json(updatedWhine.apiRepr())})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json({message: "Something went wrong"})});
 }); //router.put(/:id)
 
 
