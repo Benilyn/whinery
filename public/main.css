@@ -1,3 +1,12 @@
+.topNav {
+	background-color: gray;
+}
+
+.topNav a:hover {
+	background-color: white;
+	color: black;
+}
+
 #map {
 	width: 400px;
 	height: 400px;
