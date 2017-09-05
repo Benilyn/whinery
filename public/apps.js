@@ -10,8 +10,26 @@ $(document).ready(function() {
 	
 	$('#sign-up').click(function() {
 		$('.section').addClass('hide');
+		$('#signup-page input').val('');
+		$('#signup-page').dialog({
+			title: "Sign Up",
+			buttons: {
+				'Submit': function(){
+					signUp();
+				}, //submit button
+				'Reset': function(){
+					$('input').val('');
+				} //reset button
+			},
+			close: function(){
+				$('#login-page').removeClass('hide');
+			}
+		});
+		
 		$('#signup-page').removeClass('hide');
 	}); //$('#sign-up').click(function()
+
+	
 
 	$('ul#results-list').on('click', 'li', function() {
 		var restaurant = $(this).data('restaurant');
@@ -85,26 +103,6 @@ $(document).ready(function() {
 		$('#whine-reviews').removeClass('hide');
 	}); //$('.back-to-info').click(function(event)
 
-	$('#signup-page form').submit(function(event) {
-		event.preventDefault();
-		const userData = {
-			firstName: $('#signup-page [name="first-name"]').val(),
-			lastName: $('#signup-page [name="last-name"]').val(),
-			phone: $('#signup-page [name="phone-number"]').val(),
-			email: $('#signup-page [name="email"]').val(),
-			password: $('#signup-page [name="password"]').val()
-		}; //const userData
-		$.ajax('/users', {
-			contentType: 'application/json',
-			data: JSON.stringify(userData),
-			type: 'POST'}) 
-		.then(function(res) {
-			alert('Thank you for signing up.');
-			$('.section').addClass('hide');
-			$('#login-page').removeClass('hide');
-		}); //.then function
-	}); //$('#signup-page form').submit(function(event)
-
 	$('#login-page form').submit(function(event) {
 		event.preventDefault();
 		const loginData = {
@@ -152,23 +150,39 @@ $(document).ready(function() {
 			buttons: {
 				'Delete': function() {
 					deleteReview(whine);
-				},
+				}, //delete button
 				'Save': function() {
 					saveEditReview(whine);
-				},	
+				}, //save button
 				Cancel: function() {
 					$('#edit-whine-form').dialog('close');
-				}
+				} //cancel button
 			}
-
 		}); //$('#edit-whine-form').dialog
-	
-
 		console.log("editing", whine);
-
 	}); //$('ul#restaurant-whines').on('click', '.edit', function()
 
 }); //$(document).ready(function()
+
+function signUp() {
+	event.preventDefault();
+	const userData = {
+		firstName: $('#signup-page [name="first-name"]').val(),
+		lastName: $('#signup-page [name="last-name"]').val(),
+		phone: $('#signup-page [name="phone-number"]').val(),
+		email: $('#signup-page [name="email"]').val(),
+		password: $('#signup-page [name="password"]').val()
+	}; //const userData
+	$.ajax('/users', {
+		contentType: 'application/json',
+		data: JSON.stringify(userData),
+		type: 'POST'}) 
+	.then(function(res) {
+		$('#signup-page').dialog('close');
+		alert('Thank you for signing up.');
+		$('#login-page').removeClass('hide');
+	}); //.then function
+} //signUp function
 
 function deleteReview(whine) {
 //	var whine = $(this).parent().data('whine_id');
