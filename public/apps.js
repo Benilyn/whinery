@@ -136,7 +136,8 @@ $(document).ready(function() {
 	//	whine_element.addClass('edit-whine');
 	//	$('.edit').addClass('hide');
 	//	$('.to-edit').removeClass('hide');
-
+		$('#write-whine').addClass('hide');
+		$('#whine-reviews').addClass('hide');
 		$('#edit-whine-form').dialog({
 			title: 'Edit review',
 			buttons: {
@@ -148,7 +149,13 @@ $(document).ready(function() {
 				}, //save button
 				Cancel: function() {
 					$('#edit-whine-form').dialog('close');
+					$('#write-whine').removeClass('hide');
+					$('#whine-reviews').removeClass('hide');
 				} //cancel button
+			},
+			close: function(){
+				$('#write-whine').removeClass('hide');
+				$('#whine-reviews').removeClass('hide');
 			}
 		}); //$('#edit-whine-form').dialog
 		console.log("editing", whine);
@@ -194,6 +201,8 @@ function deleteReview(whine) {
 			whine_element.remove();
 			console.log('removing whine id ' + whine);
 			$('#edit-whine-form').dialog('close');
+			$('#write-whine button').removeClass('hide');
+			$('#whine-reviews').removeClass('hide');
 		}); //.then
 } //deleteReview funtion
 
