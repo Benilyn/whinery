@@ -1,5 +1,9 @@
 $.noConflict();
+
+
+
 $(document).ready(function() {
+	isLoggedIn();
 
 	$('#sign-up').click(function() {
 		$('.section').addClass('hide');
@@ -82,6 +86,7 @@ $(document).ready(function() {
 			data: JSON.stringify(whineData),
 			type: 'POST'}) 
 		.then(function(res) {
+			
 			alert('Thank you for your whine.');
 			$('.section').addClass('hide');
 			$('#latest-feeds').removeClass('hide');
@@ -116,13 +121,8 @@ $(document).ready(function() {
 		}) //$.ajax
 		.then(function() {
 			alert('Goodbye!');
-			$(':input').val('');
-			$('ul#results-list').empty();
-			$('.section').addClass('hide');
-			$('#whineryNav').addClass('hide');
-			$('#back-to-search-results').addClass('hide');
-			$('#login-page').removeClass('hide');
-			$('#sign-up').removeClass('hide');
+			window.location.reload();
+			
 		}); //.then function
 		
 	}); //$(#logout)
@@ -161,6 +161,27 @@ $(document).ready(function() {
 }); //$(document).ready(function()
 
 
+function isLoggedIn() {
+	
+	$.ajax('/loggedin', {
+		type: 'GET'
+	}) //$.ajax
+	.then(function(res){
+		$.ajax('logout', {
+			type: 'GET'
+		})
+		.then(function(){
+			$('#login-page').removeClass('hide');
+			$('#sign-up').removeClass('hide');
+		});
+		
+	})
+	.fail(function(){
+		alert('You must log in to see whines');
+		$('#login-page').removeClass('hide');
+		$('#sign-up').removeClass('hide');
+	});
+} //isLoggedIn function
 
 
 function signUp() {
