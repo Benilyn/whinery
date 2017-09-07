@@ -104,6 +104,19 @@ if (require.main === module) {
 	https.createServer(options, app).listen(PORT);
 }
 
+app.get('/loggedin', (req, res) => {
+  if (!(req.user)) {
+    const message = 'No user logged in';
+    console.error(message);
+    res.sendStatus(401);
+  }
+  else{
+      res.sendStatus(200);
+      console.log(req.user);
+  }
+});
+
+
 
 
 
