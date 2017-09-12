@@ -52,6 +52,7 @@ $(document).ready(function() {
 		$('#whine-reviews').addClass('hide');
 		$('#write-whine').addClass('hide');
 		$('#whine-form').removeClass('hide');
+		clearForm();
 	}); //$('#write-whine').click(function()
 
 	$('#back-to-search-results').click(function(event) {
@@ -88,7 +89,6 @@ $(document).ready(function() {
 			data: JSON.stringify(whineData),
 			type: 'POST'}) 
 		.then(function(res) {
-			
 			alert('Thank you for your whine.');
 			$('.section').addClass('hide');
 			$('#latest-feeds').removeClass('hide');
@@ -209,8 +209,8 @@ function signUp() {
 
 function deleteReview(whine) {
 //	var whine = $(this).parent().data('whine_id');
-		var whine_element = $(this).parent();
-		console.log(whine_element);
+//		var whine_element = $(this).parent();
+//		console.log(whine_element);
 		console.log('deleting', whine);
 		alert('need to delete restaurant whine');
 
@@ -219,7 +219,7 @@ function deleteReview(whine) {
 			url: '/whines/' + whine
 		}) //$.ajax
 		.then(function(){
-			whine_element.remove();
+			
 			console.log('removing whine id ' + whine);
 			$('#edit-whine-form').dialog('close');
 			$('.section').addClass('hide');
@@ -256,6 +256,12 @@ function saveEditReview(whine) {
 			$('#edit-whine-form').dialog('close');
 		}); //.then
 } //saveEditReview funtion
+
+function clearForm() {
+	$(':input').not(':button, :submit, :reset, :radio').val('');
+	$(':radio').prop('checked', false);
+	$(':textarea').val('');
+} // clearForm function
 
 
 function displayMap() {
