@@ -227,6 +227,7 @@ function deleteReview(whine) {
 //	var whine = $(this).parent().data('whine_id');
 //		var whine_element = $(this).parent();
 //		console.log(whine_element);
+		var restaurant = $('#restaurant-info').data('restaurant');
 		console.log('deleting', whine);
 		alert('need to delete restaurant whine');
 
@@ -242,6 +243,8 @@ function deleteReview(whine) {
 			$('#restaurant-info').removeClass('hide');
 			$('#write-whine button').removeClass('hide');
 			$('#whine-reviews').removeClass('hide');
+			getRestaurantWhines(restaurant);
+
 		//	$('#restaurant-whines').load('/whines #restaurant-whines');
 		}); //.then
 } //deleteReview funtion
@@ -254,10 +257,10 @@ function saveEditReview(whine) {
 
 		var restaurant = $('#restaurant-info').data('restaurant');
 		const editedWhineData = {
-			food: $('#edit-whine-form [name="food"]').val(),
-			service: $('#edit-whine-form [name="service"]').val(),
-			cleanliness: $('#edit-whine-form [name="cleanliness"]').val(),
-			price: $('#edit-whine-form [name="price"]').val(),
+			food: $('#edit-whine-form [name="food"]:checked').val(),
+			service: $('#edit-whine-form [name="service"]:checked').val(),
+			cleanliness: $('#edit-whine-form [name="cleanliness"]:checked').val(),
+			price: $('#edit-whine-form [name="price"]:checked').val(),
 			review: $('#edit-whine-form [name="whine-review"]').val(),
 			id: whine
 		};
@@ -270,6 +273,11 @@ function saveEditReview(whine) {
 		.then(function(){
 			console.log('saving edit for whine ' + whine);
 			$('#edit-whine-form').dialog('close');
+			$('.section').addClass('hide');
+			$('#restaurant-info').removeClass('hide');
+			$('#write-whine button').removeClass('hide');
+			$('#whine-reviews').removeClass('hide');
+			getRestaurantWhines(restaurant);
 		}); //.then
 } //saveEditReview funtion
 
