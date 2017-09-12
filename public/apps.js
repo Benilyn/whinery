@@ -33,6 +33,8 @@ $(document).ready(function() {
 		$('#back-to-search-results').removeClass('hide');
 		$('.section').addClass('hide');
 		$('#restaurant-info').data('restaurant', restaurant).removeClass('hide');
+		$('#write-whine').removeClass('hide');
+		$('#whine-reviews').removeClass('hide');
 		
 		var price = '$';
 		$('#restaurant-details .name').text(restaurant.name);
@@ -177,7 +179,7 @@ function isLoggedIn() {
 		
 	})
 	.fail(function(){
-		alert('You must log in to see whines');
+		console.log('You must log in to see whines');
 		$('#login-page').removeClass('hide');
 		$('#sign-up').removeClass('hide');
 	});
@@ -208,6 +210,7 @@ function signUp() {
 function deleteReview(whine) {
 //	var whine = $(this).parent().data('whine_id');
 		var whine_element = $(this).parent();
+		console.log(whine_element);
 		console.log('deleting', whine);
 		alert('need to delete restaurant whine');
 
@@ -219,8 +222,11 @@ function deleteReview(whine) {
 			whine_element.remove();
 			console.log('removing whine id ' + whine);
 			$('#edit-whine-form').dialog('close');
+			$('.section').addClass('hide');
+			$('#restaurant-info').removeClass('hide');
 			$('#write-whine button').removeClass('hide');
 			$('#whine-reviews').removeClass('hide');
+		//	$('#restaurant-whines').load('/whines #restaurant-whines');
 		}); //.then
 } //deleteReview funtion
 
@@ -228,8 +234,20 @@ function saveEditReview(whine) {
 //	var whine = $(this).parent().data('whine_id');
 		var whine_element = $(this).parent();
 		console.log('saving edit', whine);
-		
+
+
+		var restaurant = $('#restaurant-info').data('restaurant');
+		const editedWhineData = {
+			food: $('#edit-whine-form [name="food"]').val(),
+			service: $('#edit-whine-form [name="service"]').val(),
+			cleanliness: $('#edit-whine-form [name="cleanliness"]').val(),
+			price: $('#edit-whine-form [name="price"]').val(),
+			review: $('#edit-whine-form [name="whine-review"]').val(),
+			id: whine
+		};
 		$.ajax({
+			contentType: 'application/json',
+			data: JSON.stringify(editedWhineData),
 			type: 'PUT',
 			url: '/whines/' + whine
 		}) //$.ajax
