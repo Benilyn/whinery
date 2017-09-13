@@ -5,25 +5,25 @@ const faker		=	require('faker');
 const mongoose	=	require('mongoose');
 
 const app	= require('../server.js');
-const {Comment} = require('../models');
+const {Whine} = require('../models');
 const {PORT, TEST_DATABASE_URL} = require('../config');
 
 chai.use(chaiHttp);
 
-function seedCommentData() {
-  console.info('seeding comments');
-  const seedComment = [];
+function seedWhineData() {
+  console.info('seeding whine');
+  const seedWhine = [];
 
   for (let i=1; i<=10; i++) {
-    seedComment.push(generateCommentData());
+    seedWhine.push(generateWhineData());
   }
   // this will return a promise
-  return Comment.insertMany(seedComment).catch(err => {
+  return Whine.insertMany(seedWhine).catch(err => {
   	console.error(err);
   });
 }; //function seedCommentData
 
-function generateCommentData() {
+function generateWhineData() {
 	return {
 		author: faker.name.firstName(),
 		review: faker.lorem.sentences(),
@@ -31,17 +31,17 @@ function generateCommentData() {
 	};
 }; //function generateCommentData
 
-describe('Comments API resource', function() {
+describe('Whines API resource', function() {
 	before(function() {
 		return mongoose.connect(TEST_DATABASE_URL);
 	}); //before function
 
 	beforeEach(function() {
-		return seedCommentData();
+		return seedWhineData();
 	}); //beforeEach function
 
 	afterEach(function() {
-		console.warn('Deleting comments database');
+		console.warn('Deleting whine database');
 		return mongoose.connection.dropDatabase();
 	}); //afterEach function
 
@@ -50,43 +50,43 @@ describe('Comments API resource', function() {
 	}); //after function
 
 
-	describe('Comment on GET endpoint', function() {
-		it('should return all existing comments', function() {
+	describe('Whine on GET endpoint', function() {
+		it('should return all existing whines', function() {
 			let res;
 			return chai.request(app)
-			.get('/comments')
+			.get('/whines')
 			.then(function(_res) {
 				res = _res;
 				res.should.have.status(200);
 				res.should.be.json;
 				res.body.should.be.a('array');
 				res.body.length.should.be.at.least(1);
-				res.body.forEach(function(comment) {
+				res.body.forEach(function(whine) {
 					comment.should.be.a('object');
 				}); //.forEach function			
 			}) //.then function	
 		}); //it(should return all)
 
-		it('should return comments with right fields', function() {
-			let resComment;
+		it('should return whines with right fields', function() {
+			let resWhine;
 			return chai.request(app)
-				.get('/comments')
+				.get('/whines')
 				.then(function(res) {
 					res.should.have.status(200);
 					res.should.be.json;
 					res.body.should.be.a('array');
 					res.body.length.should.be.at.least(1);
 
-					res.body.forEach(function(restaurant) {
-						restaurant.should.be.a('object');
-						restaurant.should.include.keys(
+					res.body.forEach(function(whine) {
+						whine.should.be.a('object');
+						whine.should.include.keys(
 							'id', 'author', 'review', 'created');
 					}); //.forEach function
 				}); //.then function(res)
 		}); //it(should return comments with the right fields)
 	}); //describe(Comment on GET endpoint)
 
-
+/*
 	describe('Comment on POST endpoint', function() {
 		it('should add a new comment', function() {
 			const newComment = {
@@ -153,7 +153,7 @@ describe('Comments API resource', function() {
 				});
 		}); //it(should update comment on PUT)
 	}); //describe (Comment on PUT endpoint)
-
+*/
 
 
 }); //describe(Comments API resource)
