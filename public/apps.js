@@ -91,10 +91,10 @@ $(document).ready(function() {
 	
 		var restaurant = $('#restaurant-info').data('restaurant');
 		const whineData = {
-			food: $('#whine-form [name="food"]').val(),
-			service: $('#whine-form [name="service"]').val(),
-			cleanliness: $('#whine-form [name="cleanliness"]').val(),
-			price: $('#whine-form [name="price"]').val(),
+			food: $('#whine-form [name="food"]:checked').val(),
+			service: $('#whine-form [name="service"]:checked').val(),
+			cleanliness: $('#whine-form [name="cleanliness"]:checked').val(),
+			price: $('#whine-form [name="price"]:checked').val(),
 			review: $('#whine-form [name="whine-review"]').val(),
 			restaurant: restaurant.place_id,
 			restaurantName: restaurant.name
