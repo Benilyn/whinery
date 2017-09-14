@@ -9,7 +9,7 @@ const {Restaurant} = require('../models');
 const {PORT, TEST_DATABASE_URL} = require('../config');
 
 chai.use(chaiHttp);
-
+/*
 function seedRestaurantData() {
   console.info('seeding restaurant data');
   const seedData = [];
@@ -173,7 +173,7 @@ describe('Restaurant API resource', function() {
 
 
 }); //describe(Restaurant API resource)
-
+*/
 
 
 
