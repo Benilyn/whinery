@@ -9,6 +9,7 @@ const {Whine} = require('../models');
 const {PORT, TEST_DATABASE_URL} = require('../config');
 
 chai.use(chaiHttp);
+mongoose.Promise = global.Promise;
 
 function seedWhineData() {
   console.info('seeding whine');
@@ -21,7 +22,7 @@ function seedWhineData() {
   return Whine.insertMany(seedWhine).catch(err => {
   	console.error(err);
   });
-}; //function seedCommentData
+}//function seedCommentData
 
 function generateWhineData() {
 	return {
@@ -29,7 +30,7 @@ function generateWhineData() {
 		review: faker.lorem.sentences(),
 		created: faker.date.past()
 	};
-}; //function generateCommentData
+} //function generateCommentData
 
 describe('Whines API resource', function() {
 	before(function() {
@@ -48,6 +49,7 @@ describe('Whines API resource', function() {
 	after(function() {
 		return mongoose.disconnect();
 	}); //after function
+	
 
 
 	describe('Whine on GET endpoint', function() {
@@ -56,6 +58,7 @@ describe('Whines API resource', function() {
 			return chai.request(app)
 			.get('/whines')
 			.then(function(_res) {
+				console.log('test');
 				res = _res;
 				res.should.have.status(200);
 				res.should.be.json;
@@ -63,8 +66,11 @@ describe('Whines API resource', function() {
 				res.body.length.should.be.at.least(1);
 				res.body.forEach(function(whine) {
 					comment.should.be.a('object');
-				}); //.forEach function			
-			}) //.then function	
+				}); //.forEach function		
+			}) //.then function
+			.cath(function(){
+				console.log('catch');
+			});
 		}); //it(should return all)
 
 		it('should return whines with right fields', function() {
