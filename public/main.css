@@ -1,3 +1,22 @@
+* {
+	box-sizing: border-box;
+}
+
+h1 {
+	text-align: center;
+	font-size: 4em;
+}
+
+#no-account {
+	text-align: center;
+	font-size: 0.5em;
+	color: gray;
+}
+
+#no-account a:hover {
+	color: red;
+}
+
 .topNav {
 	background-color: darkgray;
 	overflow: hidden;
