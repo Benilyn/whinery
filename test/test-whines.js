@@ -11,11 +11,29 @@ const {PORT, TEST_DATABASE_URL} = require('../config');
 chai.use(chaiHttp);
 mongoose.Promise = global.Promise;
 
-function seedWhineData() {
-  console.info('seeding whine');
-  const seedWhine = [];
 
-  for (let i=1; i<=10; i++) {
+
+
+function generateAuthorData(){
+	return {
+		firstName: faker.name.firstName(),
+		lastName: faker.name.lastName()
+	};
+}
+
+function seedWhineData() {
+
+	function seeAuthorData(){
+	const seedAuthor = [];
+	for (let i=1; i<=10; i++) {
+    seedAuthor.push(generateAuthorData());
+  		}
+  	console.log(seedAuthor);
+	} //seedAuthorData function
+
+	console.info('seeding whine');
+	const seedWhine = [];
+	for (let i=1; i<=10; i++) {
     seedWhine.push(generateWhineData());
   }
   // this will return a promise
@@ -26,7 +44,7 @@ function seedWhineData() {
 
 function generateWhineData() {
 	return {
-		author: faker.name.firstName(),
+	//	author: faker.name.firstName(),
 		review: faker.lorem.sentences(),
 		created: faker.date.past()
 	};
@@ -68,7 +86,7 @@ describe('Whines API resource', function() {
 					comment.should.be.a('object');
 				}); //.forEach function		
 			}) //.then function
-			.cath(function(){
+			.catch(function(){
 				console.log('catch');
 			});
 		}); //it(should return all)
@@ -86,7 +104,7 @@ describe('Whines API resource', function() {
 					res.body.forEach(function(whine) {
 						whine.should.be.a('object');
 						whine.should.include.keys(
-							'id', 'author', 'review', 'created');
+							'id', 'review', 'created');
 					}); //.forEach function
 				}); //.then function(res)
 		}); //it(should return comments with the right fields)
