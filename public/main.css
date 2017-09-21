@@ -44,8 +44,20 @@ li {
 }
 
 #map {
-	width: 60%%;
 	height: 45vh;
+	margin: 2em 6em;
+}
+
+#restaurants {
+	margin: 1em 6em;
+}
+
+ul#results-list {
+	padding: 0 1em;
+	margin: 0;
+	overflow-y: scroll;
+	flex-direction: column;
+	display: flex;
 }
 
 #results-list li {
@@ -53,24 +65,9 @@ li {
 	align-items: center;
 	flex-shrink: 0;
 	display: flex;
-	padding: 0.25em;
-	font-size: 1.1em;
-}
-
-#restaurant {
-	width: 40%;
-	height: 45vh;
-	padding: 1em;
-}
-
-ul#results-list {
-	width: 100%;
-	height: 42vh;
 	padding: 0;
-	margin: 0;
-	overflow-y: scroll;
-	flex-direction: column;
-	display: flex;
+	font-size: 1.5em;
+	border-bottom: solid lightgray;
 }
 
 #results-list li:hover {
