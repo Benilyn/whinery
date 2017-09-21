@@ -73,31 +73,68 @@ ul#results-list {
 #results-list li:hover {
 	color: blue;
 	cursor: pointer;
+	font-size: 175%;
 }
 
-.restaurant-whine {
-	border: solid .125em lightgray;
-	padding: .75em;
-	margin: .5em
+#restaurant-details {
+	margin: .5em 1.5em;
 }
 
-.restaurant-whine span {
+.name span {
+	font-size: 1.5em;
+}
+
+#restaurant-details span {
 	font-size: 1em;
 }
 
-.restaurant-whine button {
-	font-size: .5em;
+#write-whine {
+	color: white;
+	background-color: black;	
 	text-align: center;
-	height: 2em;
 	width: auto;
-	color: black;
-	background-color: lightgray;
+	height: 2em;
+	font-size: 1em;
+	margin-left: 10em;
+	padding: 0 1.5em;
+	border: groove 0.05em;
+}
+
+#whine-reviews {
+	margin: 1em 2em;
 }
 
 #restaurant-whines {
 	padding: 0;
 	margin: 1em;
 }
+
+.restaurant-whine {
+	border: solid .125em lightgray;
+	padding: .75em;
+	margin-bottom: .25em
+}
+
+.author-create span {
+	padding: .25em 0;
+}
+
+.restaurant-whine span {
+	font-size: 1em;
+	padding: 0 .5em;
+}
+
+.restaurant-whine button {
+	font-size: .6em;
+	text-align: center;
+	padding-top: 0.125em 1em;
+	height: 2em;
+	width: auto;
+	color: black;
+	background-color: lightgray;
+}
+
+
 
 
 .edit {
