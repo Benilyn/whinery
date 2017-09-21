@@ -408,7 +408,7 @@ function getRestaurantWhines(restaurant) {
 	    			
 				var $whine = $('<li class="restaurant-whine"></li>').data('whine_id', whine.id).appendTo($whines);
 				
-				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span><br>').appendTo($whine);
+				$('<span class="author-create"> ' + whine.author + ' on ' + whine.created +'</span><br>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span><br>').appendTo($whine);
 				$('<span> Service: ' + whine.service + '</span><br>').appendTo($whine);
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span><br>').appendTo($whine);	
