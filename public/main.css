@@ -4,7 +4,7 @@
 
 h1 {
 	text-align: center;
-	font-size: 4em;
+	font-size: 2.5em;
 }
 
 #no-account {
@@ -20,21 +20,22 @@ h1 {
 .topNav {
 	background-color: darkgray;
 	overflow: hidden;
+	height: 1.5em;
 }
 
 .topnav a {
   float: left;
   display: block;
-  color: white;
+  color: black;
   text-align: center;
-  padding: 14px 16px;
+  padding: .25em .75em;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 1em;
 }
 
 .topNav a:hover {
-	background-color: white;
-	color: darkgray;
+	background-color: black;
+	color: white;
 }
 
 
@@ -80,8 +81,8 @@ ul#results-list {
 	margin: .5em 1.5em;
 }
 
-.name span {
-	font-size: 1.5em;
+#restaurant-details .name span {
+	font-size: 1.25em;
 }
 
 #restaurant-details span {
@@ -93,9 +94,9 @@ ul#results-list {
 	background-color: black;	
 	text-align: center;
 	width: auto;
-	height: 2em;
+	height: auto;
 	font-size: 1em;
-	margin-left: 10em;
+	margin: 0 1.5em;
 	padding: 0 1.5em;
 	border: groove 0.05em;
 }
@@ -106,7 +107,7 @@ ul#results-list {
 
 #restaurant-whines {
 	padding: 0;
-	margin: 1em;
+	margin: 0;
 }
 
 .restaurant-whine {
@@ -115,13 +116,13 @@ ul#results-list {
 	margin-bottom: .25em
 }
 
-.author-create span {
-	padding: .25em 0;
+#restaurant-whines .author-create span {
+	padding: 0;
 }
 
 .restaurant-whine span {
 	font-size: 1em;
-	padding: 0 .5em;
+	padding: 0 1em;
 }
 
 .restaurant-whine button {
@@ -134,14 +135,12 @@ ul#results-list {
 	background-color: lightgray;
 }
 
-
-
-
-.edit {
+#restaurant-whines .edit button {
 	color: red;
 	background-color: lightgray;
 	height: auto;
 	width: auto;
+	margin: 0 1.5em; 
 }
 
 .delete button, .save button, .cancel button {
