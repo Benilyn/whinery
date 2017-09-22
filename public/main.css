@@ -45,7 +45,7 @@ li {
 }
 
 #search-result {
-	margin: 0.5em;
+	margin: 0.5em 0;
 }
 
 #map {
@@ -55,7 +55,7 @@ li {
 }
 
 #restaurants {
-	margin: 0.5em;
+	margin: 0.5em 1em;
 }
 
 ul#results-list {
@@ -82,16 +82,27 @@ ul#results-list {
 	font-size: 125%;
 }
 
-#restaurant-details {
-	margin: .5em 1.5em;
+#restaurant-info {
+	margin: 0.5em 0;
 }
 
-#restaurant-details .name span {
+#restaurant-details {
+	margin: 0;
+	text-align: center;
+	border: solid .05em darkgray;
+}
+
+#restaurant-details .name {
 	font-size: 1.25em;
 }
 
-#restaurant-details span {
-	font-size: 1em;
+#restaurant-details .info {
+	font-size: .8em;
+}
+
+#add-whine-button {
+	text-align: center;
+	padding: 0.5em;
 }
 
 #write-whine {
@@ -102,8 +113,14 @@ ul#results-list {
 	height: auto;
 	font-size: 1em;
 	margin: 0 1.5em;
-	padding: 0 1.5em;
+	padding: 0.25em 1.5em;
 	border: groove 0.05em;
+	transition-duration: 0.4s;
+}
+
+#write-whine:hover {
+	color: black;
+	background-color: darkgray;
 }
 
 #whine-reviews {
