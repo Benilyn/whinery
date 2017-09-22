@@ -148,6 +148,7 @@ $(document).ready(function() {
 	$('ul#restaurant-whines').on('click', '.edit', function() {
 		var whine = $(this).parent().data('whine_id');
 		var whine_element = $(this).parent();
+		console.log(whine);
 	//	whine_element.addClass('edit-whine');
 	//	$('.edit').addClass('hide');
 	//	$('.to-edit').removeClass('hide');
