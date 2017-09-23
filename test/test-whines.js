@@ -5,7 +5,7 @@ const faker		=	require('faker');
 const mongoose	=	require('mongoose');
 
 const app	= require('../server.js');
-const {Whine} = require('../models');
+const {Whine, User} = require('../models');
 const {PORT, TEST_DATABASE_URL} = require('../config');
 
 chai.use(chaiHttp);
@@ -17,29 +17,28 @@ mongoose.Promise = global.Promise;
 function generateAuthorData(){
 	return {
 		firstName: faker.name.firstName(),
-		lastName: faker.name.lastName()
+		lastName: faker.name.lastName(),
+		email: faker.internet.email(),
+		password: faker.internet.password()
 	};
 }
 
-function seedWhineData() {
-
-	function seeAuthorData(){
-	const seedAuthor = [];
+function seedAuthorData(){
+	const seedAuthors = [];
 	for (let i=1; i<=10; i++) {
-    seedAuthor.push(generateAuthorData());
+    seedAuthors.push(generateAuthorData());
   		}
-  	console.log(seedAuthor);
+  	return seedAuthors;
 	} //seedAuthorData function
 
+function seedWhineData() {
 	console.info('seeding whine');
-	const seedWhine = [];
+	const seedWhines = [];
 	for (let i=1; i<=10; i++) {
-    seedWhine.push(generateWhineData());
+    seedWhines.push(generateWhineData());
   }
-  // this will return a promise
-  return Whine.insertMany(seedWhine).catch(err => {
-  	console.error(err);
-  });
+  return seedWhines;
+ 
 }//function seedCommentData
 
 function generateWhineData() {
@@ -50,13 +49,25 @@ function generateWhineData() {
 	};
 } //function generateCommentData
 
+
 describe('Whines API resource', function() {
 	before(function() {
 		return mongoose.connect(TEST_DATABASE_URL);
 	}); //before function
 
 	beforeEach(function() {
-		return seedWhineData();
+		const authors = seedAuthorData();
+		const whines = seedWhineData();
+
+		return User
+			.insertMany(authors)
+			.then(function(savedAuthors){
+				whines.forEach(function(whine){
+					const author = savedAuthors[1];
+					whine.author = author;
+				});
+				return Whine.insertMany(whines);
+			})
 	}); //beforeEach function
 
 	afterEach(function() {
