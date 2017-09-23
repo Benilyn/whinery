@@ -380,7 +380,10 @@ function getLatestWhines() {
 				$('<span> Service: ' + whine.service + '</span><br>').appendTo($whine);
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span><br>').appendTo($whine);	
 				$('<span> Price: ' + whine.price + '</span><br>').appendTo($whine);
-				$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
+				
+				if (whine.review) {
+					$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
+				} //if (whine.review)
 				$whine.append('<br><br>');
 			}); //$.each(whines, function(index, whine)
 		}, //success: function
@@ -414,7 +417,9 @@ function getRestaurantWhines(restaurant) {
 				$('<span> Service: ' + whine.service + '</span><br>').appendTo($whine);
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span><br>').appendTo($whine);	
 				$('<span> Price: ' + whine.price + '</span><br>').appendTo($whine);
-				$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
+				if (whine.review) {
+					$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
+				} //if (whine.review)$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
 				
 				if(whine.owned) {
 					$('<button class="edit">Edit</button><br>').appendTo($whine);
