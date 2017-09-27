@@ -25,6 +25,7 @@ function generateUsers() {
 	return {
 		firstName: faker.name.firstName(),
 		lastName: faker.name.lastName(),
+		phone: faker.phone.phoneNumber(),
 		email: faker.internet.email(),
 		password: faker.internet.password()
 	};
@@ -53,8 +54,6 @@ describe('Users API resource', function() {
 
 
 	describe('User GET endpoint', function() {
-		
-
 		it('should return all existing users', function() {
 			let res;
 			return chai.request(app)
@@ -81,9 +80,36 @@ describe('Users API resource', function() {
 						);
 					}); //forEach function
 				}); //.then function
-
 		}); //'should return users with right fields', function()
 	}); //'User GET endpoint', function()
+
+	describe('User POST endpoint', function() {
+		it('should add a new user', function() {
+			const newUser = {
+				firstName: faker.name.firstName(),
+				lastName: faker.name.lastName(),
+				phone: faker.phone.phoneNumber(),
+				email: faker.internet.email(),
+				password: faker.internet.password() 
+			}; //const newUser
+
+			return chai.request(app)
+				.post('/users')
+				.send(newUser)
+				.then(function(res) {
+					res.should.have.status(201);
+					res.should.be.json;
+					res.body.should.be.a('object');
+					res.body.should.include.keys(
+						'id', 'firstName', 'lastName', 'email', 'password');
+					res.body.id.should.not.be.null;
+					res.body.firstName.should.equal(newUser.firstName);
+					res.body.lastName.should.equal(newUser.lastName);
+					res.body.email.should.equal(newUser.email);
+					res.body.password.should.equal(newUser.password);
+				}); //.then function
+		}); //'should add a new user'
+	}); //'User POST endpoint', function()
 
 }); //describes 'Users API resource'
 
