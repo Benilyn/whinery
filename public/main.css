@@ -127,6 +127,10 @@ ul#results-list {
 	margin: 0;
 }
 
+#whine-reviews .author-create {
+	padding: 0;
+}
+
 #restaurant-whines {
 	padding: 0;
 	margin: 0;
@@ -138,19 +142,16 @@ ul#results-list {
 	margin-bottom: .25em
 }
 
-#restaurant-whines .author-create span {
-	padding: 0;
-}
-
 .restaurant-whine span {
 	font-size: 1em;
-	padding: 0 1em;
+	padding: 0 1.5em;
 }
 
 .restaurant-whine button {
 	font-size: .6em;
 	text-align: center;
 	padding-top: 0.125em 1em;
+	margin-left: 1.75em;
 	height: 2em;
 	width: auto;
 	color: black;
