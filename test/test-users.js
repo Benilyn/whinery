@@ -32,7 +32,6 @@ function generateUsers() {
 } //generateUsers function
 
 
-
 describe('Users API resource', function() {
 
 	before(function() {
@@ -130,9 +129,9 @@ describe('Users API resource', function() {
 				})
 		}); //'should delete a user by id', function()
 	}); //'User DELETE endpoint', function()
-/*
+
 	describe('User PUT endpoint', function() {
-		it('should update fields you send over', function() {
+		it.only('should update fields you send over', function() {
 			const updateUser = {
 				firstName: faker.name.firstName(),
 				lastName: faker.name.lastName(),
@@ -148,9 +147,23 @@ describe('Users API resource', function() {
 						.put(`/users/${user.id}`)
 						.send(updateUser);
 				})
+				.then(function(res) {
+					console.log(res.body);
+					res.should.have.status(201);
+					res.body.firstName.should.equal(updateUser.firstName);
+					res.body.lastName.should.equal(updateUser.lastName);
+					res.body.phone.should.equal(updateUser.phone);
+					return User.findById(updateUser.id).exec();
+				})
+				.then(function(user) {
+					
+					user.firstName.should.equal(updateUser.firstName);
+					user.lastName.should.equal(updateUser.lastName);
+					user.phone.should.equal(updateUser.phone);
+				});
 		}); //'should update fields you send over', function()
 	}); //'User PUT endpoint', function()
-*/	
+	
 }); //describes 'Users API resource'
 
 
