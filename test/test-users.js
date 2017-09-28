@@ -111,6 +111,46 @@ describe('Users API resource', function() {
 		}); //'should add a new user'
 	}); //'User POST endpoint', function()
 
+	describe('User DELETE endpoint', function() {
+		it('should delete a user by id', function() {
+			let user;
+			return User
+				.findOne()
+				.exec()
+				.then(function(_user) {
+					user = _user;
+					return chai.request(app).delete(`/users/${user._id}`);
+				})
+				.then(function(res) {
+					res.should.have.status(204);
+					return User.findById(user._id).exec();
+				})
+				.then(function(_user) {
+					should.not.exist(_user);
+				})
+		}); //'should delete a user by id', function()
+	}); //'User DELETE endpoint', function()
+/*
+	describe('User PUT endpoint', function() {
+		it('should update fields you send over', function() {
+			const updateUser = {
+				firstName: faker.name.firstName(),
+				lastName: faker.name.lastName(),
+				phone: faker.phone.phoneNumber()
+			};
+
+			return User
+				.findOne()
+				.exec()
+				.then(function(user) {
+					updateUser.id = user.id;
+					return chai.request(app)
+						.put(`/users/${user.id}`)
+						.send(updateUser);
+				})
+		}); //'should update fields you send over', function()
+	}); //'User PUT endpoint', function()
+*/	
 }); //describes 'Users API resource'
 
 
