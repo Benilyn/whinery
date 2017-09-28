@@ -86,7 +86,7 @@ router.put('/:id', (req, res) => {
   	User
     	.findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
     	.exec()
-    	.then(updatedUser => res.status(204).end())
+    	.then(updatedUser => res.status(201).json(updatedUser))
     	.catch(err => res.status(500).json({message: 'Internal server error'}));
 }); //router.put
 
