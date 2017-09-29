@@ -9,6 +9,8 @@ const {Whine, User} = require('../models');
 const {PORT, TEST_DATABASE_URL} = require('../config');
 
 chai.use(chaiHttp);
+let agent;
+let loggedUser;
 mongoose.Promise = global.Promise;
 
 
@@ -47,19 +49,29 @@ function generateWhineData() {
 	};
 } //function generateCommentData
 
+function logInUser(user) {
+	return agent
+		.post('/login')
+		.send({email: user.email, password: user.password})
+		.then(function(res) {
+			res.should.have.status(200);
+		});
+  } // function LogInUser
+
 
 
 describe('Whines API resource', function() {
-	const authors = seedAuthorData();
-	const whines = seedWhineData();
-	const agent = chai.request.agent(app);
-
 	before(function() {
 		return mongoose.connect(TEST_DATABASE_URL);
 	}); //before function
 
 	beforeEach(function() {
+		const authors = seedAuthorData();
+		const whines = seedWhineData();
+		agent = chai.request.agent(app);
+		const user = authors[1];
 		
+
 		return User
 			.insertMany(authors)
 			.then(function(savedAuthors){
@@ -68,8 +80,14 @@ describe('Whines API resource', function() {
 					whine.author = author;
 				});
 				return Whine.insertMany(whines);
-			});
+			})
+			.then(function() {
+				console.log(user);
+				loggedUser = user;
+				return logInUser(user);
 
+			});
+		
 	}); //beforeEach function
 
 	afterEach(function() {
@@ -103,7 +121,6 @@ describe('Whines API resource', function() {
 		}); //it(should return all)
 
 		it('should return whines with right fields', function() {
-		//	let resWhine;
 			return chai.request(app)
 				.get('/whines')
 				.then(function(res) {
@@ -124,13 +141,18 @@ describe('Whines API resource', function() {
 
 	describe('Whine on POST endpoint', function() {
 		it('should add a whine', function() {
-			const newWhine = {
-				
+			const newWhine = {	
+				restaurant: faker.company.companyName(),
+				food: "So-So",
+				service: "Good",
+				price: "So-So",
+				cleanliness: "So-So",
 				review: faker.lorem.sentences(2),
-				created: faker.date.past()
-			}; //const newComment
+				created: faker.date.past(),
+				author: loggedUser.firstName + ' ' + loggedUser.lastName
+			}; //const newWhine
 
-			return chai.request(app)
+			return agent
 				.post('/whines')
 				.send(newWhine)
 				.then(function(res) {
@@ -141,10 +163,10 @@ describe('Whines API resource', function() {
 						'id', 'author', 'review', 'created');
 					res.body.id.should.not.be.null;
 					res.body.created.should.not.be.null;
-					res.body.review.should.equal(newComment.review);
-					res.body.author.should.equal(newComment.author);
+					res.body.review.should.equal(newWhine.review);
+					res.body.author.should.equal(newWhine.author);
 				}); //.then function
-		}); //it(should add a new comment)
+		}); //it(should add a new whine)
 	}); //describe(Whine review on POST endpoint)
 
 
