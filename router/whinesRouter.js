@@ -17,13 +17,14 @@ router.post('/', (req, res) => {
 		'food', 'service', 'cleanliness', 'price', 'restaurant'];
 	for (let i=0; i<requiredFields.length; i++) {
 		const field = requiredFields[i];
+		console.log(req.body);
 		if (!(field in req.body)) {
 			const message = `Missing \`${field}\` in request body`;
 			console.error(message);
 		return res.status(400).send(message);
 		} //if (!(field in req.body))
 	} //for (let i=0)
-	console.log(req.body);
+	
 	Whine
 		.create({
 			author: req.user,
