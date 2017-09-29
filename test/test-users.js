@@ -11,10 +11,10 @@ const {PORT, TEST_DATABASE_URL} = require('../config');
 chai.use(chaiHttp);
 mongoose.Promise = global.Promise;
 
-const users = [];
+
 function seedUsers() {
 	console.log('seeding users');
-	
+	const users = [];
 	for (i=1; i<=5; i++) {
 		users.push(generateUsers());
 	}
@@ -75,7 +75,7 @@ describe('Users API resource', function() {
 					res.body.forEach(function(user) {
 						user.should.be.a('object');
 						user.should.include.keys(
-							'id', 'firstName', 'lastName', 'email', 'password'
+							'id', 'firstName', 'lastName', 'email'
 						);
 					}); //forEach function
 				}); //.then function
@@ -100,12 +100,11 @@ describe('Users API resource', function() {
 					res.should.be.json;
 					res.body.should.be.a('object');
 					res.body.should.include.keys(
-						'id', 'firstName', 'lastName', 'email', 'password');
+						'id', 'firstName', 'lastName', 'email');
 					res.body.id.should.not.be.null;
 					res.body.firstName.should.equal(newUser.firstName);
 					res.body.lastName.should.equal(newUser.lastName);
 					res.body.email.should.equal(newUser.email);
-					res.body.password.should.equal(newUser.password);
 				}); //.then function
 		}); //'should add a new user'
 	}); //'User POST endpoint', function()
@@ -131,7 +130,7 @@ describe('Users API resource', function() {
 	}); //'User DELETE endpoint', function()
 
 	describe('User PUT endpoint', function() {
-		it.only('should update fields you send over', function() {
+		it('should update fields you send over', function() {
 			const updateUser = {
 				firstName: faker.name.firstName(),
 				lastName: faker.name.lastName(),
@@ -163,6 +162,37 @@ describe('Users API resource', function() {
 				});
 		}); //'should update fields you send over', function()
 	}); //'User PUT endpoint', function()
+
+	describe('test User login', function() {
+		it('should login a', function() {
+			let user;
+			return User
+				.findOne()
+				.exec()
+				.then(function(_user) {
+					user = _user;
+					return chai.request(app).get(`/users/${user._id}`);
+				})
+				.then(function(res) {
+					res.should.have.status(200);
+					return User.findById(user._id).exec();
+				})
+				.then(function(user) {
+					console.log(user);
+					return chai.request(app)
+						.post('/login')
+						.send({email: user.email, password: user.password})
+						.then(function(res) {
+							res.should.have.status(200);
+						});
+				});
+		}); //'should login a', function()
+
+
+
+
+
+	}); //test User login
 	
 }); //describes 'Users API resource'
 
