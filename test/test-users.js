@@ -164,7 +164,7 @@ describe('Users API resource', function() {
 	}); //'User PUT endpoint', function()
 
 	describe('test User login', function() {
-		it('should login a', function() {
+		it('should login a user', function() {
 			let user;
 			return User
 				.findOne()
