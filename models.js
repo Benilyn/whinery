@@ -66,7 +66,7 @@ userSchema.methods.apiRepr = function() {
 		lastName: this.lastName,
 		phone: this.phone,
 		email: this.email,
-		password: this.password
+	//	password: this.password
 	}; //return
 }; //userSchema
 
