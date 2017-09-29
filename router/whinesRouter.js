@@ -100,7 +100,7 @@ router.delete('/:id', (req, res) => {
 		.then((doc) => {
 			console.log(doc);
 			console.log(`Deleted whine \`${req.params.id}\``);
-			res.status(200).end();
+			res.status(204).end();
 		});
 }); //router.delete
 
