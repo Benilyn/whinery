@@ -169,3 +169,16 @@ ul#results-list {
 .delete button, .save button, .cancel button {
 	display: inline-flex;
 }
+
+#whines {
+	padding-left: 0;
+	overflow: scroll;
+}
+
+#whines li {
+	padding: 0.5em;
+	height: auto;
+	margin-bottom: 0.125em;
+	border: solid 0.125em darkgray;
+}
+
