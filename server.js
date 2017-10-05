@@ -100,7 +100,7 @@ app.get('/data/:id', (req, res) => {
 
 if (require.main === module) {
 	console.log('testing');
-	mongoose.connect(DATABASE_URL);
+	mongoose.connect(DATABASE_URL, {useMongoClient: true});
 	https.createServer(options, app).listen(PORT);
 }
 
