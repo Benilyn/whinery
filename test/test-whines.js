@@ -40,14 +40,14 @@ function seedWhineData() {
   }
   return seedWhines;
  
-}//function seedCommentData
+}//function seedWhineData
 
 function generateWhineData() {
 	return {
 		review: faker.lorem.sentences(),
 		created: faker.date.past()
 	};
-} //function generateCommentData
+} //function generateWhineData
 
 function logInUser(user) {
 	return agent
@@ -61,6 +61,7 @@ function logInUser(user) {
 
 
 describe('Whines API resource', function() {
+	this.timeout(0);
 	before(function() {
 		return mongoose.connect(TEST_DATABASE_URL);
 	}); //before function
@@ -112,11 +113,11 @@ describe('Whines API resource', function() {
 				res.body.should.be.a('array');
 				res.body.length.should.be.at.least(1);
 				res.body.forEach(function(whine) {
-					comment.should.be.a('object');
+					whine.should.be.a('object');
 				}); //.forEach function		
 			}) //.then function
-			.catch(function(){
-				console.log('catch');
+			.catch(function(err){
+				console.error(err);
 			});
 		}); //it(should return all)
 
@@ -134,13 +135,16 @@ describe('Whines API resource', function() {
 						whine.should.include.keys(
 							'id', 'review', 'created');
 					}); //.forEach function
-				}); //.then function(res)
+				}) //.then function(res)
+				.catch(function(err){
+					console.error(err);
+				});
 		}); //it(should return whines with right fields)
 	}); //describe(Whine on GET endpoint)
 
 
 	describe('Whine on POST endpoint', function() {
-		it('should add a whine', function() {
+		it.only('should add a whine', function() {
 			const newWhine = {	
 				restaurant: faker.company.companyName(),
 				food: "So-So",
@@ -165,7 +169,10 @@ describe('Whines API resource', function() {
 					res.body.created.should.not.be.null;
 					res.body.review.should.equal(newWhine.review);
 					res.body.author.should.equal(newWhine.author);
-				}); //.then function
+				}) //.then function
+				.catch(function(err){
+					console.error(err);
+				});
 		}); //it(should add a new whine)
 	}); //describe(Whine review on POST endpoint)
 
@@ -180,8 +187,11 @@ describe('Whines API resource', function() {
 				}) //.then function .delete
 				.then(function(res) {
 					res.should.have.status(204);
-				}); //.then function status(204)
-		}); //it(should delete comment on delete)
+				}) //.then function status(204)
+				.catch(function(err){
+					console.error(err);
+				});
+		}); //it(should delete whine on delete)
 	}); //describe(Whine on DELETE endpoint)
 
 
@@ -189,7 +199,7 @@ describe('Whines API resource', function() {
 		it('should update whine on PUT', function() {
 			const updateWhine = {
 				review: faker.lorem.sentences(2)
-			}; //const updateComment
+			}; //const updateWhine
 
 			return Whine
 				.findOne()
@@ -206,10 +216,13 @@ describe('Whines API resource', function() {
 				})
 				.then(function(whine) {
 					whine.review.should.equal(updateWhine.review);
+				})
+				.catch(function(err){
+					console.error(err);
 				});
-		}); //it(should update comment on PUT)
+		}); //it(should update whine on PUT)
 	}); //describe (Whine on PUT endpoint)
 
 
 
-}); //describe(Comments API resource)
+}); //describe(Whines API resource)
