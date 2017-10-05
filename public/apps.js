@@ -11,6 +11,13 @@ $(document).ready(function() {
 	//	$('#signup-page input').val('');
 	}); //$('#sign-up').click(function()
 
+	$('.signup-page').submit(function() {
+		signUp();
+		$('.section').addClass('hide');
+		$('#login-page').removeClass('hide');
+
+	}); //$('.signup-page').submit(function() 
+
 
 	$('ul#results-list').on('click', 'li', function() {
 		var restaurant = $(this).data('restaurant');
