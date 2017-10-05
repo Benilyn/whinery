@@ -7,23 +7,8 @@ $(document).ready(function() {
 
 	$('#sign-up').click(function() {
 		$('.section').addClass('hide');
-		$('#signup-page input').val('');
-		$('#signup-page').dialog({
-			title: "Sign Up",
-			buttons: {
-				'Submit': function(){
-					signUp();
-				}, //submit button
-				'Reset': function(){
-					$('input').val('');
-				} //reset button
-			}, //buttons
-			close: function(){
-				$('#login-page').removeClass('hide');
-				$('#sign-up').removeClass('hide');
-			}
-		}); //.dialog box
 		$('#signup-page').removeClass('hide');
+	//	$('#signup-page input').val('');
 	}); //$('#sign-up').click(function()
 
 
