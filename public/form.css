@@ -16,6 +16,7 @@ fieldset {
 	background-color: white;
 	border: none;
 	padding: 0;
+	margin: 0;
 }
 
 legend {
@@ -36,7 +37,7 @@ legend {
 	height: 3em;
 	width: 100%;
 	font-size: 1em;
-	margin-bottom: 0.25em;
+	margin-bottom: 0.5em;
 }
 
 input {
