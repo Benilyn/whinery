@@ -100,6 +100,10 @@ ul#results-list {
 	font-size: .8em;
 }
 
+#restaurant-details .website {
+	text-overflow: ellipsis;
+}
+
 #add-whine-button {
 	text-align: center;
 	padding: 0.5em;
@@ -179,6 +183,9 @@ ul#results-list {
 	padding: 0.5em;
 	height: auto;
 	margin-bottom: 0.125em;
-	border: solid 0.125em darkgray;
+	border: solid 0.125em lightgray;
 }
 
+span {
+	display: block;
+}
