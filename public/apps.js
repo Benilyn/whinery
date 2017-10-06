@@ -366,17 +366,16 @@ function getLatestWhines() {
 			$.each(whines, function(index, whine) {
 				var $whine = $('<li></li>').appendTo($whines);
 
-				$('<span> Restaurant: ' + whine.restaurantName + '</span><br>').appendTo($whine);
-				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span><br>').appendTo($whine);
-				$('<span> Food: ' + whine.food + '</span><br>').appendTo($whine);
-				$('<span> Service: ' + whine.service + '</span><br>').appendTo($whine);
-				$('<span> Cleanliness: ' + whine.cleanliness + '</span><br>').appendTo($whine);	
-				$('<span> Price: ' + whine.price + '</span><br>').appendTo($whine);
+				$('<span> Restaurant: ' + whine.restaurantName + '</span>').appendTo($whine);
+				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span>').appendTo($whine);
+				$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
+				$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
+				$('<span> Cleanliness: ' + whine.cleanliness + '</span>').appendTo($whine);	
+				$('<span> Price: ' + whine.price + '</span>').appendTo($whine);
 				
 				if (whine.review) {
-					$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
+					$('<span class="whine-over"> Whine: ' + whine.review + '</span>').appendTo($whine);
 				} //if (whine.review)
-				$whine.append('<br><br>');
 			}); //$.each(whines, function(index, whine)
 		}, //success: function
 		
@@ -387,7 +386,7 @@ function getLatestWhines() {
 } //function getLatestWhines()
 
 function getRestaurantWhines(restaurant) {
-	$('<li> Getting whines for restaurants </li><br>').appendTo('ul#restaurant-whines');
+	$('<li> Getting whines for restaurants </li>').appendTo('ul#restaurant-whines');
 	
 	$.ajax({
 		type: 'GET',
@@ -404,17 +403,17 @@ function getRestaurantWhines(restaurant) {
 	    			
 				var $whine = $('<li class="restaurant-whine"></li>').data('whine_id', whine.id).appendTo($whines);
 				
-				$('<span class="author-create"> ' + whine.author + ' on ' + whine.created +'</span><br>').appendTo($whine);
-				$('<span> Food: ' + whine.food + '</span><br>').appendTo($whine);
-				$('<span> Service: ' + whine.service + '</span><br>').appendTo($whine);
-				$('<span> Cleanliness: ' + whine.cleanliness + '</span><br>').appendTo($whine);	
-				$('<span> Price: ' + whine.price + '</span><br>').appendTo($whine);
+				$('<span class="author-create"> ' + whine.author + ' on ' + whine.created +'</span>').appendTo($whine);
+				$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
+				$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
+				$('<span> Cleanliness: ' + whine.cleanliness + '</span>').appendTo($whine);	
+				$('<span> Price: ' + whine.price + '</span>').appendTo($whine);
 				if (whine.review) {
-					$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
-				} //if (whine.review)$('<span> Whine: ' + whine.review + '</span><br>').appendTo($whine);
+					$('<span class="whine-over"> Whine: ' + whine.review + '</span>').appendTo($whine);
+				} //if (whine.review)$('<span> Whine: ' + whine.review + '</span>').appendTo($whine);
 				
 				if(whine.owned) {
-					$('<button class="edit">Edit</button><br>').appendTo($whine);
+					$('<button class="edit">Edit</button>').appendTo($whine);
 				}
 				
 			}); //$.each(whines, function(index, whine)
