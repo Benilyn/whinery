@@ -95,11 +95,27 @@ input::placeholder {
 	margin-left: auto;
 }
 
-#edit-whine-form form {
+#whine-form form, #edit-whine-form form {
 	padding: 1em;
 	border: solid 0.05em darkgray;
 }
 
+#whine-form input, #edit-whine-form input {
+	margin: 0 0.5em 0 1em;
+}
+
+#whine-form textarea, #edit-whine-form textarea {
+	border:	solid 0.125em lightgray;
+	width: 100%;
+	height: auto;
+	margin-top: 0.5em;
+}
+
+.whineChoices {
+	margin-bottom: 0.5em;
+	text-align: center;
+	color: darkgray;
+}
 
 .hide {
 	display: none;
@@ -109,3 +125,18 @@ option {
 	font-size: inherit;
 	color: blue;
 }
+
+#whine-form button, #edit-whine-form button {
+	width: 30%;
+	height: 2.5em;
+	margin: 0;
+	border: solid 0.125em;
+	color: white;
+	background: black;
+}
+
+#write-whine-buttons, #edit-whine-buttons {
+	text-align: center;
+	margin: 0.75em 0.5em 0;
+}
+
