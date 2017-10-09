@@ -5,20 +5,45 @@ $.noConflict();
 $(document).ready(function() {
 	isLoggedIn();
 
+// signup
 	$('#sign-up').click(function() {
 		$('.section').addClass('hide');
 		$('#signup-page').removeClass('hide');
 	//	$('#signup-page input').val('');
 	}); //$('#sign-up').click(function()
 
-	$('.signup-page').submit(function() {
+	$('#submit-signup').click(function() {
 		signUp();
 		$('.section').addClass('hide');
 		$('#login-page').removeClass('hide');
-
 	}); //$('.signup-page').submit(function() 
 
+	$('#cancel-signup').click(function() {
+		$('#signup-page').addClass('hide');
+		$('#login-page').removeClass('hide');
+		$('#sign-up').removeClass('hide');
+	}); //$('#cancel-signup').click(function()
 
+// login	
+	$('#login-page form').submit(function(event) {
+		event.preventDefault();
+		const loginData = {
+			email: $('#login-page [name="email"]').val(),
+			password: $('#login-page [name="password"]').val()
+		}; //const loginData
+		$.ajax('/login', {
+			contentType: 'application/json',
+			data: JSON.stringify(loginData),
+			type: 'POST'}) 
+		.then(function(res) {
+			$('.section').addClass('hide');
+			$('#search-result').removeClass('hide'); 
+			displayMap();
+			$('#whineryNav').removeClass('hide');
+		});	//.then function
+	}); //$('#login-page form').submit(function(event)
+
+// click on one of the search-result	
 	$('ul#results-list').on('click', 'li', function() {
 		var restaurant = $(this).data('restaurant');
 		console.log($(this).data('restaurant'));
@@ -38,7 +63,7 @@ $(document).ready(function() {
 
 	}); //$('ul#results-list').on('click', 'li', function()
 
-	//Write Review 
+//Write Review 
 	$('#write-whine').click(function() {
 		var restaurant = $('#restaurant-info').data('restaurant');
 		$('#whine-reviews').addClass('hide');
@@ -48,6 +73,16 @@ $(document).ready(function() {
 		clearForm();
 	}); //$('#write-whine').click(function()
 
+	$('#cancel-whine').click(function() {
+		$('#whine-reviews').removeClass('hide');
+		$('#write-whine').removeClass('hide');
+	}); //$('#cancel-whine').click(function()
+
+	$('#submit-whine').click(function() {
+		addWhine();
+	}); //$('#submit-whine').click(function()
+
+// topNav
 	$('#back-to-search-results').click(function(event) {
 		event.preventDefault();
 		$('#back-to-search-results').addClass('hide');
@@ -64,52 +99,6 @@ $(document).ready(function() {
 		getLatestWhines();
 	}); //$('#back-button').click(function(event)
 
-	//Add Whine
-	function addWhine(event) {
-	
-		var restaurant = $('#restaurant-info').data('restaurant');
-		const whineData = {
-			food: $('#whine-form [name="food"]:checked').val(),
-			service: $('#whine-form [name="service"]:checked').val(),
-			cleanliness: $('#whine-form [name="cleanliness"]:checked').val(),
-			price: $('#whine-form [name="price"]:checked').val(),
-			review: $('#whine-form [name="whine-review"]').val(),
-			restaurant: restaurant.place_id,
-			restaurantName: restaurant.name
-		}; //whineData
-		$.ajax('/whines', {
-			contentType: 'application/json',
-			data: JSON.stringify(whineData),
-			type: 'POST'}) 
-		.then(function(res) {
-			$('#whine-form').dialog('close');
-			alert('Thank you for your whine.');
-			$('#write-whine').removeClass('hide');
-			$('#whine-reviews').removeClass('hide');
-			getRestaurantWhines(restaurant);
-		
-		}); //.then function	
-	}	//addWhine function
-
-	
-	$('#login-page form').submit(function(event) {
-		event.preventDefault();
-		const loginData = {
-			email: $('#login-page [name="email"]').val(),
-			password: $('#login-page [name="password"]').val()
-		}; //const loginData
-		$.ajax('/login', {
-			contentType: 'application/json',
-			data: JSON.stringify(loginData),
-			type: 'POST'}) 
-		.then(function(res) {
-			$('.section').addClass('hide');
-			$('#search-result').removeClass('hide'); 
-			displayMap();
-			$('#whineryNav').removeClass('hide');
-		});	//.then function
-	}); //$('#login-page form').submit(function(event)
-
 	$('#logout').click(function(event) {
 		event.preventDefault();
 		$.ajax('/logout', {
@@ -117,12 +106,12 @@ $(document).ready(function() {
 		}) //$.ajax
 		.then(function() {
 			alert('Goodbye!');
-			window.location.reload();
-			
-		}); //.then function
-		
+			window.location.reload();	
+		}); //.then function	
 	}); //$(#logout)
 
+
+// edit whine
 	$('ul#restaurant-whines').on('click', '.edit', function() {
 		var whine = $(this).parent().data('whine_id');
 		var whine_element = $(this).parent();
@@ -174,18 +163,41 @@ function signUp() {
 		data: JSON.stringify(userData),
 		type: 'POST'}) 
 	.then(function(res) {
-		$('#signup-page').dialog('close');
+		$('#signup-page').addClass('hide');
 		alert('Thank you for signing up.');
 		$('#login-page').removeClass('hide');
 		$('#sign-up').removeClass('hide');
 	}); //.then function
 } //signUp function
 
+function addWhine(event) {		
+	var restaurant = $('#restaurant-info').data('restaurant');
+	const whineData = {
+		food: $('#whine-form [name="food"]:checked').val(),
+		service: $('#whine-form [name="service"]:checked').val(),
+		cleanliness: $('#whine-form [name="cleanliness"]:checked').val(),
+		price: $('#whine-form [name="price"]:checked').val(),
+		review: $('#whine-form [name="whine-review"]').val(),
+		restaurant: restaurant.place_id,
+		restaurantName: restaurant.name
+	}; //whineData
+	$.ajax('/whines', {
+		contentType: 'application/json',
+		data: JSON.stringify(whineData),
+		type: 'POST'}) 
+	.then(function(res) {
+		alert('Thank you for your whine.');
+		$('#whine-form').addClass('hide');
+		$('#write-whine').removeClass('hide');
+		$('#whine-reviews').removeClass('hide');
+		getRestaurantWhines(restaurant);	
+	}); //.then function	
+}	//addWhine function
+
 function deleteReview(whine) {
 		var restaurant = $('#restaurant-info').data('restaurant');
 		console.log('deleting', whine);
 		alert('need to delete restaurant whine');
-
 		$.ajax({
 			type: 'DELETE',
 			url: '/whines/' + whine
@@ -199,8 +211,6 @@ function deleteReview(whine) {
 			$('#write-whine button').removeClass('hide');
 			$('#whine-reviews').removeClass('hide');
 			getRestaurantWhines(restaurant);
-
-		//	$('#restaurant-whines').load('/whines #restaurant-whines');
 		}); //.then
 } //deleteReview funtion
 
@@ -360,11 +370,8 @@ function getRestaurantWhines(restaurant) {
 			$whines.empty();
 			console.log(whines);
 		
-			$.each(whines, function(index, whine) {
-			//	console.log(whine.id);
-	    			
+			$.each(whines, function(index, whine) {	
 				var $whine = $('<li class="restaurant-whine"></li>').data('whine_id', whine.id).appendTo($whines);
-				
 				$('<span class="author-create"> ' + whine.author + ' on ' + whine.created +'</span>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
 				$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
@@ -372,15 +379,13 @@ function getRestaurantWhines(restaurant) {
 				$('<span> Price: ' + whine.price + '</span>').appendTo($whine);
 				if (whine.review) {
 					$('<span class="ellipsis"> Whine: ' + whine.review + '</span>').appendTo($whine);
-				} //if (whine.review)$('<span> Whine: ' + whine.review + '</span>').appendTo($whine);
-				
+				} //if (whine.review)
 				if(whine.owned) {
 					$('<div id="div-edit"><button class="edit">Edit</button></div>').appendTo($whine);
-				}
-				
+				} //if(whine.owned)	
 			}); //$.each(whines, function(index, whine)
-			
-		}
+
+		} //success
 	}); //$.ajax
 } //function getRestaurantWhines() 
 
