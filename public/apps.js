@@ -43,7 +43,7 @@ $(document).ready(function() {
 		var restaurant = $('#restaurant-info').data('restaurant');
 		$('#whine-reviews').addClass('hide');
 		$('#write-whine').addClass('hide');
-	//	$('#whine-form').removeClass('hide');
+		$('#whine-form').removeClass('hide');
 		clearForm();
 		$('#whine-form').dialog({
 			title: "Restaurant Whine",
@@ -146,7 +146,8 @@ $(document).ready(function() {
 	//	$('.to-edit').removeClass('hide');
 		$('#write-whine').addClass('hide');
 		$('#whine-reviews').addClass('hide');
-		$('#edit-whine-form').dialog({
+		$('#edit-whine-form').removeClass('hide');
+	/*	$('#edit-whine-form').dialog({
 			title: 'Edit review',
 			buttons: {
 				'Delete': function() {
@@ -166,6 +167,7 @@ $(document).ready(function() {
 				$('#whine-reviews').removeClass('hide');
 			}
 		}); //$('#edit-whine-form').dialog
+	*/
 		console.log("editing", whine);
 	}); //$('ul#restaurant-whines').on('click', '.edit', function()
 
@@ -413,7 +415,7 @@ function getRestaurantWhines(restaurant) {
 				} //if (whine.review)$('<span> Whine: ' + whine.review + '</span>').appendTo($whine);
 				
 				if(whine.owned) {
-					$('<button class="edit">Edit</button>').appendTo($whine);
+					$('<div id="div-edit"><button class="edit">Edit</button></div>').appendTo($whine);
 				}
 				
 			}); //$.each(whines, function(index, whine)
