@@ -44,8 +44,9 @@ $(document).ready(function() {
 		$('#whine-reviews').addClass('hide');
 		$('#write-whine').addClass('hide');
 		$('#whine-form').removeClass('hide');
+		$('#write-whine-buttons').removeClass('hide');
 		clearForm();
-		$('#whine-form').dialog({
+	/*	$('#whine-form').dialog({
 			title: "Restaurant Whine",
 			buttons: {
 				'Add Whine': function(){
@@ -60,6 +61,7 @@ $(document).ready(function() {
 				$('#write-whine').removeClass('hide');
 			}
 		}); //$('#whine-form').dialog
+	*/
 	}); //$('#write-whine').click(function()
 
 	$('#back-to-search-results').click(function(event) {
@@ -147,6 +149,7 @@ $(document).ready(function() {
 		$('#write-whine').addClass('hide');
 		$('#whine-reviews').addClass('hide');
 		$('#edit-whine-form').removeClass('hide');
+		$('#edit-whine-buttons').removeClass('hide');
 	/*	$('#edit-whine-form').dialog({
 			title: 'Edit review',
 			buttons: {
@@ -376,7 +379,7 @@ function getLatestWhines() {
 				$('<span> Price: ' + whine.price + '</span>').appendTo($whine);
 				
 				if (whine.review) {
-					$('<span class="whine-over"> Whine: ' + whine.review + '</span>').appendTo($whine);
+					$('<span class="ellipsis"> Whine: ' + whine.review + '</span>').appendTo($whine);
 				} //if (whine.review)
 			}); //$.each(whines, function(index, whine)
 		}, //success: function
@@ -411,7 +414,7 @@ function getRestaurantWhines(restaurant) {
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span>').appendTo($whine);	
 				$('<span> Price: ' + whine.price + '</span>').appendTo($whine);
 				if (whine.review) {
-					$('<span class="whine-over"> Whine: ' + whine.review + '</span>').appendTo($whine);
+					$('<span class="ellipsis"> Whine: ' + whine.review + '</span>').appendTo($whine);
 				} //if (whine.review)$('<span> Whine: ' + whine.review + '</span>').appendTo($whine);
 				
 				if(whine.owned) {
