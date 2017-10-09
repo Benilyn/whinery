@@ -126,10 +126,10 @@ option {
 	color: blue;
 }
 
-#whine-form button, #edit-whine-form button {
+#whine-form button, #edit-whine-form button, #div-edit button {
 	width: 30%;
 	height: 2.5em;
-	margin: 0;
+	margin: 0 0.5em;
 	border: solid 0.125em;
 	color: white;
 	background: black;
