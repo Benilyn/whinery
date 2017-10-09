@@ -81,25 +81,50 @@
 
 		<div id='whine-form' class="hide">
 			<form class='whine-form'>
-				FOOD: <br>
-					<input type='radio' name='food' value='Bad'>Bad
-					<input type='radio' name='food' value='So-So'>So-So
-					<input type='radio' name='food' value='good'>Good<br>
-				SERVICE: <br>
-					<input type='radio' name='service' value='Bad'>Bad
-					<input type='radio' name='service' value='So-So'>So-So
-					<input type='radio' name='service' value='good'>Good<br>
-				CLEANLINESS: <br>
-					<input type='radio' name='cleanliness' value='Bad'>Bad
-					<input type='radio' name='cleanliness' value='So-So'>So-So
-					<input type='radio' name='cleanliness' value='good'>Good<br>
-				PRICE: <br>
-					<input type='radio' name='price' value='Bad'>Bad
-					<input type='radio' name='price' value='So-So'>So-So
-					<input type='radio' name='price' value='good'>Good<br>
-				REVIEW: <br>
-					<textarea name="whine-review" placeholder="Write review here"></textarea><br>
-				<div id="write-whine-buttons">
+				FOOD:
+					<div class='whineChoices'> 
+						<input type='radio' id='foodBad' name='food' value='Bad'>
+							<label for='foodBad'>Bad</label>
+						<input type='radio' id='foodOkay' name='food' value='Okay'>
+							<label for='foodOkay'>Okay</label>
+						<input type='radio' id='foodGood' name='food' value='good'>
+							<label for='foodGood'>Good</label>
+					</div>	
+
+				SERVICE:
+					<div class='whineChoices'> 
+						<input type='radio' id='serviceBad' name='service' value='Bad'>
+							<label for='serviceBad'>Bad</label>
+						<input type='radio' id='serviceOkay' name='service' value='Okay'>
+							<label for='serviceOkay'>Okay</label>
+						<input type='radio' id='serviceGood' name='service' value='good'>
+							<label for='serviceGood'>Good</label>
+					</div>
+				
+				CLEANLINESS:
+					<div  class='whineChoices'> 
+						<input type='radio' id='cleanlinessBad' name='cleanliness' value='Bad'>
+							<label for='cleanlinessBad'>Bad</label>
+						<input type='radio' id='cleanlinessOkay' name='cleanliness' value='Okay'>
+							<label for='cleanlinessOkay'>Okay</label>
+						<input type='radio' id='cleanlinessGood' name='cleanliness' value='good'>
+							<label for='cleanlinessGood'>Good</label>
+					</div>
+				
+				PRICE:
+					<div class='whineChoices'> 
+						<input type='radio' id='priceBad' name='price' value='Bad'>
+							<label for='priceBad'>Bad</label>
+						<input type='radio' id='priceOkay' name='price' value='Okay'>
+							<label for='priceOkay'>Okay</label>
+						<input type='radio' id='priceGood' name='price' value='good'>
+							<label for='priceGood'>Good</label>
+					</div>
+				
+				WHINE:
+					<textarea name="whine-review" placeholder="Write whine here"></textarea>
+				
+				<div id="write-whine-buttons" class='hide'>
 					<button type="submit" id="submit-whine">Submit</button>
 					<button type="cancel" id="cancel-whine">Cancel</button>
 				</div> <!-- #write-whine-buttons -->
@@ -111,25 +136,50 @@
 	
 	<div id='edit-whine-form' class="hide">
 		<form action='#' method="post">
-			FOOD: <br>
-				<input type='radio' name='food' value='Bad'>Bad
-				<input type='radio' name='food' value='So-So'>So-So
-				<input type='radio' name='food' value='good'>Good<br>
-			SERVICE: <br>
-				<input type='radio' name='service' value='Bad'>Bad
-				<input type='radio' name='service' value='So-So'>So-So
-				<input type='radio' name='service' value='good'>Good<br>
-			CLEANLINESS: <br>
-				<input type='radio' name='cleanliness' value='Bad'>Bad
-				<input type='radio' name='cleanliness' value='So-So'>So-So
-				<input type='radio' name='cleanliness' value='good'>Good<br>
-			PRICE: <br>
-				<input type='radio' name='price' value='Bad'>Bad
-				<input type='radio' name='price' value='So-So'>So-So
-				<input type='radio' name='price' value='good'>Good<br>
-			REVIEW: <br>
-				<textarea name="whine-review" placeholder="Write review here"></textarea><br>
-			<div id="edit-whine-buttons">
+			FOOD:
+				<div class='whineChoices'> 
+					<input type='radio' id='editFoodBad' name='food' value='Bad'>
+						<label for='editFoodBad'>Bad</label>
+					<input type='radio' id='editFoodOkay' name='food' value='Okay'>
+						<label for='editFoodOkay'>Okay</label>
+					<input type='radio' id='editFoodGood' name='food' value='good'>
+						<label for='foodGood'>Good</label>
+				</div>	
+
+			SERVICE:
+				<div class='whineChoices'> 
+					<input type='radio' id='editServiceBad' name='service' value='Bad'>
+						<label for='editServiceBad'>Bad</label>
+					<input type='radio' id='editServiceOkay' name='service' value='Okay'>
+						<label for='editServiceOkay'>Okay</label>
+					<input type='radio' id='editServiceGood' name='service' value='good'>
+						<label for='editServiceGood'>Good</label>
+				</div>
+				
+			CLEANLINESS:
+				<div class='whineChoices'> 
+					<input type='radio' id='editCleanlinessBad' name='cleanliness' value='Bad'>
+						<label for='editCleanlinessBad'>Bad</label>
+					<input type='radio' id='editCleanlinessOkay' name='cleanliness' value='Okay'>
+						<label for='editCleanlinessOkay'>Okay</label>
+					<input type='radio' id='editCleanlinessGood' name='cleanliness' value='good'>
+						<label for='editCleanlinessGood'>Good</label>
+				</div>
+				
+			PRICE:
+				<div class='whineChoices'> 
+					<input type='radio' id='editPriceBad' name='price' value='Bad'>
+						<label for='editPriceBad'>Bad</label>
+					<input type='radio' id='editPriceOkay' name='price' value='Okay'>
+						<label for='editPriceOkay'>Okay</label>
+					<input type='radio' id='editPriceGood' name='price' value='good'>
+						<label for='editPriceGood'>Good</label>
+				</div>
+				
+			WHINE:
+				<textarea name="whine-review" placeholder="Write whine here"></textarea>
+			
+			<div id="edit-whine-buttons" class='hide'>
 				<button type="submit" id="submit-edit">Submit</button>
 				<button type="cancel" id="cancel-edit">Cancel</button>
 			</div>
