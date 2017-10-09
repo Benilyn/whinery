@@ -46,22 +46,6 @@ $(document).ready(function() {
 		$('#whine-form').removeClass('hide');
 		$('#write-whine-buttons').removeClass('hide');
 		clearForm();
-	/*	$('#whine-form').dialog({
-			title: "Restaurant Whine",
-			buttons: {
-				'Add Whine': function(){
-					addWhine();
-				}, //Add Whine buttone
-				'Reset': function(){
-					clearForm();
-				} //reset button
-			}, //buttons
-			close: function(){
-				$('#whine-reviews').removeClass('hide');
-				$('#write-whine').removeClass('hide');
-			}
-		}); //$('#whine-form').dialog
-	*/
 	}); //$('#write-whine').click(function()
 
 	$('#back-to-search-results').click(function(event) {
@@ -143,34 +127,10 @@ $(document).ready(function() {
 		var whine = $(this).parent().data('whine_id');
 		var whine_element = $(this).parent();
 		console.log(whine);
-	//	whine_element.addClass('edit-whine');
-	//	$('.edit').addClass('hide');
-	//	$('.to-edit').removeClass('hide');
 		$('#write-whine').addClass('hide');
 		$('#whine-reviews').addClass('hide');
 		$('#edit-whine-form').removeClass('hide');
 		$('#edit-whine-buttons').removeClass('hide');
-	/*	$('#edit-whine-form').dialog({
-			title: 'Edit review',
-			buttons: {
-				'Delete': function() {
-					deleteReview(whine);
-				}, //delete button
-				'Save': function() {
-					saveEditReview(whine);
-				}, //save button
-				Cancel: function() {
-					$('#edit-whine-form').dialog('close');
-					$('#write-whine').removeClass('hide');
-					$('#whine-reviews').removeClass('hide');
-				} //cancel button
-			},
-			close: function(){
-				$('#write-whine').removeClass('hide');
-				$('#whine-reviews').removeClass('hide');
-			}
-		}); //$('#edit-whine-form').dialog
-	*/
 		console.log("editing", whine);
 	}); //$('ul#restaurant-whines').on('click', '.edit', function()
 
@@ -222,9 +182,6 @@ function signUp() {
 } //signUp function
 
 function deleteReview(whine) {
-//	var whine = $(this).parent().data('whine_id');
-//		var whine_element = $(this).parent();
-//		console.log(whine_element);
 		var restaurant = $('#restaurant-info').data('restaurant');
 		console.log('deleting', whine);
 		alert('need to delete restaurant whine');
