@@ -95,6 +95,11 @@ input::placeholder {
 	margin-left: auto;
 }
 
+#edit-whine-form form {
+	padding: 1em;
+	border: solid 0.05em darkgray;
+}
+
 
 .hide {
 	display: none;
