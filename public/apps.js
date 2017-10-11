@@ -79,7 +79,7 @@ $(document).ready(function() {
 	//	$('#restaurant-info').removeClass('hide');
 		$('#write-whine button').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
-		getRestaurantWhines(restaurant);
+		getRestaurantWhines();
 	}); //$('#cancel-whine').click(function()
 
 	$('#submit-whine').click(function() {
@@ -103,6 +103,7 @@ $(document).ready(function() {
 		getLatestWhines();
 	}); //$('#back-button').click(function(event)
 
+// logout
 	$('#logout').click(function(event) {
 		event.preventDefault();
 		$.ajax('/logout', {
@@ -117,18 +118,20 @@ $(document).ready(function() {
 
 // edit whine
 	$('ul#restaurant-whines').on('click', '#edit', function() {
-		var whine = $(this).parent().data('whine_id');
-		var whine_element = $(this).parent();
+		var whine = $(this).closest('li').data('whine_id');
+	//	var whine_element = $(this).parent();
 		console.log(whine);
 		$('#write-whine').addClass('hide');
 		$('#whine-reviews').addClass('hide');
+		$('#edit-whine-form').data("whine_id", whine);
 		$('#edit-whine-form').removeClass('hide');
 		$('#edit-whine-buttons').removeClass('hide');
 		console.log("editing", whine);
 	}); //$('ul#restaurant-whines').on('click', '#edit', function()
 
 	$('#submit-edit').click(function() {
-		saveEditReview();
+		var whine = $(this).closest('form').data('whine_id');
+		saveEditReview(whine);
 	}); //$('#submit-edit').click(function()
 
 	$('#cancel-edit').click(function() {
@@ -141,9 +144,11 @@ $(document).ready(function() {
 	}); //$('#cancel-edit').click(function()
 
 // delete whine
-	$('#delete').click(function() {
-		deleteReview();
-	}); //$('#edit').click(function() 
+	$('ul#restaurant-whines').on('click', '#delete', function() {
+		var whine = $(this).closest('li').data('whine_id');
+		console.log('deleting whine', whine);
+		deleteReview(whine);
+	});
 
 }); //$(document).ready(function()
 
@@ -192,7 +197,8 @@ function signUp() {
 	}); //.then function
 } //signUp function
 
-function addWhine(event) {		
+function addWhine() {	
+//	event.preventDefault();	
 	var restaurant = $('#restaurant-info').data('restaurant');
 	const whineData = {
 		food: $('#whine-form [name="food"]:checked').val(),
@@ -237,8 +243,8 @@ function deleteReview(whine) {
 } //deleteReview funtion
 
 function saveEditReview(whine) {
-//	var whine = $(this).parent().data('whine_id');
-		var whine_element = $(this).parent();
+	var whine = $(this).closest('form').data('whine_id');
+	//	var whine_element = $(this).parent();
 		console.log('saving edit', whine);
 
 
@@ -258,7 +264,7 @@ function saveEditReview(whine) {
 			url: '/whines/' + whine
 		}) //$.ajax
 		.then(function(){
-			console.log('saving edit for whine ' + whine);
+			alert('saving edit for whine ' + whine);
 			$('#edit-whine-form').addClass('hide');
 		//	$('.section').addClass('hide');
 		//	$('#restaurant-info').removeClass('hide');
@@ -404,8 +410,8 @@ function getRestaurantWhines(restaurant) {
 				} //if (whine.review)
 				if(whine.owned) {
 					var $edit = $('<div id="div-edit"></div>').appendTo($whine);
-					$('<button id="edit">Edit</button>').appendTo($edit);
-					$('<button id="delete">Delete</button>').appendTo($edit);
+					$('<button type="button" id="edit">Edit</button>').appendTo($edit);
+					$('<button type="button" id="delete">Delete</button>').appendTo($edit);
 				} //if(whine.owned)	
 			}); //$.each(whines, function(index, whine)
 
