@@ -133,11 +133,8 @@ $(document).ready(function() {
 
 	$('#cancel-edit').click(function() {
 		$('#edit-whine-form').addClass('hide');
-	//	$('.section').addClass('hide');
-	//	$('#restaurant-info').removeClass('hide');
 		$('#write-whine button').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
-		getRestaurantWhines(restaurant);
 	}); //$('#cancel-edit').click(function()
 
 // delete whine
