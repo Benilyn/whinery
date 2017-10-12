@@ -1,7 +1,5 @@
 $.noConflict();
 
-
-
 $(document).ready(function() {
 	isLoggedIn();
 
@@ -146,8 +144,7 @@ $(document).ready(function() {
 }); //$(document).ready(function()
 
 
-function isLoggedIn() {
-	
+function isLoggedIn() {	
 	$.ajax('/loggedin', {
 		type: 'GET'
 	}) //$.ajax
@@ -158,8 +155,7 @@ function isLoggedIn() {
 		.then(function(){
 			$('#login-page').removeClass('hide');
 			$('#sign-up').removeClass('hide');
-		});
-		
+		});	
 	})
 	.fail(function(){
 		console.log('You must log in to see whines');
@@ -190,8 +186,9 @@ function signUp() {
 	}); //.then function
 } //signUp function
 
+
 function addWhine() {	
-//	event.preventDefault();	
+	event.preventDefault();	
 	var restaurant = $('#restaurant-info').data('restaurant');
 	const whineData = {
 		food: $('#whine-form [name="food"]:checked').val(),
@@ -215,6 +212,7 @@ function addWhine() {
 	}); //.then function	
 }	//addWhine function
 
+
 function deleteReview(whine) {
 		var restaurant = $('#restaurant-info').data('restaurant');
 		console.log('deleting', whine);
@@ -223,8 +221,7 @@ function deleteReview(whine) {
 			type: 'DELETE',
 			url: '/whines/' + whine
 		}) //$.ajax
-		.then(function(){
-			
+		.then(function(){		
 			console.log('removing whine id ' + whine);
 			$('#edit-whine-form').addClass('hide');
 			$('.section').addClass('hide');
@@ -235,10 +232,9 @@ function deleteReview(whine) {
 		}); //.then
 } //deleteReview funtion
 
+
 function saveEditReview(whine) {
 		console.log('saving edit', whine);
-
-
 		var restaurant = $('#restaurant-info').data('restaurant');
 		const editedWhineData = {
 			food: $('#edit-whine-form [name="food"]:checked').val(),
@@ -247,7 +243,7 @@ function saveEditReview(whine) {
 			price: $('#edit-whine-form [name="price"]:checked').val(),
 			review: $('#edit-whine-form [name="whine-review"]').val(),
 			id: whine
-		};
+		}; //const editedWhineData
 		$.ajax({
 			contentType: 'application/json',
 			data: JSON.stringify(editedWhineData),
@@ -280,25 +276,21 @@ function displayMap() {
 	    	type: 'GET',
 	    	data: currentLocation
 	    })
-	    .then(function(results) {
-	   
+	    .then(function(results) {	   
 	    	var currentPosition = new google.maps.Marker({
 			    	position: currentLocation,
 			    	map: map,
 			    	icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
 			    	label: 'You are here',
 		    	}); //currentPosition
-
 	    	var labels = 'ABCDEFGHIJ';
 	    	for (var i=0; i<results.length; i++) {
-	    		var result = results[i];
-	    		
+	    		var result = results[i];	
 	    		var marker = new google.maps.Marker({
 					map: map,
 					position: result.geometry.location,
 					label: labels[i],
-				});
-	    		
+				});	    		
 	    		var $restaurantInfo = 
 	    			$('<li class="restaurant-name">' + 
 	    				'   ' + labels[i] + 
@@ -307,10 +299,10 @@ function displayMap() {
 	    			.data('restaurant', result)
 	    			.appendTo('ul#results-list');
 	    	} //for
-	   }); //.then funtion(res)
-	   
+	   }); //.then funtion(res)	   
 	}); //getCurrentPosition function
 } //function displayMap()
+
 
 var infoWINDOW;
 function createMarker(restaurant) {
@@ -318,7 +310,6 @@ function createMarker(restaurant) {
 		map: map,
 		position: restaurant.geometry.currentLocation,
 	});
-
 	google.maps.event.addListener(marker, 'click', function() {
 		if (infoWINDOW) { infoWINDOW.close(); }
 		infoWINDOW = infowindow;
@@ -337,56 +328,48 @@ function getRestaurantInfo(restaurant){
 	.then(function(result) {
 		$('#restaurant-details .phone').text(result.formatted_phone_number);
 		$('#restaurant-details .website a').attr('href', result.website);
-	});
-
+	}); //.then function
 } // getRestaurantInfo function
 
+
 function getLatestWhines() {
-	alert('Getting latest whines');
-	
+	alert('Getting latest whines');	
 	$.ajax({
 		type: 'GET',
-		url: '/whines',
-			
+		url: '/whines',			
 		success: function(whines) {
 			var $whines = $('ul#whines');
 			$whines.empty();
-
 			$.each(whines, function(index, whine) {
 				var $whine = $('<li></li>').appendTo($whines);
-
 				$('<span> Restaurant: ' + whine.restaurantName + '</span>').appendTo($whine);
 				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
 				$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span>').appendTo($whine);	
-				$('<span> Price: ' + whine.price + '</span>').appendTo($whine);
-				
+				$('<span> Price: ' + whine.price + '</span>').appendTo($whine);				
 				if (whine.review) {
 					$('<span class="ellipsis"> Whine: ' + whine.review + '</span>').appendTo($whine);
 				} //if (whine.review)
 			}); //$.each(whines, function(index, whine)
-		}, //success: function
-		
+		}, //success: function		
 		error: function() {
 			alert('Error getting whines');
 		} //error: function
 	}); //$.ajax
 } //function getLatestWhines()
 
+
 function getRestaurantWhines(restaurant) {
-	$('<li> Getting whines for restaurants </li>').appendTo('ul#restaurant-whines');
-	
+	$('<li> Getting whines for restaurants </li>').appendTo('ul#restaurant-whines');	
 	$.ajax({
 		type: 'GET',
 		url: '/whines',
 		data: {restaurant: restaurant.place_id},
-
 		success: function(whines) {
 			var $whines = $('ul#restaurant-whines');
 			$whines.empty();
-			console.log(whines);
-		
+			console.log(whines);		
 			$.each(whines, function(index, whine) {	
 				var $whine = $('<li class="restaurant-whine"></li>').data('whine_id', whine.id).appendTo($whines);
 				$('<span class="author-create"> ' + whine.author + ' on ' + whine.created +'</span>').appendTo($whine);
@@ -403,8 +386,10 @@ function getRestaurantWhines(restaurant) {
 					$('<button type="button" id="delete">Delete</button>').appendTo($edit);
 				} //if(whine.owned)	
 			}); //$.each(whines, function(index, whine)
-
-		} //success
+		}, //success function
+		error: function() {
+			alert('Error getting restaurant whines');
+		} //error: function
 	}); //$.ajax
 } //function getRestaurantWhines() 
 
