@@ -75,11 +75,8 @@ $(document).ready(function() {
 
 	$('#cancel-whine').click(function() {
 		$('#whine-form').addClass('hide');
-	//	$('.section').addClass('hide');
-	//	$('#restaurant-info').removeClass('hide');
 		$('#write-whine button').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
-		getRestaurantWhines();
 	}); //$('#cancel-whine').click(function()
 
 	$('#submit-whine').click(function() {
