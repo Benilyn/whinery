@@ -116,15 +116,19 @@ $(document).ready(function() {
 
 // edit whine
 	$('ul#restaurant-whines').on('click', '#edit', function() {
-		var whine = $(this).closest('li').data('whine_id');
+		var whine = $(this).closest('li').data('whine');
 		console.log(whine);
 		$('#write-whine').addClass('hide');
 		$('#whine-reviews').addClass('hide');
-		$('#edit-whine-form').data("whine_id", whine);
+		$('#edit-whine-form').data("whine_id", whine.id);
 		$('#edit-whine-form').removeClass('hide');
 		$('#edit-whine-buttons').removeClass('hide');
 		console.log("editing", whine);
-
+		$('#edit-whine-form input[name=food]').val([whine.food]);
+		$('#edit-whine-form input[name=service]').val([whine.service]);
+		$('#edit-whine-form input[name=price]').val([whine.price]);
+		$('#edit-whine-form input[name=cleanliness]').val([whine.cleanliness]);
+		$('#edit-whine-form textarea[name=whine-review]').text(whine.review);
 		$('#submit-edit').click(function() {
 			saveEditReview(whine);
 		});
@@ -217,14 +221,12 @@ function addWhine() {
 
 function deleteReview(whine) {
 		var restaurant = $('#restaurant-info').data('restaurant');
-		console.log('deleting', whine);
 		alert('need to delete restaurant whine');
 		$.ajax({
 			type: 'DELETE',
 			url: '/whines/' + whine
 		}) //$.ajax
 		.then(function(){		
-			console.log('removing whine id ' + whine);
 			$('#edit-whine-form').addClass('hide');
 			$('.section').addClass('hide');
 			$('#restaurant-info').removeClass('hide');
@@ -236,7 +238,6 @@ function deleteReview(whine) {
 
 
 function saveEditReview(whine) {
-		console.log('saving edit', whine);
 		var restaurant = $('#restaurant-info').data('restaurant');
 		const editedWhineData = {
 			food: $('#edit-whine-form [name="food"]:checked').val(),
@@ -253,7 +254,6 @@ function saveEditReview(whine) {
 			url: '/whines/' + whine
 		}) //$.ajax
 		.then(function(){
-			alert('saving edit for whine ' + whine);
 			$('#edit-whine-form').addClass('hide');
 			$('#write-whine button').removeClass('hide');
 			$('#whine-reviews').removeClass('hide');
@@ -321,8 +321,6 @@ function createMarker(restaurant) {
 } //function createMarker(restaurant)
 
 function getRestaurantInfo(restaurant){
-	alert('Getting restaurant details');
-	console.log(restaurant.place_id);
 	$.ajax('/restaurants/' + restaurant.place_id, {
 		type: 'GET',
 		data: {placeid: restaurant.place_id}
@@ -334,8 +332,7 @@ function getRestaurantInfo(restaurant){
 } // getRestaurantInfo function
 
 
-function getLatestWhines() {
-	alert('Getting latest whines');	
+function getLatestWhines() {	
 	$.ajax({
 		type: 'GET',
 		url: '/whines',			
@@ -361,7 +358,6 @@ function getLatestWhines() {
 	}); //$.ajax
 } //function getLatestWhines()
 
-
 function getRestaurantWhines(restaurant) {
 	$('<li> Getting whines for restaurants </li>').appendTo('ul#restaurant-whines');	
 	$.ajax({
@@ -373,7 +369,7 @@ function getRestaurantWhines(restaurant) {
 			$whines.empty();
 			console.log(whines);		
 			$.each(whines, function(index, whine) {	
-				var $whine = $('<li class="restaurant-whine"></li>').data('whine_id', whine.id).appendTo($whines);
+				var $whine = $('<li class="restaurant-whine"></li>').data('whine', whine).appendTo($whines);
 				$('<span class="author-create"> ' + whine.author + ' on ' + whine.created +'</span>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
 				$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
