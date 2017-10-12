@@ -124,12 +124,11 @@ $(document).ready(function() {
 		$('#edit-whine-form').removeClass('hide');
 		$('#edit-whine-buttons').removeClass('hide');
 		console.log("editing", whine);
-	}); //$('ul#restaurant-whines').on('click', '#edit', function()
 
-	$('#submit-edit').click(function() {
-		var whine = $(this).closest('form').data('whine_id');
-		saveEditReview(whine);
-	}); //$('#submit-edit').click(function()
+		$('#submit-edit').click(function() {
+			saveEditReview(whine);
+		});
+	}); //$('ul#restaurant-whines').on('click', '#edit', function()
 
 	$('#cancel-edit').click(function() {
 		$('#edit-whine-form').addClass('hide');
@@ -237,8 +236,6 @@ function deleteReview(whine) {
 } //deleteReview funtion
 
 function saveEditReview(whine) {
-	var whine = $(this).closest('form').data('whine_id');
-	//	var whine_element = $(this).parent();
 		console.log('saving edit', whine);
 
 
@@ -260,8 +257,6 @@ function saveEditReview(whine) {
 		.then(function(){
 			alert('saving edit for whine ' + whine);
 			$('#edit-whine-form').addClass('hide');
-		//	$('.section').addClass('hide');
-		//	$('#restaurant-info').removeClass('hide');
 			$('#write-whine button').removeClass('hide');
 			$('#whine-reviews').removeClass('hide');
 			getRestaurantWhines(restaurant);
