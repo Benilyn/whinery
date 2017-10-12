@@ -38,7 +38,10 @@ $(document).ready(function() {
 			$('#search-result').removeClass('hide'); 
 			displayMap();
 			$('#whineryNav').removeClass('hide');
-		});	//.then function
+		}) //.then function
+		.fail(function() {
+			alert('Email address and password does not match. Please try again.');
+		}); //.fail
 	}); //$('#login-page form').submit(function(event)
 
 // click on one of the search-result	
