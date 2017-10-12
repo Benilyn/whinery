@@ -114,7 +114,6 @@ $(document).ready(function() {
 // edit whine
 	$('ul#restaurant-whines').on('click', '#edit', function() {
 		var whine = $(this).closest('li').data('whine_id');
-	//	var whine_element = $(this).parent();
 		console.log(whine);
 		$('#write-whine').addClass('hide');
 		$('#whine-reviews').addClass('hide');
@@ -342,15 +341,15 @@ function getLatestWhines() {
 			$whines.empty();
 			$.each(whines, function(index, whine) {
 				var $whine = $('<li></li>').appendTo($whines);
-				$('<span> Restaurant: ' + whine.restaurantName + '</span>').appendTo($whine);
-				$('<span> By: ' + whine.author + ' on ' + whine.created +'</span>').appendTo($whine);
+				$('<span class="whineName ellipsis">' + whine.restaurantName + '</span>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
 				$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span>').appendTo($whine);	
 				$('<span> Price: ' + whine.price + '</span>').appendTo($whine);				
 				if (whine.review) {
-					$('<span class="ellipsis"> Whine: ' + whine.review + '</span>').appendTo($whine);
+					$('<span class="wrap"> Whine: ' + whine.review + '</span>').appendTo($whine);
 				} //if (whine.review)
+				$('<span class="whineAuthor"> Whined by: ' + whine.author + ' on ' + whine.created + '</span>').appendTo($whine);
 			}); //$.each(whines, function(index, whine)
 		}, //success: function		
 		error: function() {
@@ -378,7 +377,7 @@ function getRestaurantWhines(restaurant) {
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span>').appendTo($whine);	
 				$('<span> Price: ' + whine.price + '</span>').appendTo($whine);
 				if (whine.review) {
-					$('<span class="ellipsis"> Whine: ' + whine.review + '</span>').appendTo($whine);
+					$('<span class="wrap"> Whine: ' + whine.review + '</span>').appendTo($whine);
 				} //if (whine.review)
 				if(whine.owned) {
 					var $edit = $('<div id="div-edit"></div>').appendTo($whine);
