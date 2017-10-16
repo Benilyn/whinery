@@ -115,8 +115,11 @@ $(document).ready(function() {
 
 
 // edit whine
+	
+
 	$('ul#restaurant-whines').on('click', '#edit', function() {
 		var whine = $(this).closest('li').data('whine');
+		$('#edit-whine-form').data('whine', whine);
 		console.log(whine);
 		$('#write-whine').addClass('hide');
 		$('#whine-reviews').addClass('hide');
@@ -124,16 +127,21 @@ $(document).ready(function() {
 		$('#edit-whine-form').removeClass('hide');
 		$('#edit-whine-buttons').removeClass('hide');
 		console.log("editing", whine);
+
 		$('#edit-whine-form input[name=food]').val([whine.food]);
 		$('#edit-whine-form input[name=service]').val([whine.service]);
 		$('#edit-whine-form input[name=price]').val([whine.price]);
 		$('#edit-whine-form input[name=cleanliness]').val([whine.cleanliness]);
 		$('#edit-whine-form textarea[name=whine-review]').text(whine.review);
-		$('#submit-edit').click(function() {
-			saveEditReview(whine);
-		});
+		
+	
 	}); //$('ul#restaurant-whines').on('click', '#edit', function()
 
+	$('#submit-edit').click(function() {
+		var whine = $(this).closest('#edit-whine-form').data('whine');
+		saveEditReview(whine);
+	}); //$('#submit-edit').click(function()
+ 
 	$('#cancel-edit').click(function() {
 		$('#edit-whine-form').addClass('hide');
 		$('#write-whine button').removeClass('hide');
@@ -245,13 +253,19 @@ function saveEditReview(whine) {
 			cleanliness: $('#edit-whine-form [name="cleanliness"]:checked').val(),
 			price: $('#edit-whine-form [name="price"]:checked').val(),
 			review: $('#edit-whine-form [name="whine-review"]').val(),
-			id: whine
+			id: whine.id,
+			author: whine.author,
+			created: whine.created,
+			restaurant: whine.restaurant,
+			restaurantName: whine.restaurantName,
+			owned: whine.owned
 		}; //const editedWhineData
+		console.log(editedWhineData);
 		$.ajax({
 			contentType: 'application/json',
 			data: JSON.stringify(editedWhineData),
 			type: 'PUT',
-			url: '/whines/' + whine
+			url: '/whines/' + whine.id
 		}) //$.ajax
 		.then(function(){
 			$('#edit-whine-form').addClass('hide');
