@@ -1,0 +1,27 @@
+@media only screen and (min-width: 440px) {
+	#login-page, #signup-page {
+		width: 30%;
+		text-align: center;
+		margin: 5em auto;
+	}
+
+	.login-page form {
+		width: 100%;
+	}
+
+	#search-result {
+		display: inline-flex;
+		width: 100%;
+		height: 45vh;
+	}
+
+	#map {
+		width: 60vw;
+	}
+
+	#restaurants {
+		overflow: scroll;
+		width: 40vw;
+		margin: 0.5em; 
+	}
+}
