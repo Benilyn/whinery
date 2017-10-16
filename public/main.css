@@ -2,9 +2,24 @@
 	box-sizing: border-box;
 }
 
-h1 {
+
+#header {
 	text-align: center;
+}
+
+#header .h1 {
+	margin-bottom: 0;
 	font-size: 2.5em;
+	padding: .25em 0;
+	font-style: bold;
+}
+
+
+#header .h2 {
+	margin: 0 auto;
+	padding: 0.5em 0;
+	font-style: italic;
+	color: darkgray;
 }
 
 #no-account {
@@ -21,6 +36,7 @@ h1 {
 	background-color: darkgray;
 	overflow: hidden;
 	height: 1.5em;
+	margin: .5em 0;
 }
 
 .topNav a {
