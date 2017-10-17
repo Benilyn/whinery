@@ -56,7 +56,7 @@ router.get('/', (req, res) => {
 		.find(query)
 		.populate('author')
 		.sort(created)
-		.limit(10)
+		.limit(15)
 		.exec()
 		.then(whine => {
 			res.json(
