@@ -1,8 +1,6 @@
-@media only screen and (min-width: 440px) {
+@media only screen and (min-width: 400px) {
 	#login-page, #signup-page {
-		width: 30%;
-		text-align: center;
-		margin: 5em auto;
+		width: 80%;
 	}
 
 	.login-page form {
@@ -23,6 +21,30 @@
 		overflow: scroll;
 		width: 40vw;
 		margin: 0.5em; 
+	}
+}
+
+@media only screen and (min-width: 750px) {
+	#header {
+		margin-top: 3em;
+	}
+
+	#login-page, #signup-page {
+		width: 40%;
+	}
+
+	#login-page {
+		margin: 6em auto;
+	}
+}
+
+@media only screen and (min-width: 1020px) {
+	#header {
+		margin-top: 5em;
+	}
+
+	#login-page, #signup-page {
+		width: 35%;
 	}
 
 }
