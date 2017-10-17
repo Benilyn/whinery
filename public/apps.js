@@ -286,7 +286,7 @@ function displayMap() {
     	var currentLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
     	var map = new google.maps.Map(document.getElementById('map'), {
 	      center: currentLocation,
-	      zoom: 13
+	      zoom: 12
 	    }); //map
 	    $.ajax('/restaurants', {
 	    	type: 'GET',
