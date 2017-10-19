@@ -84,10 +84,6 @@
 		margin: 6em auto;
 	}
 
-	
-
-	
-
 	#search-result {
 		display: inline-flex;
 		width: 100%;
@@ -110,6 +106,34 @@
 		margin: 0.5em; 
 	}
 
+	.whine-form {
+		padding: 1em 2em;
+	}
+
+	#whine-form .label-inline {
+		display: inline-flex;
+		width: 100%;
+	}
+
+	.whineChoices {
+		margin: 0 8em .5em auto;
+	}
+
+	.whineChoices input {
+		margin-left: 12em;
+	}
+
+	.whineChoices label {
+		margin-right: 1em;
+	}
+
+	#div-edit button {
+		width: 25%;
+	}
+
+	#edit-whine-form form, #edit-whine-form textarea {
+		font-size: 1.1em;
+	}
 
 }
 
@@ -121,5 +145,11 @@
 	#login-page, #signup-page {
 		width: 35%;
 	}
+
+	#div-edit button {
+		width: 20%;
+	}
+
+	
 
 }
