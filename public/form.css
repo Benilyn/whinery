@@ -107,7 +107,7 @@ input::placeholder {
 .whineChoices {
 	margin-bottom: 0.5em;
 	text-align: center;
-	color: darkgray;
+	color: dimgray;
 }
 
 .hide {
@@ -121,11 +121,12 @@ option {
 
 #whine-form button, #edit-whine-form button, #div-edit button {
 	width: 30%;
-	height: 2.5em;
+	height: 2em;
 	margin: 0 0.5em;
 	border: solid 0.125em;
 	color: white;
 	background: black;
+	font-size: 1em;
 }
 
 #write-whine-buttons, #edit-whine-buttons {
