@@ -76,7 +76,7 @@ $(document).ready(function() {
 
 	$('#cancel-whine').click(function() {
 		$('#whine-form').addClass('hide');
-		$('#write-whine button').removeClass('hide');
+		$('#write-whine').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
 	}); //$('#cancel-whine').click(function()
 
