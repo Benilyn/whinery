@@ -11,13 +11,59 @@
 		margin: 0 auto;
 	}	
 
-	#whines {
-		width: 90%;
+	.topNav {
+		margin: 0.5em auto;
+		height: 2em;
+	}
+
+	.topNav a{
+		line-height: 2em;
+	}
+
+	#results-list li {
+		font-size: 1.25em;
+	}
+
+	#results-list li:hover {
+		font-size: 1.5em;
 	}
 
 	#whines li {
-		margin: 0.5em 1em;
+		margin: 0.5em 0;
+		padding: 0.75em;
 	}
+
+	.restaurant-whine span {
+		font-size: 1.25em;
+	}
+
+	#write-whine {
+		font-size: 1.25em;
+	}
+
+	#whine-form .whine-form {
+		font-size: 1.2em
+	}
+
+	#whine-form textarea {
+		font-size: 1em;
+	}
+
+	span {
+		font-size: 1.25em;
+		padding: 0 1em;
+	}
+
+	.whineName {
+		font-size: 1.5em;
+		padding: 0;
+	}
+
+	.whineAuthor {
+		font-size: 1em;
+	}
+
+
 }
 
 @media only screen and (min-width: 750px) {
@@ -38,14 +84,9 @@
 		margin: 6em auto;
 	}
 
-	.topNav {
-		margin: 0.5em auto;
-		height: 2em;
-	}
+	
 
-	.topNav a{
-		line-height: 1.7em
-	}
+	
 
 	#search-result {
 		display: inline-flex;
