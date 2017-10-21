@@ -42,8 +42,8 @@
 		font-size: 1.25em;
 	}
 
-	#whine-form .whine-form {
-		font-size: 1.2em
+	#whine-form form, #edit-whine-form form {
+		font-size: 1.12em
 	}
 
 	#whine-form textarea {
