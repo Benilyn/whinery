@@ -144,7 +144,7 @@ describe('Whines API resource', function() {
 
 
 	describe('Whine on POST endpoint', function() {
-		it.only('should add a whine', function() {
+		it('should add a whine', function() {
 			const newWhine = {	
 				restaurant: faker.company.companyName(),
 				food: "So-So",
