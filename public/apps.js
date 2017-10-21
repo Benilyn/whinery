@@ -229,7 +229,6 @@ function addWhine() {
 
 function deleteReview(whine) {
 		var restaurant = $('#restaurant-info').data('restaurant');
-		alert('need to delete restaurant whine');
 		$.ajax({
 			type: 'DELETE',
 			url: '/whines/' + whine.id
