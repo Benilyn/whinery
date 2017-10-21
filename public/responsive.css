@@ -1,0 +1,167 @@
+@media only screen and (min-width: 400px) {
+	#login-page, #signup-page {
+		width: 80%;
+	}
+
+	.login-page form {
+		width: 100%;
+	}
+
+	#header .h1 {
+		margin: 0 auto;
+	}	
+
+	.topNav {
+		margin: 0.5em auto;
+		height: 2em;
+	}
+
+	.topNav a{
+		line-height: 1.5em;
+		font-size: 1.25em;
+	}
+
+	#results-list li {
+		font-size: 1.25em;
+	}
+
+	#results-list li:hover {
+		font-size: 1.5em;
+	}
+
+	#whines li {
+		margin: 0.5em 0;
+		padding: 0.75em;
+	}
+
+	.restaurant-whine span {
+		font-size: 1.25em;
+	}
+
+	#write-whine {
+		font-size: 1.25em;
+	}
+
+	#whine-form form, #edit-whine-form form {
+		font-size: 1.12em
+	}
+
+	#whine-form textarea {
+		font-size: 1em;
+	}
+
+	span {
+		font-size: 1.25em;
+	}
+
+	.whineName {
+		font-size: 1.5em;
+		padding: 0;
+	}
+
+	.whineAuthor {
+		font-size: 1em;
+	}
+
+
+}
+
+@media only screen and (min-width: 750px) {
+	body {
+		width: 90%;
+		margin: auto;
+}
+
+	#header {
+		margin-top: 3em;
+	}
+
+	#header .h1 {
+		font-size: 3em;
+	}
+
+	#login-page, #signup-page {
+		width: 45%;
+	}
+
+	#login-page {
+		margin: 6em auto;
+	}
+
+	#search-result {
+		display: inline-flex;
+		width: 100%;
+		height: 40vh;
+		margin: 1.5em 0;
+	}
+
+	#search-result.hide {
+		display: none;
+	}
+
+	#map {
+		width: 60vw;
+		height: 100%;
+	}
+
+	#restaurants {
+		overflow: scroll;
+		width: 40vw;
+		margin: 0.5em; 
+	}
+
+	.whine-form {
+		padding: 1em 2em;
+	}
+
+	#whine-form .label-inline {
+		display: inline-flex;
+		width: 100%;
+	}
+
+	.whineChoices {
+		margin: 0 8em .5em auto;
+	}
+
+	.whineChoices input {
+		margin-left: 12em;
+	}
+
+	.whineChoices label {
+		margin-right: 1.5em;
+	}
+
+	#div-edit button {
+		width: 25%;
+	}
+
+	#edit-whine-form form, #edit-whine-form textarea {
+		font-size: 1.1em;
+	}
+
+	#whines li {
+		padding: 0.75em 1.5em;
+	}
+
+}
+
+@media only screen and (min-width: 1020px) {
+	body {
+		width: 80%;
+	}
+
+	#header {
+		margin-top: 5em;
+	}
+
+	#login-page, #signup-page {
+		width: 35%;
+	}
+
+	#div-edit button {
+		width: 20%;
+	}
+
+	
+
+}

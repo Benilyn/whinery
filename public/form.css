@@ -1,0 +1,156 @@
+#login-page {
+	margin: 3em auto;
+}
+
+.login-page {
+	width: 100%;
+	height: auto;
+}
+
+fieldset {
+	background-color: white;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+legend {
+	font-size: 1em;
+	color: black;
+	padding-bottom: 0.5em;
+	text-align: center;
+}
+
+#signup-page {
+	margin: 1em auto;
+}
+
+#signup-page, #login-page {
+	text-align: center;
+	border: solid gray;
+	padding: 1em;
+}
+
+#signup-page input, #login-page input {
+	display: block;
+	height: 3em;
+	width: 100%;
+	font-size: 1em;
+	margin-bottom: 0.5em;
+	padding-left: 0.15em;
+}
+
+input {
+	border: .125em  solid lightgray;
+}
+
+input::placeholder {
+	color: darkgray;
+	padding-left: .25em;
+}
+
+#signup-buttons {
+	padding: .15em 1em;
+	display: inline-flex;
+	margin-bottom: 0.35em;
+}
+
+#signup-buttons button {
+	height: 100%;
+	width: 100%;
+	font-size: 1em;
+	margin: 0 0.75em;
+	padding: 0.25em 0;
+	color: white;
+	background-color: black;
+}
+
+#login, #signup-buttons {
+	width: 100%;
+	height: 3em;
+	font-size: 1em;
+	text-align: center;
+	transition-duration: 0.4s;
+}
+
+#login {		
+	color: white;
+	background-color: black;	
+}
+
+.login-page label {
+	color: black;
+	font-size: 17px;
+	text-align: left;
+	width: 100%;
+	display: inline-block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#whine-form form, #edit-whine-form form {
+	padding: 1em;
+	border: solid 0.05em darkgray;
+}
+
+#whine-form input, #edit-whine-form input {
+	margin: 0 0.5em 0 1em;
+}
+
+#whine-form textarea, #edit-whine-form textarea {
+	border:	solid 0.125em lightgray;
+	width: 100%;
+	height: auto;
+	margin-top: 0.5em;
+}
+
+.whineChoices {
+	margin-bottom: 0.5em;
+	text-align: center;
+	color: dimgray;
+}
+
+.hide {
+	display: none;
+}
+
+option {
+	font-size: inherit;
+	color: blue;
+}
+
+#whine-form button, #edit-whine-form button, #div-edit button {
+	width: 30%;
+	height: 2em;
+	margin: 0 0.5em;
+	border: solid 0.125em;
+	color: white;
+	background: black;
+	font-size: 1em;
+}
+
+#write-whine-buttons, #edit-whine-buttons {
+	text-align: center;
+	margin: 0.75em 0.5em 0;
+}
+
+#login-page button:hover, #signup-buttons button:hover, #whine-form button:hover, #edit-whine-form button:hover, #div-edit button:hover {
+	color: black;
+	background-color: darkgray;
+}
+
+@media only screen and (min-width: 370px) {
+	#edit-whine-form .label-inline, #whine-form .label-inline {
+		display: inline-flex;
+		width: 100%;
+	}
+
+	#whine-form form, #edit-whine-form form {
+		padding: 1em 0.5em 1em 1em;
+	}
+
+	.whineChoices {
+		margin: 0 1.25em .5em auto;
+	}
+} 
+

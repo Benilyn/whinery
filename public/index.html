@@ -3,9 +3,208 @@
 <head>
 	<title>Whinery</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="form.css">
+	<link rel="stylesheet" type="text/css" href="responsive.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+   rel = "stylesheet">
+
+	<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 </head>
 
 <body>
-	<p>Hello World</p>
+	<div id='header'>
+		<p class='h1'>Whinery</p>
+		<p class='h2'>Dine and whine about your latest restaurant experience...</p>
+	</div>
+
+
+	<div id='whineryNav' class='topNav hide'>
+		<a href="#" id='get-latest-whines'>Whines</a>
+		<a href="#" id='back-to-search-results' class='hide'>Search Results</a>
+		<a href="#" id='logout'>Log Out</a>
+	</div>
+
+	<div id="login-page" class='section hide'>
+		<form class="login-page">
+			<fieldset name="login-info">
+				<legend>Log in to view and write whines</legend>
+				<input type="email" name="email" placeholder="email@address.com">
+				<input type="password" name="password" placeholder="1234passw0rd">
+				<button id="login" type="submit">Log In</button>	
+			</fieldset>
+		</form> <!-- .login-page -->
+		<p id='no-account'>Don't have a Whinery account? 
+		<a href="#" id="sign-up" class='section sign-up hide'>Sign up now</a></p>
+		
+	</div> <!-- #login-page -->
+	
+	
+
+	<div id="signup-page" class='section hide'>
+		<form class="signup-page">
+			<input type="text" name="first-name" placeholder="First name">
+			<input type="text" name="last-name" placeholder="Last name">
+			<input type="tel" name="phone-number" placeholder="(123) 456-7890">
+			<input type="email" name="email" placeholder="email@address.com">
+			<input type="password" name="password" placeholder="1234passw0rd">
+			<div id="signup-buttons">
+				<button type="button" id="submit-signup">Submit</button>
+				<button type="button" id="cancel-signup">Cancel</button>
+			</div>
+		</form> <!-- .signup-page -->
+	</div> <!-- #signup-page -->
+
+	<div id='search-result' class='hide section'>
+		<div id='map'></div>
+		<div id='restaurants'>
+			<ul id='results-list'></ul>
+		</div> <!-- #restaurants -->	
+	</div> <!-- #search-result -->
+
+	<div id='restaurant-info' class='hide section'>
+		
+		<div id='restaurant-details'>
+			<span class="name">Restaurant Name</span>
+			<span class="address info">Address</span>
+			<span class="phone info">Phone</span>
+			<span class="website info"><a href='#' target='_blank'>Website</a></span>
+			<span class="price info">$$</span>
+		</div> <!-- #restaurant-details -->
+
+		<div id='add-whine-button'>
+			<button type='button' id='write-whine'>Write Whine</button>
+		</div>
+			
+		<div id='whine-reviews' class='section'>
+			<ul id='restaurant-whines'></ul>
+		</div> <!-- #whine-reviews -->
+
+
+		<div id='whine-form' class="hide">
+			<form class='whine-form'>
+				<div class='label-inline'>FOOD:
+					<div class='whineChoices'> 
+						<input type='radio' id='foodBad' name='food' value='Bad'>
+							<label for='foodBad'>Bad</label>
+						<input type='radio' id='foodOkay' name='food' value='Okay'>
+							<label for='foodOkay'>Okay</label>
+						<input type='radio' id='foodGood' name='food' value='good'>
+							<label for='foodGood'>Good</label>
+					</div>	
+				</div>
+
+				<div class='label-inline'>SERVICE:
+					<div class='whineChoices'> 
+						<input type='radio' id='serviceBad' name='service' value='Bad'>
+							<label for='serviceBad'>Bad</label>
+						<input type='radio' id='serviceOkay' name='service' value='Okay'>
+							<label for='serviceOkay'>Okay</label>
+						<input type='radio' id='serviceGood' name='service' value='good'>
+							<label for='serviceGood'>Good</label>
+					</div>
+				</div>
+
+				<div class='label-inline'>CLEANLINESS:
+					<div  class='whineChoices'> 
+						<input type='radio' id='cleanlinessBad' name='cleanliness' value='Bad'>
+							<label for='cleanlinessBad'>Bad</label>
+						<input type='radio' id='cleanlinessOkay' name='cleanliness' value='Okay'>
+							<label for='cleanlinessOkay'>Okay</label>
+						<input type='radio' id='cleanlinessGood' name='cleanliness' value='good'>
+							<label for='cleanlinessGood'>Good</label>
+					</div>
+				</div>
+				<div class='label-inline'>PRICE:
+					<div class='whineChoices'> 
+						<input type='radio' id='priceBad' name='price' value='Bad'>
+							<label for='priceBad'>Bad</label>
+						<input type='radio' id='priceOkay' name='price' value='Okay'>
+							<label for='priceOkay'>Okay</label>
+						<input type='radio' id='priceGood' name='price' value='good'>
+							<label for='priceGood'>Good</label>
+					</div>
+				</div>
+				<div>WHINE:
+					<textarea name="whine-review" placeholder="Write whine here"></textarea>
+				</div>
+				<div id="write-whine-buttons" class='hide'>
+					<button type="button" id="submit-whine">Submit</button>
+					<button type="button" id="cancel-whine">Cancel</button>
+				</div> <!-- #write-whine-buttons -->
+			</form>
+		</div> <!-- #whine-form -->
+					
+	</div> <!-- #restaurant-info -->
+	
+	
+	<div id='edit-whine-form' class="hide">
+		<form action='#' method="post">
+			<div class='label-inline'>FOOD:
+				<div class='whineChoices'> 
+					<input type='radio' id='foodBad' name='food' value='Bad'>
+						<label for='foodBad'>Bad</label>
+					<input type='radio' id='foodOkay' name='food' value='Okay'>
+						<label for='foodOkay'>Okay</label>
+					<input type='radio' id='foodGood' name='food' value='good'>
+						<label for='foodGood'>Good</label>
+				</div>					
+			</div>
+
+			<div class='label-inline'>SERVICE:
+				<div class='whineChoices'> 
+					<input type='radio' id='serviceBad' name='service' value=Bad'>
+						<label for='serviceBad'>Bad</label>
+					<input type='radio' id='serviceOkay' name='service' value='Okay'>
+						<label for='serviceOkay'>Okay</label>
+					<input type='radio' id='serviceGood' name='service' value='good'>
+						<label for='serviceGood'>Good</label>
+				</div>
+			</div>
+			<div class='label-inline'>CLEANLINESS:
+				<div  class='whineChoices'> 
+					<input type='radio' id='cleanlinessBad' name='cleanliness' value='Bad'>
+						<label for='cleanlinessBad'>Bad</label>
+					<input type='radio' id='cleanlinessOkay' name='cleanliness' value='Okay'>
+						<label for='cleanlinessOkay'>Okay</label>
+					<input type='radio' id='cleanlinessGood' name='cleanliness' value='good'>
+						<label for='cleanlinessGood'>Good</label>
+				</div>
+			</div>
+			<div class='label-inline'>PRICE:
+				<div class='whineChoices'> 
+					<input type='radio' id='priceBad' name='price' value='Bad'>
+						<label for='priceBad'>Bad</label>
+					<input type='radio' id='priceOkay' name='price' value='Okay'>
+						<label for='priceOkay'>Okay</label>
+					<input type='radio' id='priceGood' name='price' value='good'>
+						<label for='priceGood'>Good</label>
+				</div>
+			</div>
+			<div>WHINE:
+				<textarea name="whine-review" placeholder="Write whine here"></textarea>
+			</div>
+			<div id="edit-whine-buttons" class='hide'>
+				<button type="button" id="submit-edit">Submit</button>
+				<button type="button" id="cancel-edit">Cancel</button>
+			</div>
+		</form>
+	
+	</div> <!-- #edit-whine-form -->
+		
+
+	<div id='latest-feeds' class='hide section'>
+		
+		<ul id='whines'></ul>
+	</div> <!-- #latest-feeds -->
+	
+
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script type="text/javascript", src="apps.js"></script>
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4Lq366S1SDP6j4iMrFUnbgwnsC4e6gU4">
+    </script>
 </body>
 </html>
