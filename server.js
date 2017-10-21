@@ -23,8 +23,6 @@ const logoutRouter = require('./router/logoutRouter');
 
 const {Restaurant, Whine, User} = require('./models');
 const {PORT, DATABASE_URL, TEST_DATABASE_URL} = require('./config');
-const mockData = require('./mock-data');
-
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 app.use(session({
