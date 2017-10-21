@@ -139,3 +139,18 @@ option {
 	background-color: darkgray;
 }
 
+@media only screen and (min-width: 370px) {
+	#edit-whine-form .label-inline, #whine-form .label-inline {
+		display: inline-flex;
+		width: 100%;
+	}
+
+	#whine-form form, #edit-whine-form form {
+		padding: 1em 0.5em 1em 1em;
+	}
+
+	.whineChoices {
+		margin: 0 1.25em .5em auto;
+	}
+} 
+
