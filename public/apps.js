@@ -132,7 +132,7 @@ $(document).ready(function() {
 		$('#edit-whine-form input[name=service]').val([whine.service]);
 		$('#edit-whine-form input[name=price]').val([whine.price]);
 		$('#edit-whine-form input[name=cleanliness]').val([whine.cleanliness]);
-		$('#edit-whine-form textarea[name=whine-review]').text(whine.review);
+		$('#edit-whine-form textarea[name=whine-review]').text([whine.review]);
 		
 	
 	}); //$('ul#restaurant-whines').on('click', '#edit', function()
@@ -144,13 +144,13 @@ $(document).ready(function() {
  
 	$('#cancel-edit').click(function() {
 		$('#edit-whine-form').addClass('hide');
-		$('#write-whine button').removeClass('hide');
+		$('#write-whine').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
 	}); //$('#cancel-edit').click(function()
 
 // delete whine
 	$('ul#restaurant-whines').on('click', '#delete', function() {
-		var whine = $(this).closest('li').data('whine_id');
+		var whine = $(this).closest('li').data('whine');
 		console.log('deleting whine', whine);
 		deleteReview(whine);
 	});
@@ -232,7 +232,7 @@ function deleteReview(whine) {
 		alert('need to delete restaurant whine');
 		$.ajax({
 			type: 'DELETE',
-			url: '/whines/' + whine
+			url: '/whines/' + whine.id
 		}) //$.ajax
 		.then(function(){		
 			$('#edit-whine-form').addClass('hide');
