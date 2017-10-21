@@ -83,21 +83,6 @@ app.use('/login',loginRouter);
 app.use('/logout', logoutRouter);
 
 
-
-app.get('/data', (req, res) => {
-	res.json(mockData.restaurants);
-}); //app.get(/data)
-
-app.get('/data/:id', (req, res) => {
-	const index = req.params.id;
-	const restaurant = mockData.restaurants[index];
-
-	res.render('restaurant.ejs', {restaurant});
-	
-}); //app.get(data:id)
-
-
-
 if (require.main === module) {
 	console.log('testing');
 	mongoose.connect(DATABASE_URL, {useMongoClient: true});
