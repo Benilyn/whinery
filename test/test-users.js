@@ -125,7 +125,7 @@ describe('Users API resource', function() {
 				})
 				.then(function(_user) {
 					should.not.exist(_user);
-				})
+				});
 		}); //'should delete a user by id', function()
 	}); //'User DELETE endpoint', function()
 
@@ -187,10 +187,6 @@ describe('Users API resource', function() {
 						});
 				});
 		}); //'should login a', function()
-
-
-
-
 
 	}); //test User login
 	
