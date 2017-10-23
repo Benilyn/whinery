@@ -2,16 +2,16 @@ const express	=	require('express');
 const app		=	express();
 const bodyParser =	require('body-parser');
 const mongoose = require('mongoose');
-const https = require('https');
+//const https = require('https');
 const fs = require('fs');
 const morgan = require('morgan');
 app.use(morgan('dev'));
-
+/*
 const options = {
   key: fs.readFileSync('./key.pem'),
   cert: fs.readFileSync('./cert.pem')
 };
-
+*/
 mongoose.Promise = global.Promise;
 
 
@@ -83,7 +83,8 @@ app.use('/logout', logoutRouter);
 if (require.main === module) {
 	console.log('testing');
 	mongoose.connect(DATABASE_URL, {useMongoClient: true});
-	https.createServer(options, app).listen(PORT);
+  app.listen(PORT);
+	//https.createServer(options, app).listen(PORT);
 }
 
 app.get('/loggedin', (req, res) => {
