@@ -70,7 +70,6 @@ passport.deserializeUser(function(id, done) {
 }); //passport.deserializeUser
 
 
-
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.json());
