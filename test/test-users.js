@@ -35,7 +35,7 @@ function generateUsers() {
 describe('Users API resource', function() {
 
 	before(function() {
-		return mongoose.connect(TEST_DATABASE_URL);
+		return mongoose.connect(TEST_DATABASE_URL, {useMongoClient: true});
 	}); //before function
 
 	beforeEach(function() {
