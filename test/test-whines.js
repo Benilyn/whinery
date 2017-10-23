@@ -63,7 +63,7 @@ function logInUser(user) {
 describe('Whines API resource', function() {
 	this.timeout(0);
 	before(function() {
-		return mongoose.connect(TEST_DATABASE_URL);
+		return mongoose.connect(TEST_DATABASE_URL, {useMongoClient: true});
 	}); //before function
 
 	beforeEach(function() {
