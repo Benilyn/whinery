@@ -47,7 +47,6 @@ $(document).ready(function() {
 // click on one of the search-result	
 	$('ul#results-list').on('click', 'li', function() {
 		var restaurant = $(this).data('restaurant');
-		console.log($(this).data('restaurant'));
 		$('#back-to-search-results').removeClass('hide');
 		$('.section').addClass('hide');
 		$('#restaurant-info').data('restaurant', restaurant).removeClass('hide');
@@ -120,13 +119,11 @@ $(document).ready(function() {
 	$('ul#restaurant-whines').on('click', '#edit', function() {
 		var whine = $(this).closest('li').data('whine');
 		$('#edit-whine-form').data('whine', whine);
-		console.log(whine);
 		$('#write-whine').addClass('hide');
 		$('#whine-reviews').addClass('hide');
 		$('#edit-whine-form').data("whine_id", whine.id);
 		$('#edit-whine-form').removeClass('hide');
 		$('#edit-whine-buttons').removeClass('hide');
-		console.log("editing", whine);
 
 		$('#edit-whine-form input[name=food]').val([whine.food]);
 		$('#edit-whine-form input[name=service]').val([whine.service]);
@@ -151,7 +148,6 @@ $(document).ready(function() {
 // delete whine
 	$('ul#restaurant-whines').on('click', '#delete', function() {
 		var whine = $(this).closest('li').data('whine');
-		console.log('deleting whine', whine);
 		deleteReview(whine);
 	});
 
@@ -259,7 +255,6 @@ function saveEditReview(whine) {
 			restaurantName: whine.restaurantName,
 			owned: whine.owned
 		}; //const editedWhineData
-		console.log(editedWhineData);
 		$.ajax({
 			contentType: 'application/json',
 			data: JSON.stringify(editedWhineData),
@@ -379,8 +374,7 @@ function getRestaurantWhines(restaurant) {
 		data: {restaurant: restaurant.place_id},
 		success: function(whines) {
 			var $whines = $('ul#restaurant-whines');
-			$whines.empty();
-			console.log(whines);		
+			$whines.empty();		
 			$.each(whines, function(index, whine) {	
 				var $whine = $('<li class="restaurant-whine"></li>').data('whine', whine).appendTo($whines);
 				$('<span class="author-create"> ' + whine.author + ' on ' + whine.created +'</span>').appendTo($whine);
