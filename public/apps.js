@@ -349,7 +349,7 @@ function getLatestWhines() {
 			$whines.empty();
 			$.each(whines, function(index, whine) {
 				var $whine = $('<li></li>').appendTo($whines);
-				$('<span class="whineName ellipsis"><a href='#' target='_blank'>' + whine.restaurantName + '</a></span>').appendTo($whine);
+				$('<span class="whineName ellipsis">' + whine.restaurantName + '</span>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
 				$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span>').appendTo($whine);	
