@@ -55,6 +55,21 @@
 	color: white;
 }
 
+#demo {
+	width: 35%;
+	margin: 0 auto;
+}
+
+#demo-button {
+	color: white;
+	background-color: black;
+	width: 100%;
+	height: 3em;
+	font-size: 1em;
+	text-align: center;
+}
+
+
 
 li {
 	list-style: none;
