@@ -150,9 +150,16 @@
 	}
 
 	#whines li, #restaurant-whines li {
-		width: 50%;
+		width: calc(50% - .5em);
 	}
 
+	#whines li:nth-child(odd), #restaurant-whines li:nth-child(odd) {
+		margin-right: .5em;
+	}
+
+	#whines li:nth-child(even), #restaurant-whines li:nth-child(even) {
+		margin-left: .5em;
+	}
 
 }
 
