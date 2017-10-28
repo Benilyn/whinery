@@ -19,6 +19,7 @@ $(document).ready(function() {
 	$('#cancel-signup').click(function() {
 		$('#signup-page').addClass('hide');
 		$('#login-page').removeClass('hide');
+		$('#demo').removeClass('hide');
 		$('#sign-up').removeClass('hide');
 	}); //$('#cancel-signup').click(function()
 
@@ -164,12 +165,14 @@ function isLoggedIn() {
 		})
 		.then(function(){
 			$('#login-page').removeClass('hide');
+			$('#demo').removeClass('hide');
 			$('#sign-up').removeClass('hide');
 		});	
 	})
 	.fail(function(){
 		console.log('You must log in to see whines');
 		$('#login-page').removeClass('hide');
+		$('#demo').removeClass('hide');
 		$('#sign-up').removeClass('hide');
 	});
 } //isLoggedIn function
@@ -192,6 +195,7 @@ function signUp() {
 		$('#signup-page').addClass('hide');
 		alert('Thank you for signing up.');
 		$('#login-page').removeClass('hide');
+		$('#demo').removeClass('hide');
 		$('#sign-up').removeClass('hide');
 	}); //.then function
 } //signUp function
@@ -349,7 +353,7 @@ function getLatestWhines() {
 			$whines.empty();
 			$.each(whines, function(index, whine) {
 				var $whine = $('<li></li>').appendTo($whines);
-				$('<span class="whineName ellipsis">' + whine.restaurantName + '</span>').appendTo($whine);
+				$('<span class="whineName ellipsis"><a href=#>' + whine.restaurantName + '</a></span>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
 				$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
 				$('<span> Cleanliness: ' + whine.cleanliness + '</span>').appendTo($whine);	
