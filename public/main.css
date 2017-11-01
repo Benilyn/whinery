@@ -57,8 +57,14 @@
 }
 
 #demo {
-	width: 35%;
+	width: 25%;
 	margin: 0 auto;
+}
+
+#demo p {
+	color: darkgray;
+	text-align: center;
+	margin: 0.5em;
 }
 
 #demo-button {
