@@ -53,29 +53,22 @@ $(document).ready(function() {
 		$('#restaurant-info').data('restaurant', restaurant).removeClass('hide');
 		$('#write-whine').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
-		
-	
 		 
 		getRestaurantInfo(restaurant);
 		getRestaurantWhines(restaurant);
-
 	}); //$('ul#results-list').on('click', 'li', function()
 
 
 // click on one of the restaurant name on whines
 	$('ul#whines').on('click', 'li', function() {
 		var restaurant = $(this).data('restaurant');
-		console.log(restaurant);
-		
 		$('.section').addClass('hide');
 		$('#restaurant-info').removeClass('hide');
 		$('#write-whine').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
 		
-		
 		getRestaurantInfo({place_id: restaurant});
-	
-
+		getRestaurantWhines({place_id: restaurant});
 	}); //$('ul#whines').on('click', 'a', function()	
 
 //Write Review 
