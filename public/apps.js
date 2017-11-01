@@ -248,13 +248,13 @@ function addWhine() {
 		$('#write-whine').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
 		getRestaurantWhines(restaurant);	
-	}) //.then function	
-	.fail(function(err) {
-		alert('You must sign up and login to write whine.');
-		$('#whine-form').addClass('hide');
-		$('#write-whine').removeClass('hide');
-		$('#whine-reviews').removeClass('hide');
-		getRestaurantWhines(restaurant);
+//	}) //.then function	
+//	.fail(function(err) {
+//		alert('You must sign up and login to write whine.');
+//		$('#whine-form').addClass('hide');
+//		$('#write-whine').removeClass('hide');
+//		$('#whine-reviews').removeClass('hide');
+//		getRestaurantWhines(restaurant);
 	});
 }	//addWhine function
 
