@@ -10,8 +10,13 @@ router.post('/', (req, res) => {
 		console.error(message);
 	return res.status(401).send(message);
 	}
-
-
+	
+//demo
+	if (req.user.name = 'demo') {
+		const message = 'You must sign up and login to write whine';
+		console.error(message);
+	return res.status(401).send(message);
+	}
 
 	const requiredFields = [
 		'food', 'service', 'cleanliness', 'price', 'restaurant'];
