@@ -108,6 +108,7 @@
 		overflow: scroll;
 		width: 40vw;
 		margin: 0.5em; 
+		margin-top: 0;
 	}
 
 	.whine-form {
