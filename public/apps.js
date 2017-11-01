@@ -45,6 +45,24 @@ $(document).ready(function() {
 		}); //.fail
 	}); //$('#login-page form').submit(function(event)
 
+// demo login
+	$('#demo-button').click(function() {
+		const loginDemo = {
+			email: 'demo@email.com',
+			password: 'password'
+		}; //const loginDemo
+		$.ajax('/login', {
+			contentType: 'application/json',
+			data: JSON.stringify(loginDemo),
+			type: 'POST'})
+		.then(function(res) {
+			$('.section').addClass('hide');
+			$('#search-result').removeClass('hide'); 
+			displayMap();
+			$('#whineryNav').removeClass('hide');
+		}); //.then function 
+	}); //$('#demo-button').click(function()	
+
 // click on one of the search-result	
 	$('ul#results-list').on('click', 'li', function() {
 		var restaurant = $(this).data('restaurant');
@@ -230,7 +248,14 @@ function addWhine() {
 		$('#write-whine').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
 		getRestaurantWhines(restaurant);	
-	}); //.then function	
+	}) //.then function	
+	.fail(function(err) {
+		alert('You must sign up and login to write whine.');
+		$('#whine-form').addClass('hide');
+		$('#write-whine').removeClass('hide');
+		$('#whine-reviews').removeClass('hide');
+		getRestaurantWhines(restaurant);
+	});
 }	//addWhine function
 
 
