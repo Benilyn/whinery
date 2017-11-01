@@ -10,6 +10,7 @@
 
 #header .h1 {
 	margin: 0;
+	font-size: 2em;
 }
 
 
@@ -90,10 +91,17 @@ li {
 }
 
 #restaurants p {
+	margin-top: 0;
+}
+
+#restaurants p, #latest-feeds p {
 	font-size: .75em;
 	color: darkgray;
-	margin-top: 0;
 	text-align: center;
+}
+
+#latest-feeds p {
+	margin-bottom: 0;
 }
 
 ul#results-list {
