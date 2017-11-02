@@ -79,14 +79,14 @@ $(document).ready(function() {
 
 // click on one of the restaurant name on whines
 	$('ul#whines').on('click', 'li', function() {
-		var restaurant = $(this).data('restaurant');
+		var restaurantId = $(this).data('restaurantId');
 		$('.section').addClass('hide');
 		$('#restaurant-info').removeClass('hide');
 		$('#write-whine').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
 		
-		getRestaurantInfo({place_id: restaurant});
-		getRestaurantWhines({place_id: restaurant});
+		getRestaurantInfo({place_id: restaurantId});
+		getRestaurantWhines({place_id: restaurantId});
 	}); //$('ul#whines').on('click', 'a', function()	
 
 //Write Review 
@@ -174,7 +174,11 @@ $(document).ready(function() {
 // delete whine
 	$('ul#restaurant-whines').on('click', '#delete', function() {
 		var whine = $(this).closest('li').data('whine');
-		deleteReview(whine);
+		var confirmDelete = confirm('Are you sure you want to delete this whine?');
+		if (confirmDelete === true) {
+			alert('Deleteing whine');
+			deleteReview(whine);	
+		}
 	});
 
 }); //$(document).ready(function()
@@ -248,13 +252,13 @@ function addWhine() {
 		$('#write-whine').removeClass('hide');
 		$('#whine-reviews').removeClass('hide');
 		getRestaurantWhines(restaurant);	
-//	}) //.then function	
-//	.fail(function(err) {
-//		alert('You must sign up and login to write whine.');
-//		$('#whine-form').addClass('hide');
-//		$('#write-whine').removeClass('hide');
-//		$('#whine-reviews').removeClass('hide');
-//		getRestaurantWhines(restaurant);
+	}) //.then function	
+	.fail(function(err) {
+		alert('You must sign up and login to write whine.');
+		$('#whine-form').addClass('hide');
+		$('#write-whine').removeClass('hide');
+		$('#whine-reviews').removeClass('hide');
+		getRestaurantWhines(restaurant);
 	});
 }	//addWhine function
 
@@ -391,7 +395,7 @@ function getLatestWhines() {
 			$whines.empty();
 			$.each(whines, function(index, whine) {
 				
-				var $whine = $('<li></li>').data('restaurant', whine.restaurant).appendTo($whines);
+				var $whine = $('<li></li>').data('restaurantId', whine.restaurant).appendTo($whines);
 				$('<span class="whineName ellipsis"><a href=#>' + whine.restaurantName + '</a></span>').appendTo($whine);
 				$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
 				$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
