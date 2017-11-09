@@ -6,13 +6,8 @@ const maps = require('@google/maps').createClient({
 });
 
 
-const {Restaurant} = require('../models');
 const {PORT, DATABASE_URL} = require('../config');
-/*
-router.get('/', (req, res) => {
-	res.json(Restaurant.get());
-}); //router.get
-*/
+
 router.get('/', (req, res) => {
 	maps.places({
 		type: 'restaurant',
@@ -41,11 +36,6 @@ router.get('/:id', (req, res) => {
 	});
 	console.log(req.params.id);
 }); //router.get('/:id)')
-
-
-
-
-
 
 
 module.exports = router;
