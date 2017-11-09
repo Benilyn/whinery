@@ -1,25 +1,6 @@
 const mongoose	= require('mongoose');
-
-const restaurantSchema = mongoose.Schema({
-	name: {type: String, required: true},
-	cuisine: {type: String, required: true},
-	address: {type: String, required: true},
-	city: {type: String, required: true},
-	state: {type: String, required: true},
-	zipcode: {type: String}
-}); //restaurantSchema	
-
-restaurantSchema.methods.apiRepr = function() {
-	return {
-		id: this._id,
-		name: this.name,
-		cuisine: this.cuisine,
-		address: this.address,
-		city: this.city,
-		state: this.state,
-		zipcode: this.zipcode
-	}; //return
-}; //restaurantSchema.methods.apiRepr
+const bcrypt = require('bcryptjs');
+const SALT_WORK_FACTOR = 10;
 
 
 const whineSchema = mongoose.Schema({
@@ -32,7 +13,7 @@ const whineSchema = mongoose.Schema({
 	cleanliness: {type: String},
 	price: {type: String},
 	review: {type: String}
-}); //reviewSchema
+}); //whineSchema
 
 whineSchema.methods.apiRepr = function() {
 	
@@ -48,7 +29,7 @@ whineSchema.methods.apiRepr = function() {
 		price: this.price,
 		review: this.review
 	}; //return
-}; //commentSchema
+}; //whineSchema
 
 
 const userSchema = mongoose.Schema({
@@ -59,20 +40,45 @@ const userSchema = mongoose.Schema({
 	password: {type: String, required: true},
 });
 
+userSchema.pre('save', function(next) {
+    var user = this;
+
+    // only hash the password if it has been modified (or is new)
+    if (!user.isModified('password')) return next();
+
+    // generate a salt
+    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+        if (err) return next(err);
+
+        // hash the password using our new salt
+        bcrypt.hash(user.password, salt, function(err, hash) {
+            if (err) return next(err);
+
+            // override the cleartext password with the hashed one
+            user.password = hash;
+            next();
+        });
+    });
+});
+
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+    });
+};
+
 userSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
 		firstName: this.firstName,
 		lastName: this.lastName,
 		phone: this.phone,
-		email: this.email,
-	//	password: this.password
+		email: this.email
 	}; //return
 }; //userSchema
 
-
-const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 const Whine = mongoose.model('Whine', whineSchema);
 const User = mongoose.model('User', userSchema);
 
-module.exports = {Restaurant, Whine, User};
+module.exports = { Whine, User};
