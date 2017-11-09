@@ -65,7 +65,7 @@ router.delete('/:id', (req, res) => {
 		.catch(err => {
 			console.error(err);
 			res.status(500).json({error: 'Something went wrong'});
-		})
+		});
 }); //router.delete
 
 router.put('/:id', (req, res) => {
