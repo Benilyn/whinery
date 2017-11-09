@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
 	
 //demo
 	console.log(req.user.firstName);
-	if (req.user.firstName == 'demo') {
+	if (req.user.demo) {
 		const message = 'You must sign up and login to write whine';
 		console.error(message);
 	return res.status(401).send(message);
