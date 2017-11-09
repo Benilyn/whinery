@@ -23,7 +23,7 @@
 
 #no-account {
 	text-align: center;
-	font-size: 0.5em;
+	font-size: 0.75em;
 	color: gray;
 	margin-bottom: 0;
 }
@@ -57,14 +57,8 @@
 }
 
 #demo {
-	width: 35%;
+	width: 100%;
 	margin: 0 auto;
-}
-
-#demo p {
-	color: darkgray;
-	text-align: center;
-	margin: 0.5em;
 }
 
 #demo-button {
@@ -267,3 +261,25 @@ span {
 	padding-top: 0.5em;
 }
 
+#or {
+    overflow: hidden;
+    text-align: center;
+}
+#or:before, #or:after {
+    background-color: #000;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+}
+
+#or:before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+#or:after {
+    left: 0.5em;
+    margin-right: -50%;
+}
