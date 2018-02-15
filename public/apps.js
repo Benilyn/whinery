@@ -92,7 +92,7 @@ $(document).ready(function() {
 //Write Review 
 	$('#write-whine').click(function() {
 		//add condition, if guess login, do not show whine review form
-		
+		console.log(user)
 		var restaurant = $('#restaurant-info').data('restaurant');
 		$('#whine-reviews').addClass('hide');
 		$('#write-whine').addClass('hide');
@@ -255,7 +255,12 @@ function addWhine() {
 		$('#whine-reviews').removeClass('hide');
 		getRestaurantWhines(restaurant);	
 	}) //.then function	
-	
+	.fail(function(err) {
+ 		alert('You must sign up and login to write whine.');
+ 		$('#whine-form').addClass('hide');
+ 		$('#write-whine').removeClass('hide');
+ 		$('#whine-reviews').removeClass('hide');
+ 		getRestaurantWhines(restaurant);
 
 
 
