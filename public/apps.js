@@ -91,6 +91,8 @@ $(document).ready(function() {
 
 //Write Review 
 	$('#write-whine').click(function() {
+		//add condition, if guess login, do not show whine review form
+		
 		var restaurant = $('#restaurant-info').data('restaurant');
 		$('#whine-reviews').addClass('hide');
 		$('#write-whine').addClass('hide');
@@ -155,7 +157,7 @@ $(document).ready(function() {
 		$('#edit-whine-form input[name=service]').val([whine.service]);
 		$('#edit-whine-form input[name=price]').val([whine.price]);
 		$('#edit-whine-form input[name=cleanliness]').val([whine.cleanliness]);
-		$('#edit-whine-form textarea[name=whine-review]').text([whine.review]);
+		$('#edit-whine-form textarea[name=whine-review]').val([whine.review]);
 		
 	
 	}); //$('ul#restaurant-whines').on('click', '#edit', function()
@@ -253,12 +255,10 @@ function addWhine() {
 		$('#whine-reviews').removeClass('hide');
 		getRestaurantWhines(restaurant);	
 	}) //.then function	
-	.fail(function(err) {
-		alert('You must sign up and login to write whine.');
-		$('#whine-form').addClass('hide');
-		$('#write-whine').removeClass('hide');
-		$('#whine-reviews').removeClass('hide');
-		getRestaurantWhines(restaurant);
+	
+
+
+
 	});
 }	//addWhine function
 
