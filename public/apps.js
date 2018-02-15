@@ -157,7 +157,7 @@ $(document).ready(function() {
 		$('#edit-whine-form input[name=service]').val([whine.service]);
 		$('#edit-whine-form input[name=price]').val([whine.price]);
 		$('#edit-whine-form input[name=cleanliness]').val([whine.cleanliness]);
-		$('#edit-whine-form textarea[name=whine-review]').val([whine.review]);
+		$('#edit-whine-form textarea[name=whine-review]').text([whine.review]);
 		
 	
 	}); //$('ul#restaurant-whines').on('click', '#edit', function()
