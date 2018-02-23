@@ -70,7 +70,6 @@ passport.deserializeUser(function(id, done) {
 }); //passport.deserializeUser
 
 
-app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use('/restaurants', restaurantsRouter);
@@ -78,7 +77,6 @@ app.use('/whines', whinesRouter);
 app.use('/users', usersRouter);
 app.use('/login',loginRouter);
 app.use('/logout', logoutRouter);
-
 
 if (require.main === module) {
 	console.log('testing');
@@ -98,6 +96,7 @@ app.get('/loggedin', (req, res) => {
       console.log(req.user);
   }
 });
+
 
 
 
