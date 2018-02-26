@@ -47,7 +47,13 @@ $(document).ready(function() {
 
 // demo login
 	$('#demo-button').click(function() {
-		const loginDemo = {
+		console.log('Guess logged');	
+		$('.section').addClass('hide');
+		$('#search-result').removeClass('hide'); 
+		displayMap();
+		$('#whineryNav').removeClass('hide');
+			
+	/*	const loginDemo = {
 			email: 'demo@email.com',
 			password: 'password'
 		}; //const loginDemo
@@ -61,6 +67,7 @@ $(document).ready(function() {
 			displayMap();
 			$('#whineryNav').removeClass('hide');
 		}); //.then function 
+	*/	
 	}); //$('#demo-button').click(function()	
 
 // click on one of the search-result	
