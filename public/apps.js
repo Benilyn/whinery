@@ -52,22 +52,6 @@ $(document).ready(function() {
 		$('#search-result').removeClass('hide'); 
 		displayMap();
 		$('#whineryNav').removeClass('hide');
-			
-	/*	const loginDemo = {
-			email: 'demo@email.com',
-			password: 'password'
-		}; //const loginDemo
-		$.ajax('/login', {
-			contentType: 'application/json',
-			data: JSON.stringify(loginDemo),
-			type: 'POST'})
-		.then(function(res) {
-			$('.section').addClass('hide');
-			$('#search-result').removeClass('hide'); 
-			displayMap();
-			$('#whineryNav').removeClass('hide');
-		}); //.then function 
-	*/	
 	}); //$('#demo-button').click(function()	
 
 // click on one of the search-result	
