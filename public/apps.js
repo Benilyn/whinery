@@ -91,8 +91,6 @@ $(document).ready(function() {
 
 //Write Review 
 	$('#write-whine').click(function() {
-		//add condition, if guess login, do not show whine review form
-		console.log(user)
 		var restaurant = $('#restaurant-info').data('restaurant');
 		$('#whine-reviews').addClass('hide');
 		$('#write-whine').addClass('hide');
@@ -124,7 +122,6 @@ $(document).ready(function() {
 		$('#back-to-search-results').removeClass('hide');
 		$('.section').addClass('hide');
 		$('#latest-feeds').removeClass('hide');
-
 		getLatestWhines();
 	}); //$('#back-button').click(function(event)
 
@@ -142,8 +139,6 @@ $(document).ready(function() {
 
 
 // edit whine
-	
-
 	$('ul#restaurant-whines').on('click', '#edit', function() {
 		var whine = $(this).closest('li').data('whine');
 		$('#edit-whine-form').data('whine', whine);
@@ -157,9 +152,7 @@ $(document).ready(function() {
 		$('#edit-whine-form input[name=service]').val([whine.service]);
 		$('#edit-whine-form input[name=price]').val([whine.price]);
 		$('#edit-whine-form input[name=cleanliness]').val([whine.cleanliness]);
-		$('#edit-whine-form textarea[name=whine-review]').text([whine.review]);
-		
-	
+		$('#edit-whine-form textarea[name=whine-review]').val([whine.review]);			
 	}); //$('ul#restaurant-whines').on('click', '#edit', function()
 
 	$('#submit-edit').click(function() {
@@ -386,7 +379,7 @@ function getRestaurantInfo(restaurant){
 		$('#restaurant-details .price').text('Price: ' + (price.repeat(result.price_level)));
 		$('#restaurant-details .phone').text(result.formatted_phone_number);
 		$('#restaurant-details .website a').attr('href', result.website);
-	}); //.then function
+	}); //.then function	
 } // getRestaurantInfo function
 
 
@@ -419,31 +412,38 @@ function getLatestWhines() {
 } //function getLatestWhines()
 
 function getRestaurantWhines(restaurant) {
-	console.log(restaurant);
-	$('<li> Getting whines for restaurants </li>').appendTo('ul#restaurant-whines');	
+	console.log(restaurant);	
 	$.ajax({
 		type: 'GET',
 		url: '/whines',
 		data: {restaurant: restaurant.place_id},
 		success: function(whines) {
 			var $whines = $('ul#restaurant-whines');
-			$whines.empty();		
-			$.each(whines, function(index, whine) {	
-				var $whine = $('<li class="restaurant-whine"></li>').data('whine', whine).appendTo($whines);
-				$('<span class="author-create"> ' + whine.author + ' on ' + whine.created +'</span>').appendTo($whine);
-				$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
-				$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
-				$('<span> Cleanliness: ' + whine.cleanliness + '</span>').appendTo($whine);	
-				$('<span> Price: ' + whine.price + '</span>').appendTo($whine);
-				if (whine.review) {
-					$('<span class="wrap"> Whine: ' + whine.review + '</span>').appendTo($whine);
-				} //if (whine.review)
-				if(whine.owned) {
-					var $edit = $('<div id="div-edit"></div>').appendTo($whine);
-					$('<button type="button" id="edit">Edit</button>').appendTo($edit);
-					$('<button type="button" id="delete">Delete</button>').appendTo($edit);
-				} //if(whine.owned)	
-			}); //$.each(whines, function(index, whine)
+			$whines.empty();
+			
+			if(whines.length === 0) {
+				console.log(whines.length);
+				$('<li>No whines found</li>').appendTo($whines);
+			} //if(whines.length === 0)
+			else {
+				$.each(whines, function(index, whine) {	
+					var $whine = $('<li class="restaurant-whine"></li>').data('whine', whine).appendTo($whines);
+					
+					$('<span class="author-create"> ' + whine.author + ' on ' + whine.created +'</span>').appendTo($whine);
+					$('<span> Food: ' + whine.food + '</span>').appendTo($whine);
+					$('<span> Service: ' + whine.service + '</span>').appendTo($whine);
+					$('<span> Cleanliness: ' + whine.cleanliness + '</span>').appendTo($whine);	
+					$('<span> Price: ' + whine.price + '</span>').appendTo($whine);
+					if (whine.review) {
+						$('<span class="wrap"> Whine: ' + whine.review + '</span>').appendTo($whine);
+					} //if (whine.review)
+					if(whine.owned) {
+						var $edit = $('<div id="div-edit"></div>').appendTo($whine);
+						$('<button type="button" id="edit">Edit</button>').appendTo($edit);
+						$('<button type="button" id="delete">Delete</button>').appendTo($edit);
+					} //if(whine.owned)	
+				}); //$.each(whines, function(index, whine)
+			} //else			
 		}, //success function
 		error: function() {
 			alert('Error getting restaurant whines');
