@@ -20,7 +20,7 @@ whineSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
 		created: this.created.toDateString(),
-		author: this.author.firstName + ' ' + this.author.lastName,
+	//	author: this.author.firstName + ' ' + this.author.lastName,
 		restaurant: this.restaurant,
 		restaurantName: this.restaurantName,
 		food: this.food,
