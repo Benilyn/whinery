@@ -52,6 +52,7 @@ $(document).ready(function() {
 		$('#search-result').removeClass('hide'); 
 		displayMap();
 		$('#whineryNav').removeClass('hide');
+		$('#logout').addClass('hide');
 	}); //$('#demo-button').click(function()	
 
 // click on one of the search-result	
@@ -240,7 +241,7 @@ function addWhine() {
 		getRestaurantWhines(restaurant);	
 	}) //.then function	
 	.fail(function(err) {
- 		alert('You must sign up and login to write whine.');
+ 		alert('You must login to write whine.');
  		$('#whine-form').addClass('hide');
  		$('#write-whine').removeClass('hide');
  		$('#whine-reviews').removeClass('hide');
