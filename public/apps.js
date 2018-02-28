@@ -414,7 +414,7 @@ function getRestaurantWhines(restaurant) {
 			
 			if(whines.length === 0) {
 				console.log(whines.length);
-				$('<li>No whines found</li>').appendTo($whines);
+				$('<li class="no-restaurant-whine">No whines found</li>').appendTo($whines);
 			} //if(whines.length === 0)
 			else {
 				$.each(whines, function(index, whine) {	
