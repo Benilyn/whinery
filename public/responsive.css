@@ -162,6 +162,10 @@
 		margin-left: .5em;
 	}
 
+	#restaurant-whines .no-restaurant-whine li:nth-child(odd) {
+		margin-right: 0;
+	}
+
 }
 
 @media only screen and (min-width: 1020px) {
