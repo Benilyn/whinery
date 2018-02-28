@@ -62,7 +62,7 @@ router.get('/', (req, res) => {
 		.find(query)
 		.populate('author')
 		.sort(created)
-		.limit(15)
+		.limit(10)
 		.exec()
 		.then(whine => {
 			res.json(
@@ -70,14 +70,14 @@ router.get('/', (req, res) => {
 					(whine) => {
 						console.log(whine);
 						const data = whine.apiRepr();
-						if (req.user) {
+					/*	if (req.user) {
 							data.owned = req.user.id == whine.author.id;
 						}
 						else {
 							data.owned = false;
 						}
-						return data;
-
+					*/	return data;
+					
 					} )
 			);
 		})
