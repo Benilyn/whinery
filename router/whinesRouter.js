@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
 //demo
 	console.log(req.user.firstName);
 	if (req.user.demo) {
-		const message = 'You must sign up and login to write whine';
+		const message = 'You must login to write whine';
 		console.error(message);
 	return res.status(401).send(message);
 	}
@@ -62,7 +62,7 @@ router.get('/', (req, res) => {
 		.find(query)
 		.populate('author')
 		.sort(created)
-		.limit(10)
+		.limit(100)
 		.exec()
 		.then(whine => {
 			res.json(
@@ -70,13 +70,13 @@ router.get('/', (req, res) => {
 					(whine) => {
 						console.log(whine);
 						const data = whine.apiRepr();
-					/*	if (req.user) {
+						if (req.user) {
 							data.owned = req.user.id == whine.author.id;
 						}
 						else {
 							data.owned = false;
 						}
-					*/	return data;
+						return data;
 					
 					} )
 			);
