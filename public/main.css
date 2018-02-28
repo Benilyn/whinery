@@ -47,7 +47,7 @@
   padding: .125em 0;
   text-decoration: none;
   font-size: 1em;
-  width: 33.3%;
+  width: 30%;
   height: 100%
 }
 
@@ -55,6 +55,10 @@
 	background-color: black;
 	color: white;
 }
+
+#logout, #login-nav {
+	width: 20%;
+} 
 
 #demo {
 	width: 100%;
@@ -199,7 +203,7 @@ ul#results-list {
 	border: solid .125em lightgray;
 	padding: .75em;
 	font-size: 1.25em;
-	margin-right: 0;
+	margin-right: 0		!important;
 }
 
 .restaurant-whine span {
