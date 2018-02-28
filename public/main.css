@@ -193,6 +193,15 @@ ul#results-list {
 	margin-bottom: .25em
 }
 
+#restaurant-whines .no-restaurant-whine {
+	width: 100%;
+	text-align: center;
+	border: solid .125em lightgray;
+	padding: .75em;
+	font-size: 1.25em;
+	margin-right: 0;
+}
+
 .restaurant-whine span {
 	font-size: 1em;
 	padding: 0 1.5em;
