@@ -129,6 +129,21 @@ $(document).ready(function() {
 		}); //.then function	
 	}); //$(#logout)
 
+// login
+	$('#login-nav').click(function(event) {
+		event.preventDefault();
+		$.ajax('/logout', {
+			type: 'GET'
+		}) //$.ajax (logout)
+		.then(function() {
+			$('#whineryNav').addClass('hide');
+			$('#login-page').removeClass('hide');
+			$('#or').removeClass('hide');
+			$('#demo').removeClass('hide');
+			$('#sign-up').removeClass('hide');
+		}); //.then function
+	}); //$($login-nav)
+
 
 // edit whine
 	$('ul#restaurant-whines').on('click', '#edit', function() {
