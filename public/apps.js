@@ -277,7 +277,7 @@ function addWhine() {
 		getRestaurantWhines(restaurant);	
 	}) //.then function	
 	.fail(function(err) {
- 		alert('You must login to write whine.');
+ 		alert(err);
  		$('#whine-form').addClass('hide');
  		$('#write-whine').removeClass('hide');
  		$('#whine-reviews').removeClass('hide');
