@@ -2,6 +2,8 @@ $.noConflict();
 
 $(document).ready(function() {
 	isLoggedIn();
+	let guessLogin;
+	console.log("Guess login: " + guessLogin);
 
 // signup
 	$('#sign-up').click(function() {
@@ -35,10 +37,14 @@ $(document).ready(function() {
 			data: JSON.stringify(loginData),
 			type: 'POST'}) 
 		.then(function(res) {
+			guessLogin = false;
+			console.log("Guess login: " + guessLogin);
 			$('.section').addClass('hide');
 			$('#search-result').removeClass('hide'); 
 			displayMap();
 			$('#whineryNav').removeClass('hide');
+			$('#logout').show();
+			$('#login-nav').hide();
 		}) //.then function
 		.fail(function() {
 			alert('Email address and password does not match. Please try again.');
@@ -47,12 +53,14 @@ $(document).ready(function() {
 
 // demo login
 	$('#demo-button').click(function() {
-		console.log('Guess logged');	
+		guessLogin = true;
+		console.log("Guess login: " + guessLogin);
+
 		$('.section').addClass('hide');
 		$('#search-result').removeClass('hide'); 
 		displayMap();
 		$('#whineryNav').removeClass('hide');
-		$('#logout').addClass('hide');
+		$('#logout').hide();
 	}); //$('#demo-button').click(function()	
 
 // click on one of the search-result	
@@ -83,12 +91,25 @@ $(document).ready(function() {
 
 //Write Review 
 	$('#write-whine').click(function() {
-		var restaurant = $('#restaurant-info').data('restaurant');
-		$('#whine-reviews').addClass('hide');
-		$('#write-whine').addClass('hide');
-		$('#whine-form').removeClass('hide');
-		$('#write-whine-buttons').removeClass('hide');
-		clearForm();
+		console.log("Guess login: " + guessLogin);
+		if(guessLogin === true) {
+			alert('You must login to write whine.');
+			$('.section').addClass('hide');
+			$('#whineryNav').addClass('hide');
+			$('#login-page').removeClass('hide');
+			$('#sign-up').removeClass('hide');
+			$('#or').removeClass('hide');
+			$('#demo').removeClass('hide');
+		}
+		else {
+			var restaurant = $('#restaurant-info').data('restaurant');
+			$('#whine-reviews').addClass('hide');
+			$('#write-whine').addClass('hide');
+			$('#whine-form').removeClass('hide');
+			$('#write-whine-buttons').removeClass('hide');
+			clearForm();
+		}
+		
 	}); //$('#write-whine').click(function()
 
 	$('#cancel-whine').click(function() {
