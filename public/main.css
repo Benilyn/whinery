@@ -267,6 +267,10 @@ span {
 	text-decoration: underline;
 }
 
+.whineName a {
+	color: darkslategray;
+}
+
 .whineAuthor {
 	font-size: 0.75em;
 	font-style: oblique;
