@@ -157,6 +157,7 @@ $(document).ready(function() {
 			type: 'GET'
 		}) //$.ajax (logout)
 		.then(function() {
+			$('.section').addClass('hide');
 			$('#whineryNav').addClass('hide');
 			$('#login-page').removeClass('hide');
 			$('#or').removeClass('hide');
@@ -406,7 +407,7 @@ function getRestaurantInfo(restaurant){
 		$('#restaurant-details .address').text(result.formatted_address);
 		$('#restaurant-details .price').text('Price: ' + (price.repeat(result.price_level)));
 		$('#restaurant-details .phone').text(result.formatted_phone_number);
-		$('#restaurant-details .website a').attr('href', result.website);
+		$('#restaurant-details .website a').text(result.website, 'href');
 	}); //.then function	
 } // getRestaurantInfo function
 
