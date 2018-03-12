@@ -2,12 +2,14 @@ $.noConflict();
 
 $(document).ready(function() {
 	isLoggedIn();
+	let guessLogin;
+	console.log("Guess login: " + guessLogin);
 
 // signup
 	$('#sign-up').click(function() {
 		$('.section').addClass('hide');
 		$('#signup-page').removeClass('hide');
-	//	$('#signup-page input').val('');
+		$('#signup-page input').val('');
 	}); //$('#sign-up').click(function()
 
 	$('#submit-signup').click(function() {
@@ -21,6 +23,7 @@ $(document).ready(function() {
 		$('#login-page').removeClass('hide');
 		$('#demo').removeClass('hide');
 		$('#sign-up').removeClass('hide');
+		$('#or').removeClass('hide');
 	}); //$('#cancel-signup').click(function()
 
 // login	
@@ -35,10 +38,14 @@ $(document).ready(function() {
 			data: JSON.stringify(loginData),
 			type: 'POST'}) 
 		.then(function(res) {
+			guessLogin = false;
+			console.log("Guess login: " + guessLogin);
 			$('.section').addClass('hide');
 			$('#search-result').removeClass('hide'); 
 			displayMap();
 			$('#whineryNav').removeClass('hide');
+			$('#logout').show();
+			$('#login-nav').hide();
 		}) //.then function
 		.fail(function() {
 			alert('Email address and password does not match. Please try again.');
@@ -47,27 +54,14 @@ $(document).ready(function() {
 
 // demo login
 	$('#demo-button').click(function() {
-		console.log('Guess logged');	
+		guessLogin = true;
+		console.log("Guess login: " + guessLogin);
+
 		$('.section').addClass('hide');
 		$('#search-result').removeClass('hide'); 
 		displayMap();
 		$('#whineryNav').removeClass('hide');
-			
-	/*	const loginDemo = {
-			email: 'demo@email.com',
-			password: 'password'
-		}; //const loginDemo
-		$.ajax('/login', {
-			contentType: 'application/json',
-			data: JSON.stringify(loginDemo),
-			type: 'POST'})
-		.then(function(res) {
-			$('.section').addClass('hide');
-			$('#search-result').removeClass('hide'); 
-			displayMap();
-			$('#whineryNav').removeClass('hide');
-		}); //.then function 
-	*/	
+		$('#logout').hide();
 	}); //$('#demo-button').click(function()	
 
 // click on one of the search-result	
@@ -98,12 +92,25 @@ $(document).ready(function() {
 
 //Write Review 
 	$('#write-whine').click(function() {
-		var restaurant = $('#restaurant-info').data('restaurant');
-		$('#whine-reviews').addClass('hide');
-		$('#write-whine').addClass('hide');
-		$('#whine-form').removeClass('hide');
-		$('#write-whine-buttons').removeClass('hide');
-		clearForm();
+		console.log("Guess login: " + guessLogin);
+		if(guessLogin === true) {
+			alert('You must login to write whine.');
+			$('.section').addClass('hide');
+			$('#whineryNav').addClass('hide');
+			$('#login-page').removeClass('hide');
+			$('#sign-up').removeClass('hide');
+			$('#or').removeClass('hide');
+			$('#demo').removeClass('hide');
+		}
+		else {
+			var restaurant = $('#restaurant-info').data('restaurant');
+			$('#whine-reviews').addClass('hide');
+			$('#write-whine').addClass('hide');
+			$('#whine-form').removeClass('hide');
+			$('#write-whine-buttons').removeClass('hide');
+			clearForm();
+		}
+		
 	}); //$('#write-whine').click(function()
 
 	$('#cancel-whine').click(function() {
@@ -143,6 +150,22 @@ $(document).ready(function() {
 			window.location.reload();	
 		}); //.then function	
 	}); //$(#logout)
+
+// login
+	$('#login-nav').click(function(event) {
+		event.preventDefault();
+		$.ajax('/logout', {
+			type: 'GET'
+		}) //$.ajax (logout)
+		.then(function() {
+			$('.section').addClass('hide');
+			$('#whineryNav').addClass('hide');
+			$('#login-page').removeClass('hide');
+			$('#or').removeClass('hide');
+			$('#demo').removeClass('hide');
+			$('#sign-up').removeClass('hide');
+		}); //.then function
+	}); //$($login-nav)
 
 
 // edit whine
@@ -231,6 +254,12 @@ function signUp() {
 	}); //.then function
 } //signUp function
 
+$('input[name=phone-number]').on('change', function () {
+	let s = $(this).val();
+	var s2 = (""+s).replace(/\D/g, '');
+	var m = s2.match(/^(\d{3})(\d{3})(\d{4})$/);
+	$(this).val((!m) ? null : "(" + m[1] + ") " + m[2] + "-" + m[3]);
+}); //formatPhone function
 
 function addWhine() {	
 	event.preventDefault();	
@@ -256,7 +285,7 @@ function addWhine() {
 		getRestaurantWhines(restaurant);	
 	}) //.then function	
 	.fail(function(err) {
- 		alert('You must sign up and login to write whine.');
+ 		alert(err);
  		$('#whine-form').addClass('hide');
  		$('#write-whine').removeClass('hide');
  		$('#whine-reviews').removeClass('hide');
@@ -385,7 +414,7 @@ function getRestaurantInfo(restaurant){
 		$('#restaurant-details .address').text(result.formatted_address);
 		$('#restaurant-details .price').text('Price: ' + (price.repeat(result.price_level)));
 		$('#restaurant-details .phone').text(result.formatted_phone_number);
-		$('#restaurant-details .website a').attr('href', result.website);
+		$('#restaurant-details .website a').text(result.website, 'href');
 	}); //.then function	
 } // getRestaurantInfo function
 
@@ -430,7 +459,7 @@ function getRestaurantWhines(restaurant) {
 			
 			if(whines.length === 0) {
 				console.log(whines.length);
-				$('<li>No whines found</li>').appendTo($whines);
+				$('<li class="no-restaurant-whine">No whines found</li>').appendTo($whines);
 			} //if(whines.length === 0)
 			else {
 				$.each(whines, function(index, whine) {	

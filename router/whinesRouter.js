@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
 //demo
 	console.log(req.user.firstName);
 	if (req.user.demo) {
-		const message = 'You must sign up and login to write whine';
+		const message = 'You must login to write whine';
 		console.error(message);
 	return res.status(401).send(message);
 	}
@@ -62,7 +62,7 @@ router.get('/', (req, res) => {
 		.find(query)
 		.populate('author')
 		.sort(created)
-		.limit(15)
+		.limit(100)
 		.exec()
 		.then(whine => {
 			res.json(
@@ -77,7 +77,7 @@ router.get('/', (req, res) => {
 							data.owned = false;
 						}
 						return data;
-
+					
 					} )
 			);
 		})
