@@ -253,6 +253,12 @@ function signUp() {
 	}); //.then function
 } //signUp function
 
+$('input[name=phone-number]').on('change', function () {
+	let s = $(this).val();
+	var s2 = (""+s).replace(/\D/g, '');
+	var m = s2.match(/^(\d{3})(\d{3})(\d{4})$/);
+	$(this).val((!m) ? null : "(" + m[1] + ") " + m[2] + "-" + m[3]);
+}); //formatPhone function
 
 function addWhine() {	
 	event.preventDefault();	
