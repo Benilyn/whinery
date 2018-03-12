@@ -9,7 +9,7 @@ $(document).ready(function() {
 	$('#sign-up').click(function() {
 		$('.section').addClass('hide');
 		$('#signup-page').removeClass('hide');
-	//	$('#signup-page input').val('');
+		$('#signup-page input').val('');
 	}); //$('#sign-up').click(function()
 
 	$('#submit-signup').click(function() {
@@ -23,6 +23,7 @@ $(document).ready(function() {
 		$('#login-page').removeClass('hide');
 		$('#demo').removeClass('hide');
 		$('#sign-up').removeClass('hide');
+		$('#or').removeClass('hide');
 	}); //$('#cancel-signup').click(function()
 
 // login	
