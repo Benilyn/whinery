@@ -79,7 +79,6 @@ app.use('/login',loginRouter);
 app.use('/logout', logoutRouter);
 
 if (require.main === module) {
-	console.log('testing');
 	mongoose.connect(DATABASE_URL, {useMongoClient: true});
   app.listen(PORT);
 	//https.createServer(options, app).listen(PORT);
@@ -93,7 +92,6 @@ app.get('/loggedin', (req, res) => {
   }
   else{
       res.sendStatus(200);
-      console.log(req.user);
   }
 });
 

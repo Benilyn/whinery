@@ -3,7 +3,6 @@ $.noConflict();
 $(document).ready(function() {
 	isLoggedIn();
 	let guessLogin;
-	console.log("Guess login: " + guessLogin);
 
 // signup
 	$('#sign-up').click(function() {
@@ -39,7 +38,6 @@ $(document).ready(function() {
 			type: 'POST'}) 
 		.then(function(res) {
 			guessLogin = false;
-			console.log("Guess login: " + guessLogin);
 			$('.section').addClass('hide');
 			$('#search-result').removeClass('hide'); 
 			displayMap();
@@ -55,8 +53,6 @@ $(document).ready(function() {
 // demo login
 	$('#demo-button').click(function() {
 		guessLogin = true;
-		console.log("Guess login: " + guessLogin);
-
 		$('.section').addClass('hide');
 		$('#search-result').removeClass('hide'); 
 		displayMap();
@@ -92,7 +88,6 @@ $(document).ready(function() {
 
 //Write Review 
 	$('#write-whine').click(function() {
-		console.log("Guess login: " + guessLogin);
 		if(guessLogin === true) {
 			alert('You must login to write whine.');
 			$('.section').addClass('hide');
@@ -224,7 +219,6 @@ function isLoggedIn() {
 		});	
 	})
 	.fail(function(){
-		console.log('You must log in to see whines');
 		$('#login-page').removeClass('hide');
 		$('#demo').removeClass('hide');
 		$('#sign-up').removeClass('hide');
@@ -408,8 +402,7 @@ function getRestaurantInfo(restaurant){
 		data: {placeid: restaurant.place_id}
 	}) //$.ajax
 	.then(function(result) {
-		console.log(result);
-			var price = '$';
+		var price = '$';
 		$('#restaurant-details .name').text(result.name);
 		$('#restaurant-details .address').text(result.formatted_address);
 		$('#restaurant-details .price').text('Price: ' + (price.repeat(result.price_level)));
@@ -447,8 +440,7 @@ function getLatestWhines() {
 	}); //$.ajax
 } //function getLatestWhines()
 
-function getRestaurantWhines(restaurant) {
-	console.log(restaurant);	
+function getRestaurantWhines(restaurant) {	
 	$.ajax({
 		type: 'GET',
 		url: '/whines',
@@ -458,7 +450,6 @@ function getRestaurantWhines(restaurant) {
 			$whines.empty();
 			
 			if(whines.length === 0) {
-				console.log(whines.length);
 				$('<li class="no-restaurant-whine">No whines found</li>').appendTo($whines);
 			} //if(whines.length === 0)
 			else {
